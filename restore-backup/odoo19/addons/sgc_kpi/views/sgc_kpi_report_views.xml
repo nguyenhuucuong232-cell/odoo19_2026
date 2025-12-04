@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Form View -->
+    <record id="sgc_kpi_report_view_form" model="ir.ui.view">
+        <field name="name">sgc.kpi.report.form</field>
+        <field name="model">sgc.kpi.report</field>
+        <field name="arch" type="xml">
+            <form string="Báo cáo KPI">
+                <header>
+                    <button name="action_generate_lines" 
+                            string="Tạo chi tiết" 
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state != 'draft'"/>
+                    <button name="action_confirm" 
+                            string="Xác nhận" 
+                            type="object"
+                            invisible="state != 'draft'"/>
+                    <button name="action_approve" 
+                            string="Phê duyệt" 
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state != 'confirmed'"/>
+                    <button name="action_draft" 
+                            string="Về nháp" 
+                            type="object"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="criteria_id" readonly="state != 'draft'"/>
+                            <field name="department_id" readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="month" readonly="state != 'draft'"/>
+                            <field name="year" readonly="state != 'draft'"/>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi tiết">
+                            <field name="line_ids" readonly="state == 'approved'">
+                                <list editable="bottom">
+                                    <field name="employee_id" readonly="1"/>
+                                    <field name="department_id" readonly="1"/>
+                                    <field name="target" readonly="1"/>
+                                    <field name="actual"/>
+                                    <field name="ratio" decoration-success="ratio >= 100" 
+                                           decoration-warning="ratio >= 80 and ratio &lt; 100"
+                                           decoration-danger="ratio &lt; 80"/>
+                                    <field name="note"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Ghi chú">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Report List View -->
+    <record id="sgc_kpi_report_view_list" model="ir.ui.view">
+        <field name="name">sgc.kpi.report.list</field>
+        <field name="model">sgc.kpi.report</field>
+        <field name="arch" type="xml">
+            <list string="Báo cáo KPI">
+                <field name="name"/>
+                <field name="criteria_id"/>
+                <field name="department_id"/>
+                <field name="month"/>
+                <field name="year"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'confirmed'"
+                       decoration-success="state == 'approved'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Report Search View -->
+    <record id="sgc_kpi_report_view_search" model="ir.ui.view">
+        <field name="name">sgc.kpi.report.search</field>
+        <field name="model">sgc.kpi.report</field>
+        <field name="arch" type="xml">
+            <search string="Báo cáo KPI">
+                <field name="name"/>
+                <field name="criteria_id"/>
+                <field name="department_id"/>
+                <filter name="draft" string="Nháp" domain="[('state', '=', 'draft')]"/>
+                <filter name="confirmed" string="Đã xác nhận" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="approved" string="Đã duyệt" domain="[('state', '=', 'approved')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Report Action -->
+    <record id="sgc_kpi_report_action" model="ir.actions.act_window">
+        <field name="name">Báo cáo KPI</field>
+        <field name="res_model">sgc.kpi.report</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="sgc_kpi_report_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo báo cáo KPI mới
+            </p>
+        </field>
+    </record>
+</odoo>

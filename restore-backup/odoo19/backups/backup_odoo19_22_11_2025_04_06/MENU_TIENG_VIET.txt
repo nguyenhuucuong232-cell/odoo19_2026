@@ -1,0 +1,182 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    MENU ODOO 19 - TIẾNG VIỆT                               ║
+║                    VÀO ĐÂU ĐỂ LÀM GÌ?                                      ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ ❓ MUỐN LÀM GÌ?              │ 📍 VÀO ĐÂU?                                  │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Sửa MẪU báo giá              │ Bán hàng → Cấu hình → Đơn bán hàng          │
+│ (nội dung, sản phẩm, giá)    │ → Chọn mẫu → Tab "Sản phẩm tùy chọn"        │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Sửa HÌNH THỨC in PDF         │ Cài đặt → Technical → Báo cáo               │
+│ (header, footer, màu sắc)    │ → "Báo giá SGC" → Edit Template             │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Tạo báo giá mới cho khách    │ Bán hàng → Đơn hàng → Tạo mới               │
+│                              │ → Chọn mẫu có sẵn (nếu có)                  │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Xem tất cả báo giá           │ Bán hàng → Đơn hàng                         │
+│                              │ (Hoặc: Bán hàng → Báo giá)                  │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Quản lý khách hàng           │ Bán hàng → Đơn hàng → Khách hàng            │
+│                              │ (Hoặc: Cấu hình → Khách hàng)               │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Quản lý sản phẩm             │ Bán hàng → Sản phẩm                         │
+│                              │ (Hoặc: Cấu hình → Sản phẩm)                 │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Cài đặt thuế                 │ Cài đặt → Kế toán → Thuế                    │
+│                              │ (Hoặc: Kế toán → Cấu hình → Thuế)           │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Quản lý nhân viên            │ Nhân sự (HR) → Nhân viên                    │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Quản lý phòng ban            │ Nhân sự → Cấu hình → Phòng ban              │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Xem dự án                    │ Dự án (Project) → Tất cả dự án              │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Cài/gỡ module                │ Ứng dụng (Apps)                             │
+├────────────────────────────────────────────────────────────────────────────┤
+│ Cấu hình hệ thống            │ Cài đặt (Settings)                          │
+└────────────────────────────────────────────────────────────────────────────┘
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    ĐƯỜNG DẪN CỤ THỂ                                        ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+🎯 MỤC ĐÍCH: SỬA MẪU BÁO GIÁ (GIỐNG HÌNH BẠN GỬI)
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ BƯỚC 1: BẬT DEVELOPER MODE                                                 │
+└────────────────────────────────────────────────────────────────────────────┘
+
+URL trực tiếp: 
+http://localhost:10019/web?debug=1
+
+Hoặc:
+  1. Click biểu tượng ⚙️ (Settings) góc phải
+  2. Kéo xuống cuối cùng
+  3. Tìm "Developer Tools" (Công cụ phát triển)
+  4. Click "Activate the developer mode"
+  5. Màn hình sẽ reload
+  6. Kiểm tra: góc trên bên phải có biểu tượng 🐞 (con bọ)
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ BƯỚC 2: VÀO PHẦN MẪU BÁO GIÁ                                               │
+└────────────────────────────────────────────────────────────────────────────┘
+
+Có 16 mẫu đã tạo sẵn:
+  1. BG QUAN TRẮC MÔI TRƯỜNG LAO ĐỘNG NĂM
+  2. BG QTMTLD + QTMT
+  3. BG Lập hồ sơ Đánh giá tác động môi trường
+  ... (và 13 mẫu khác)
+
+CÁCH VÀO:
+  Bán hàng → Đơn hàng → Lọc "Báo giá"
+  
+  Hoặc gõ URL trực tiếp:
+  http://localhost:10019/web#action=sale.action_quotations
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ BƯỚC 3: MỞ MẪU ĐỂ CHỈNH SỬA                                                │
+└────────────────────────────────────────────────────────────────────────────┘
+
+Ví dụ mở mẫu: "BG QUAN TRẮC MÔI TRƯỜNG LAO ĐỘNG NĂM"
+
+Bạn sẽ thấy form giống hình có:
+  ┌──────────────────────────────────────────────────────────┐
+  │ Mẫu báo giá          │ BG QUAN TRẮC MÔI TRƯỜNG...        │
+  │ Mẫu báo giá số       │ BG-QTLD-001/2025 - Ver 1.0        │
+  │ Hiệu lực báo giá     │ 0 ngày                            │
+  │ Tạo dự án?           │ ☑                                 │
+  │ Mẫu dự án            │ [Chọn mẫu dự án]                  │
+  │ Công ty              │ CÔNG TY CỔ PHẦN...                │
+  └──────────────────────────────────────────────────────────┘
+
+Click "Sửa" (Edit) để bắt đầu chỉnh sửa!
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ BƯỚC 4: CHỈNH SỬA CÁC TAB                                                  │
+└────────────────────────────────────────────────────────────────────────────┘
+
+TAB 1 - CHI TIẾT:
+  - Đổi tên mẫu
+  - Đổi số hiệu lực
+  - Chọn công ty
+
+TAB 2 - SẢN PHẨM TÙY CHỌN:
+  - Click "Thêm dòng"
+  - Chọn sản phẩm (ví dụ: "Vi khí hậu")
+  - Nhập số lượng: 4,00
+  - Nhập Frequency: 4,00 (nếu có cột này)
+  - Chọn thuế: Thuế 8%
+  - Click "Lưu dòng"
+  - Lặp lại để thêm sản phẩm khác
+
+TAB 3 - ĐIỀU KHOẢN & ĐIỀU KIỆN:
+  - Viết nội dung điều khoản
+  - Ghi chú đặc biệt cho khách
+  - Điều kiện thanh toán
+
+TAB 4 - CHI PHÍ:
+  - Thêm phí vận chuyển
+  - Phí lắp đặt
+  - Phí khác
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ BƯỚC 5: LƯU VÀ TEST                                                        │
+└────────────────────────────────────────────────────────────────────────────┘
+
+Sau khi sửa xong:
+  1. Click "Lưu" (Save) - Ctrl+S
+  2. Click "In" (Print)
+  3. Chọn "Báo giá SGC"
+  4. Xem PDF có đúng ý không
+
+Nếu chưa đúng:
+  → Quay lại sửa tiếp
+  → Hoặc sửa file XML (nếu cần thay đổi layout)
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                         MẸO NHANH                                          ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+✅ Nhân bản mẫu nhanh:
+   Mở mẫu → Action → Duplicate
+
+✅ Tìm kiếm nhanh:
+   Ctrl+K → gõ tên mẫu
+
+✅ Xem trước PDF:
+   Mở mẫu → Print → Preview
+
+✅ Sửa nhanh trong code:
+   Developer Mode → Click nút </>
+
+✅ Backup trước khi sửa:
+   ./scripts/backup_report.sh
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    CÁC FILE HƯỚNG DẪN                                      ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+📄 HUONG_DAN_TIENG_VIET.md      - Hướng dẫn tổng quan
+📄 GUIDE_EDIT_REPORT.txt        - Hướng dẫn sửa report
+📄 EDIT_REPORT_SECTIONS.txt     - Hướng dẫn từng phần
+📄 MENU_TIENG_VIET.txt          - Menu tiếng Việt (file này)
+
+Mở bằng: cat MENU_TIENG_VIET.txt
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    HỖ TRỢ                                                  ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+Nếu không tìm thấy menu → Kiểm tra:
+  ✓ Đã đăng nhập bằng tài khoản admin?
+  ✓ Đã cài module sale_management?
+  ✓ Đã bật Developer Mode?
+  ✓ Đã refresh trình duyệt (F5)?
+
+Nếu vẫn không thấy:
+  → Vào Apps → Update Apps List
+  → Search "Sales" → Install
+  → Refresh lại trình duyệt
+

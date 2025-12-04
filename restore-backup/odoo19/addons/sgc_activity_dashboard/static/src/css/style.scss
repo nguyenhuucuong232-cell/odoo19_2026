@@ -1,0 +1,89 @@
+.o_action_manager {
+    direction: ltr;
+    webkit-box-flex: 1;
+    webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    overflow: scroll !important;
+}
+
+.sgc-activity-dashboard-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 1.7rem 1.5rem 1.5rem 1.5rem;
+    margin: 1rem auto;
+    height: 100px;
+    cursor: pointer;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 35px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+}
+
+.sgc-activity-dashboard-card__icon-container {
+    height: 50px;
+    border-radius: 50%;
+}
+
+.sgc-my_activity {
+    background-color: #229db9;
+}
+
+.sgc-all_activity {
+    background: linear-gradient(135deg, #88dfdf 0%, #5bc0c0 100%);
+}
+
+.sgc-planned_activity {
+    background: linear-gradient(135deg, #e8c5ac 0%, #d4a574 100%);
+}
+
+.sgc-completed_activity {
+    background: linear-gradient(135deg, #a7a1f4 0%, #8b83e8 100%);
+}
+
+.sgc-today_activity {
+    background: linear-gradient(135deg, #f3bdf4 0%, #e89ce9 100%);
+}
+
+.sgc-overdue_activity {
+    background: linear-gradient(135deg, #a2d2fb 0%, #7bc0f5 100%);
+}
+
+.sgc-cancelled_activity {
+    background: linear-gradient(135deg, #beeecc 0%, #98ddb0 100%);
+}
+
+.sgc-activity_type {
+    background: linear-gradient(135deg, #ecb9b9 0%, #e09999 100%);
+}
+
+.sgc-dashboard_main_section {
+    margin: 20px;
+}
+
+.sgc-activity-dashboard-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.sgc-dashboard-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.sgc-filter-section {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}

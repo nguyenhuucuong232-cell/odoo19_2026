@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Gói Quản lý An toàn (QTMT) -->
+        <record id="product_service_qtmt" model="product.product">
+            <field name="name">Gói Quản lý An toàn (QTMT)</field>
+            <field name="type">service</field>
+            <field name="list_price">5000000</field>
+            <field name="standard_price">4000000</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="description">Gói dịch vụ tư vấn quản lý an toàn lao động toàn diện</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+            <field name="service_tracking">project_only</field>
+            <field name="project_template_id" ref="sgc_project_template"/>
+        </record>
+
+        <!-- Gói An toàn Vệ sinh Lao động (ATVSLĐ) -->
+        <record id="product_service_atvsld" model="product.product">
+            <field name="name">Gói An toàn Vệ sinh Lao động (ATVSLĐ)</field>
+            <field name="type">service</field>
+            <field name="list_price">3000000</field>
+            <field name="standard_price">2400000</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="description">Gói dịch vụ tư vấn an toàn vệ sinh lao động</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+            <field name="service_tracking">project_only</field>
+            <field name="project_template_id" ref="sgc_project_template"/>
+        </record>
+
+        <!-- Gói Phòng cháy chữa cháy (PCCC) -->
+        <record id="product_service_pccc" model="product.product">
+            <field name="name">Gói Phòng cháy chữa cháy (PCCC)</field>
+            <field name="type">service</field>
+            <field name="list_price">2500000</field>
+            <field name="standard_price">2000000</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="description">Gói dịch vụ tư vấn phòng cháy chữa cháy</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+            <field name="service_tracking">project_only</field>
+            <field name="project_template_id" ref="sgc_project_template"/>
+        </record>
+
+        <!-- Gói Môi trường -->
+        <record id="product_service_moitruong" model="product.product">
+            <field name="name">Gói Tư vấn Môi trường</field>
+            <field name="type">service</field>
+            <field name="list_price">4000000</field>
+            <field name="standard_price">3200000</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="description">Gói dịch vụ tư vấn quản lý môi trường</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+            <field name="service_tracking">project_only</field>
+            <field name="project_template_id" ref="sgc_project_template"/>
+        </record>
+
+        <!-- Gói Đánh giá rủi ro -->
+        <record id="product_service_risk_assessment" model="product.product">
+            <field name="name">Gói Đánh giá Rủi ro</field>
+            <field name="type">service</field>
+            <field name="list_price">1500000</field>
+            <field name="standard_price">1200000</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="description">Gói dịch vụ đánh giá rủi ro an toàn</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <!-- Gói Đào tạo An toàn -->
+        <record id="product_service_training" model="product.product">
+            <field name="name">Gói Đào tạo An toàn</field>
+            <field name="type">service</field>
+            <field name="list_price">2000000</field>
+            <field name="standard_price">1600000</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="description">Gói dịch vụ đào tạo an toàn lao động</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+    </data>
+</odoo>

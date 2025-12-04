@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- PHÒNG BAN CÔNG TY SGC -->
+
+    <!-- Ban Lãnh Đạo -->
+    <record id="dept_sgc_bld" model="hr.department">
+        <field name="name">Ban Lãnh Đạo</field>
+        <field name="company_id" ref="company_sgc_main"/>
+    </record>
+
+    <!-- Phòng Quan Trắc -->
+    <record id="dept_sgc_pqt" model="hr.department">
+        <field name="name">Phòng Quan Trắc (PQT)</field>
+        <field name="company_id" ref="company_sgc_main"/>
+    </record>
+
+    <!-- Phòng Thí Nghiệm - Phân Tích Sinh -->
+    <record id="dept_sgc_pts" model="hr.department">
+        <field name="name">Phòng Thí Nghiệm - Phân Tích Sinh (PTS)</field>
+        <field name="company_id" ref="company_sgc_main"/>
+    </record>
+
+    <!-- Phòng Thí Nghiệm - Phân Tích Hóa -->
+    <record id="dept_sgc_pth" model="hr.department">
+        <field name="name">Phòng Thí Nghiệm - Phân Tích Hóa (PTH)</field>
+        <field name="company_id" ref="company_sgc_main"/>
+    </record>
+
+    <!-- Phòng Tư Vấn Môi Trường -->
+    <record id="dept_sgc_tvmt" model="hr.department">
+        <field name="name">Phòng Tư Vấn Môi Trường</field>
+        <field name="company_id" ref="company_sgc_main"/>
+    </record>
+
+    <!-- Phòng Xử Lý Nước Thải -->
+    <record id="dept_sgc_xlnt" model="hr.department">
+        <field name="name">Phòng Xử Lý Nước Thải</field>
+        <field name="company_id" ref="company_sgc_main"/>
+    </record>
+
+    <!-- Phòng Kế Toán -->
+    <record id="dept_sgc_kt" model="hr.department">
+        <field name="name">Phòng Kế Toán</field>
+        <field name="company_id" ref="company_sgc_main"/>
+    </record>
+
+    <!-- Phòng Hành Chính Nhân Sự -->
+    <record id="dept_sgc_hcns" model="hr.department">
+        <field name="name">Phòng Hành Chính Nhân Sự</field>
+        <field name="company_id" ref="company_sgc_main"/>
+    </record>
+
+    <!-- Phòng Kinh Doanh -->
+    <record id="dept_sgc_kd" model="hr.department">
+        <field name="name">Phòng Kinh Doanh</field>
+        <field name="company_id" ref="company_sgc_main"/>
+    </record>
+
+    <!-- Phòng ISO & Chứng Nhận -->
+    <record id="dept_sgc_iso" model="hr.department">
+        <field name="name">Phòng ISO &amp; Chứng Nhận</field>
+        <field name="company_id" ref="company_sgc_main"/>
+    </record>
+
+    <!-- PHÒNG BAN CÔNG TY NAM VIỆT -->
+
+    <!-- Ban Lãnh Đạo NV -->
+    <record id="dept_nv_bld" model="hr.department">
+        <field name="name">Ban Lãnh Đạo</field>
+        <field name="company_id" ref="company_nv"/>
+    </record>
+
+    <!-- Phòng Quan Trắc NV -->
+    <record id="dept_nv_pqt" model="hr.department">
+        <field name="name">Phòng Quan Trắc (PQT)</field>
+        <field name="company_id" ref="company_nv"/>
+    </record>
+
+    <!-- Phòng Thí Nghiệm - Phân Tích Sinh NV -->
+    <record id="dept_nv_pts" model="hr.department">
+        <field name="name">Phòng Thí Nghiệm - Phân Tích Sinh (PTS)</field>
+        <field name="company_id" ref="company_nv"/>
+    </record>
+
+    <!-- Phòng Thí Nghiệm - Phân Tích Hóa NV -->
+    <record id="dept_nv_pth" model="hr.department">
+        <field name="name">Phòng Thí Nghiệm - Phân Tích Hóa (PTH)</field>
+        <field name="company_id" ref="company_nv"/>
+    </record>
+
+</odoo>

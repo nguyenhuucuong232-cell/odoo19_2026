@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Custom External Layout for SGC Reports -->
+    <template id="external_layout_sgc" name="SGC Report Layout">
+        <t t-set="company" t-value="company or doc.company_id or res_company"/>
+        
+        <div class="article" t-att-data-oe-model="doc and doc._name" t-att-data-oe-id="doc and doc.id">
+            
+            <!-- Header -->
+            <div class="header">
+                <!-- Custom Header Image (if exists) -->
+                <div class="row" t-if="company.report_header_image">
+                    <div class="col-12 text-center" style="margin-bottom: 10px;">
+                        <img t-att-src="image_data_uri(company.report_header_image)" 
+                             style="max-width: 100%; max-height: 150px; object-fit: contain;"
+                             alt="Company Header"/>
+                    </div>
+                </div>
+                
+                <!-- Standard Header (if no custom image) -->
+                <div class="row" t-if="not company.report_header_image">
+                    <div class="col-3">
+                        <img t-if="company.logo" 
+                             t-att-src="image_data_uri(company.logo)" 
+                             style="max-height: 80px;"
+                             alt="Logo"/>
+                    </div>
+                    <div class="col-9 text-right" style="font-size: 10pt;">
+                        <h4 style="margin: 0; color: #875A7B;">
+                            <strong t-field="company.name"/>
+                        </h4>
+                        <div t-if="company.tax_code">
+                            <strong>MST:</strong> <span t-field="company.tax_code"/>
+                        </div>
+                        <div t-field="company.partner_id" 
+                             t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                        <div>
+                            <span t-if="company.phone">
+                                <i class="fa fa-phone"/> <span t-field="company.phone"/>
+                            </span>
+                            <span t-if="company.hotline" style="margin-left: 10px;">
+                                <i class="fa fa-phone-square"/> Hotline: <span t-field="company.hotline"/>
+                            </span>
+                        </div>
+                        <div t-if="company.email">
+                            <i class="fa fa-envelope"/> <span t-field="company.email"/>
+                        </div>
+                        <div t-if="company.website">
+                            <i class="fa fa-globe"/> <span t-field="company.website"/>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr style="border-top: 2px solid #875A7B; margin: 10px 0;"/>
+            </div>
+
+            <!-- Body -->
+            <div class="page">
+                <t t-out="0"/>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <hr style="border-top: 2px solid #875A7B; margin: 10px 0;"/>
+                
+                <div class="row">
+                    <!-- Footer Text -->
+                    <div class="col-7" style="font-size: 9pt;">
+                        <strong t-field="company.name"/><br/>
+                        <span t-field="company.partner_id" 
+                              t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/><br/>
+                        <span t-if="company.tax_code">
+                            MST: <span t-field="company.tax_code"/>
+                        </span>
+                        <span t-if="company.business_license" style="margin-left: 10px;">
+                            ĐKKD: <span t-field="company.business_license"/>
+                        </span>
+                        <br/>
+                        <span t-if="company.phone">
+                            Tel: <span t-field="company.phone"/>
+                        </span>
+                        <span t-if="company.hotline" style="margin-left: 10px;">
+                            Hotline: <span t-field="company.hotline"/>
+                        </span>
+                        <span t-if="company.fax" style="margin-left: 10px;">
+                            Fax: <span t-field="company.fax"/>
+                        </span>
+                        <br/>
+                        <span t-if="company.email">
+                            Email: <span t-field="company.email"/>
+                        </span>
+                        <span t-if="company.website" style="margin-left: 10px;">
+                            Web: <span t-field="company.website"/>
+                        </span>
+                    </div>
+                    
+                    <!-- Representative Signature -->
+                    <div class="col-5 text-center" t-if="company.representative_name">
+                        <div style="font-size: 10pt;">
+                            <strong>
+                                <span t-field="company.representative_position" t-if="company.representative_position"/>
+                                <t t-else="">Đại diện</t>
+                            </strong><br/>
+                            <span style="font-style: italic; font-size: 9pt;">(Ký, ghi rõ họ tên)</span>
+                        </div>
+                        
+                        <!-- Signature Image -->
+                        <div t-if="company.representative_signature" style="margin: 10px 0;">
+                            <img t-att-src="image_data_uri(company.representative_signature)" 
+                                 style="max-height: 60px; max-width: 150px;"
+                                 alt="Signature"/>
+                        </div>
+                        
+                        <!-- Signature space if no image -->
+                        <div t-else="" style="height: 60px;"></div>
+                        
+                        <div style="margin-top: 5px;">
+                            <strong><span t-field="company.representative_name"/></strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center" style="font-size: 8pt; color: #888; margin-top: 10px;">
+                    Trang <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Minimal Layout (no header/footer) -->
+    <template id="external_layout_sgc_minimal" name="SGC Report Layout - Minimal">
+        <t t-set="company" t-value="company or doc.company_id or res_company"/>
+        
+        <div class="article" t-att-data-oe-model="doc and doc._name" t-att-data-oe-id="doc and doc.id">
+            <div class="page">
+                <t t-out="0"/>
+            </div>
+        </div>
+    </template>
+</odoo>

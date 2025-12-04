@@ -1,0 +1,107 @@
+p, span, a, ul, li, button {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+strong {
+    font-weight: 600;
+}
+
+.sgc-activity-head {
+    line-height: 1.5em;
+    font-weight: 300;
+}
+
+.sgc-sub_title {
+    font-size: 14px;
+}
+
+.sgc-sub_title div span {
+    font-weight: 600;
+}
+
+.sgc-text-mauve {
+    padding-right: 10px;
+    font-size: 30px;
+    padding-left: 0px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+.sgc-dashboard-card__detail {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    margin: 15px;
+}
+
+/* Apply common styles to all tables */
+.sgc-table_activity {
+    width: 100%;
+    padding: 24px;
+    background-color: white;
+    color: #454748;
+    border-collapse: separate;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Apply specific styles to the table headers */
+.sgc-table_activity thead {
+    background-color: #f5f5f5;
+}
+
+/* Apply styles to the table head cells */
+.sgc-table_activity th {
+    text-align: left;
+    padding: 12px 8px;
+}
+
+.sgc-table_activity td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.sgc-activity_head {
+    font-weight: bold;
+    font-size: 20px;
+    color: #333;
+}
+
+.sgc-click-view {
+    border-radius: 8px;
+    background-color: #c4c4f2;
+    width: 100px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sgc-click-view:hover {
+    background-color: #a8a8e8;
+}
+
+.sgc-click-origin-view {
+    border-radius: 8px;
+    background-color: #c4c4f2;
+    width: 100px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sgc-click-origin-view:hover {
+    background-color: #a8a8e8;
+}
+
+.sgc-hh-50 {
+    height: 50px;
+}

@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:18
+    user: root
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo19@2025
+      - POSTGRES_DB=odoo19
+    restart: always
+    volumes:
+      - ./postgresql:/var/lib/postgresql/18/docker
+      - ./postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "127.0.0.1:5432:5432"  # Only bind to localhost for security
+    command: postgres -c shared_buffers=256MB -c work_mem=4MB -c maintenance_work_mem=64MB -c checkpoint_segments=32
+
+  odoo19:
+    image: odoo:19
+    user: root
+    depends_on:
+      - db
+    ports:
+      - "127.0.0.1:8069:8069"  # Bind to localhost only
+    tty: true
+    command: --log-level=warn --workers=2 --max-cron-threads=1 --addons-path=/mnt/enterprise-addons,/mnt/extra-addons
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo19@2025
+      - PIP_BREAK_SYSTEM_PACKAGES=1
+      - PYTHONUNBUFFERED=1
+      - ODOO_SESSION_REDIS=1
+    volumes:
+      - ./entrypoint.sh:/entrypoint.sh
+      - ./odoo-enterprise/src/odoo/addons:/mnt/enterprise-addons
+      - ./addons:/mnt/extra-addons
+      - ./etc:/etc/odoo
+      - ./logs:/var/log/odoo
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8069/web/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./logs/nginx:/var/log/nginx
+    depends_on:
+      - odoo19
+    restart: always
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    command: redis-server --appendonly yes
+    volumes:
+      - ./redis:/data

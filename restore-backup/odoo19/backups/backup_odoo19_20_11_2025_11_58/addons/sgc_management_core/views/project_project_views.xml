@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sgc_project_project_view_form_inherit" model="ir.ui.view">
+        <field name="name">project.project.form.inherit.sgc</field>
+        <field name="model">project.project</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <field name="contract_id"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

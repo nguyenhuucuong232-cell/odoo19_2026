@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="sgc_document_menu_root"
+              name="Quản lý văn bản"
+              web_icon="sgc_document_management,static/description/icon.png"
+              sequence="40"/>
+    
+    <!-- Dashboard/Overview Menu (will be created with client action) -->
+    <menuitem id="sgc_document_overview_menu"
+              name="Tổng quan"
+              parent="sgc_document_menu_root"
+              action="sgc_document_dashboard_action"
+              sequence="1"/>
+    
+    <!-- Document Menus -->
+    <menuitem id="sgc_document_in_menu"
+              name="Văn bản đến"
+              parent="sgc_document_menu_root"
+              action="sgc_document_in_action"
+              sequence="2"/>
+    
+    <menuitem id="sgc_document_out_menu"
+              name="Văn bản đi"
+              parent="sgc_document_menu_root"
+              action="sgc_document_out_action"
+              sequence="3"/>
+    
+    <menuitem id="sgc_document_all_menu"
+              name="All Document"
+              parent="sgc_document_menu_root"
+              action="sgc_document_all_action"
+              sequence="4"/>
+    
+    <!-- Configuration Menu -->
+    <menuitem id="sgc_document_config_menu"
+              name="Cấu hình"
+              parent="sgc_document_menu_root"
+              sequence="100"/>
+    
+    <menuitem id="sgc_document_status_menu"
+              name="Trạng thái văn bản"
+              parent="sgc_document_config_menu"
+              action="sgc_document_status_action"
+              sequence="1"/>
+    
+    <menuitem id="sgc_document_type_menu"
+              name="Loại văn bản"
+              parent="sgc_document_config_menu"
+              action="sgc_document_type_action"
+              sequence="2"/>
+</odoo>

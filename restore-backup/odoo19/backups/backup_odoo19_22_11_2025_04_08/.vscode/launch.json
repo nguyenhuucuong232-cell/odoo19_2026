@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Odoo 19 Enterprise Local",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/odoo-enterprise/src/setup/odoo",
+      "args": [
+        "--config=${workspaceFolder}/etc/odoo.conf",
+        "--addons-path=${workspaceFolder}/odoo-enterprise/src/odoo/addons,${workspaceFolder}/addons",
+        "--db_host=localhost",
+        "--db_port=5432",
+        "--db_user=odoo",
+        "--db_password=odoo19@2025",
+        "--log-level=info",
+        "-i", "web_enterprise,crm,stock,account_accountant,equity,purchase,project,mrp,hr_timesheet,hr_expense,web_studio,documents,hr_holidays,hr_recruitment,hr,ai,esg,knowledge,maintenance,sign,helpdesk,website_slides,planning,event,contacts,mrp_plm,sale_renting,calendar,industry_fsm,hr_appraisal,fleet,approvals,appointment,repair,hr_attendance,stock_barcode,project_todo,voip,lunch"
+      ],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/odoo-enterprise/src"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Nhân viên Ban Lãnh Đạo SGC -->
+        <record id="employee_bld_1" model="hr.employee">
+            <field name="name">Nguyễn Văn An</field>
+            <field name="department_id" ref="dept_sgc_bld"/>
+            <field name="job_title">Giám đốc</field>
+            <field name="mobile_phone">0901234567</field>
+            <field name="work_email">an.nv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_bld_2" model="hr.employee">
+            <field name="name">Trần Thị Bình</field>
+            <field name="department_id" ref="dept_sgc_bld"/>
+            <field name="job_title">Phó Giám đốc</field>
+            <field name="mobile_phone">0901234568</field>
+            <field name="work_email">binh.tt@sgc.vn</field>
+        </record>
+        
+        <!-- Nhân viên Phòng Quan Trắc -->
+        <record id="employee_pqt_1" model="hr.employee">
+            <field name="name">Lê Văn Cường</field>
+            <field name="department_id" ref="dept_sgc_pqt"/>
+            <field name="job_title">Kỹ sư quan trắc</field>
+            <field name="mobile_phone">0901234569</field>
+            <field name="work_email">cuong.lv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_pqt_2" model="hr.employee">
+            <field name="name">Phạm Thị Dung</field>
+            <field name="department_id" ref="dept_sgc_pqt"/>
+            <field name="job_title">Kỹ sư quan trắc</field>
+            <field name="mobile_phone">0901234570</field>
+            <field name="work_email">dung.pt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_pqt_3" model="hr.employee">
+            <field name="name">Hoàng Văn Em</field>
+            <field name="department_id" ref="dept_sgc_pqt"/>
+            <field name="job_title">Kỹ thuật viên</field>
+            <field name="mobile_phone">0901234571</field>
+            <field name="work_email">em.hv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_pqt_4" model="hr.employee">
+            <field name="name">Phan Thị Giang</field>
+            <field name="department_id" ref="dept_sgc_pqt"/>
+            <field name="job_title">Kỹ thuật viên</field>
+            <field name="mobile_phone">0901234572</field>
+            <field name="work_email">giang.pt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_pqt_5" model="hr.employee">
+            <field name="name">Vũ Văn Hùng</field>
+            <field name="department_id" ref="dept_sgc_pqt"/>
+            <field name="job_title">Trưởng phòng</field>
+            <field name="mobile_phone">0901234573</field>
+            <field name="work_email">hung.vv@sgc.vn</field>
+        </record>
+        
+        <!-- Nhân viên Phòng Thí Nghiệm - Phân Tích Sinh -->
+        <record id="employee_pts_1" model="hr.employee">
+            <field name="name">Võ Thị Lan</field>
+            <field name="department_id" ref="dept_sgc_pts"/>
+            <field name="job_title">Kỹ sư phân tích</field>
+            <field name="mobile_phone">0901234574</field>
+            <field name="work_email">lan.vt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_pts_2" model="hr.employee">
+            <field name="name">Đặng Văn Minh</field>
+            <field name="department_id" ref="dept_sgc_pts"/>
+            <field name="job_title">Kỹ sư phân tích</field>
+            <field name="mobile_phone">0901234575</field>
+            <field name="work_email">minh.dv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_pts_3" model="hr.employee">
+            <field name="name">Bùi Thị Nga</field>
+            <field name="department_id" ref="dept_sgc_pts"/>
+            <field name="job_title">Kỹ thuật viên</field>
+            <field name="mobile_phone">0901234576</field>
+            <field name="work_email">nga.bt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_pts_4" model="hr.employee">
+            <field name="name">Đỗ Văn Oanh</field>
+            <field name="department_id" ref="dept_sgc_pts"/>
+            <field name="job_title">Trưởng phòng</field>
+            <field name="mobile_phone">0901234577</field>
+            <field name="work_email">oanh.dv@sgc.vn</field>
+        </record>
+        
+        <!-- Nhân viên Phòng Thí Nghiệm - Phân Tích Hóa -->
+        <record id="employee_pth_1" model="hr.employee">
+            <field name="name">Hồ Thị Phúc</field>
+            <field name="department_id" ref="dept_sgc_pth"/>
+            <field name="job_title">Kỹ sư hóa học</field>
+            <field name="mobile_phone">0901234578</field>
+            <field name="work_email">phuc.ht@sgc.vn</field>
+        </record>
+        
+        <record id="employee_pth_2" model="hr.employee">
+            <field name="name">Ngô Văn Quân</field>
+            <field name="department_id" ref="dept_sgc_pth"/>
+            <field name="job_title">Kỹ sư hóa học</field>
+            <field name="mobile_phone">0901234579</field>
+            <field name="work_email">quan.nv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_pth_3" model="hr.employee">
+            <field name="name">Dương Thị Sơn</field>
+            <field name="department_id" ref="dept_sgc_pth"/>
+            <field name="job_title">Kỹ thuật viên</field>
+            <field name="mobile_phone">0901234580</field>
+            <field name="work_email">son.dt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_pth_4" model="hr.employee">
+            <field name="name">Lý Văn Tâm</field>
+            <field name="department_id" ref="dept_sgc_pth"/>
+            <field name="job_title">Trưởng phòng</field>
+            <field name="mobile_phone">0901234581</field>
+            <field name="work_email">tam.lv@sgc.vn</field>
+        </record>
+        
+        <!-- Nhân viên Phòng Tư Vấn Môi Trường -->
+        <record id="employee_tvmt_1" model="hr.employee">
+            <field name="name">Trương Thị Uyên</field>
+            <field name="department_id" ref="dept_sgc_tvmt"/>
+            <field name="job_title">Chuyên viên tư vấn</field>
+            <field name="mobile_phone">0901234582</field>
+            <field name="work_email">uyen.tt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_tvmt_2" model="hr.employee">
+            <field name="name">Mai Văn Vinh</field>
+            <field name="department_id" ref="dept_sgc_tvmt"/>
+            <field name="job_title">Chuyên viên tư vấn</field>
+            <field name="mobile_phone">0901234583</field>
+            <field name="work_email">vinh.mv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_tvmt_3" model="hr.employee">
+            <field name="name">Cao Thị Yến</field>
+            <field name="department_id" ref="dept_sgc_tvmt"/>
+            <field name="job_title">Chuyên viên tư vấn</field>
+            <field name="mobile_phone">0901234584</field>
+            <field name="work_email">yen.ct@sgc.vn</field>
+        </record>
+        
+        <record id="employee_tvmt_4" model="hr.employee">
+            <field name="name">Đinh Văn Tuấn</field>
+            <field name="department_id" ref="dept_sgc_tvmt"/>
+            <field name="job_title">Trưởng phòng</field>
+            <field name="mobile_phone">0901234585</field>
+            <field name="work_email">tuan.dv@sgc.vn</field>
+        </record>
+        
+        <!-- Nhân viên Phòng Xử Lý Nước Thải -->
+        <record id="employee_xlnt_1" model="hr.employee">
+            <field name="name">Hà Văn Thắng</field>
+            <field name="department_id" ref="dept_sgc_xlnt"/>
+            <field name="job_title">Kỹ sư xử lý</field>
+            <field name="mobile_phone">0901234586</field>
+            <field name="work_email">thang.hv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_xlnt_2" model="hr.employee">
+            <field name="name">Lâm Thị Hoa</field>
+            <field name="department_id" ref="dept_sgc_xlnt"/>
+            <field name="job_title">Kỹ sư xử lý</field>
+            <field name="mobile_phone">0901234587</field>
+            <field name="work_email">hoa.lt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_xlnt_3" model="hr.employee">
+            <field name="name">Tô Văn Kiên</field>
+            <field name="department_id" ref="dept_sgc_xlnt"/>
+            <field name="job_title">Kỹ thuật viên</field>
+            <field name="mobile_phone">0901234588</field>
+            <field name="work_email">kien.tv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_xlnt_4" model="hr.employee">
+            <field name="name">Phan Văn Long</field>
+            <field name="department_id" ref="dept_sgc_xlnt"/>
+            <field name="job_title">Trưởng phòng</field>
+            <field name="mobile_phone">0901234589</field>
+            <field name="work_email">long.pv@sgc.vn</field>
+        </record>
+        
+        <!-- Nhân viên Phòng Kế Toán -->
+        <record id="employee_kt_1" model="hr.employee">
+            <field name="name">Trịnh Thị Hằng</field>
+            <field name="department_id" ref="dept_sgc_kt"/>
+            <field name="job_title">Kế toán viên</field>
+            <field name="mobile_phone">0901234590</field>
+            <field name="work_email">hang.tt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_kt_2" model="hr.employee">
+            <field name="name">Đoàn Văn Hải</field>
+            <field name="department_id" ref="dept_sgc_kt"/>
+            <field name="job_title">Kế toán viên</field>
+            <field name="mobile_phone">0901234591</field>
+            <field name="work_email">hai.dv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_kt_3" model="hr.employee">
+            <field name="name">Lưu Thị Thảo</field>
+            <field name="department_id" ref="dept_sgc_kt"/>
+            <field name="job_title">Kế toán trưởng</field>
+            <field name="mobile_phone">0901234592</field>
+            <field name="work_email">thao.lt@sgc.vn</field>
+        </record>
+        
+        <!-- Nhân viên Phòng Hành Chính Nhân Sự -->
+        <record id="employee_hcns_1" model="hr.employee">
+            <field name="name">Võ Văn Đức</field>
+            <field name="department_id" ref="dept_sgc_hcns"/>
+            <field name="job_title">Chuyên viên HCNS</field>
+            <field name="mobile_phone">0901234593</field>
+            <field name="work_email">duc.vv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_hcns_2" model="hr.employee">
+            <field name="name">Bạch Thị Mai</field>
+            <field name="department_id" ref="dept_sgc_hcns"/>
+            <field name="job_title">Chuyên viên HCNS</field>
+            <field name="mobile_phone">0901234594</field>
+            <field name="work_email">mai.bt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_hcns_3" model="hr.employee">
+            <field name="name">Quách Văn Nam</field>
+            <field name="department_id" ref="dept_sgc_hcns"/>
+            <field name="job_title">Trưởng phòng</field>
+            <field name="mobile_phone">0901234595</field>
+            <field name="work_email">nam.qv@sgc.vn</field>
+        </record>
+        
+        <!-- Nhân viên Phòng Kinh Doanh -->
+        <record id="employee_kd_1" model="hr.employee">
+            <field name="name">Tạ Thị Linh</field>
+            <field name="department_id" ref="dept_sgc_kd"/>
+            <field name="job_title">Nhân viên kinh doanh</field>
+            <field name="mobile_phone">0901234596</field>
+            <field name="work_email">linh.tt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_kd_2" model="hr.employee">
+            <field name="name">Lương Văn Phong</field>
+            <field name="department_id" ref="dept_sgc_kd"/>
+            <field name="job_title">Nhân viên kinh doanh</field>
+            <field name="mobile_phone">0901234597</field>
+            <field name="work_email">phong.lv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_kd_3" model="hr.employee">
+            <field name="name">Đặng Thị Hương</field>
+            <field name="department_id" ref="dept_sgc_kd"/>
+            <field name="job_title">Nhân viên kinh doanh</field>
+            <field name="mobile_phone">0901234598</field>
+            <field name="work_email">huong.dt@sgc.vn</field>
+        </record>
+        
+        <record id="employee_kd_4" model="hr.employee">
+            <field name="name">Nguyễn Văn Toàn</field>
+            <field name="department_id" ref="dept_sgc_kd"/>
+            <field name="job_title">Trưởng phòng</field>
+            <field name="mobile_phone">0901234599</field>
+            <field name="work_email">toan.nv@sgc.vn</field>
+        </record>
+        
+        <!-- Nhân viên Phòng ISO & Chứng Nhận -->
+        <record id="employee_iso_1" model="hr.employee">
+            <field name="name">Hứa Thị Trang</field>
+            <field name="department_id" ref="dept_sgc_iso"/>
+            <field name="job_title">Chuyên viên ISO</field>
+            <field name="mobile_phone">0901234600</field>
+            <field name="work_email">trang.ht@sgc.vn</field>
+        </record>
+        
+        <record id="employee_iso_2" model="hr.employee">
+            <field name="name">Lê Văn Khoa</field>
+            <field name="department_id" ref="dept_sgc_iso"/>
+            <field name="job_title">Chuyên viên chứng nhận</field>
+            <field name="mobile_phone">0901234601</field>
+            <field name="work_email">khoa.lv@sgc.vn</field>
+        </record>
+        
+        <record id="employee_iso_3" model="hr.employee">
+            <field name="name">Trần Văn Đạt</field>
+            <field name="department_id" ref="dept_sgc_iso"/>
+            <field name="job_title">Trưởng phòng</field>
+            <field name="mobile_phone">0901234602</field>
+            <field name="work_email">dat.tv@sgc.vn</field>
+        </record>
+    </data>
+</odoo>

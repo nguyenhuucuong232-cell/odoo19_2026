@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_project_revenue" model="ir.actions.report">
+        <field name="name">Báo cáo Doanh thu theo Dự án</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sgc_management_core.report_project_revenue_template</field>
+        <field name="report_file">sgc_management_core.report_project_revenue_template</field>
+        <field name="print_report_name">'Doanh thu Dự án - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="project.model_project_project"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_project_revenue_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="project">
+                <t t-call="sgc_management_core.external_layout_sgc">
+                    <div class="page">
+                        <h2 style="text-align: center; color: #875A7B;">BÁO CÁO DOANH THU DỰ ÁN</h2>
+                        
+                        <!-- Project Information -->
+                        <div class="row mt32">
+                            <div class="col-12">
+                                <h3 style="color: #875A7B;">
+                                    <i class="fa fa-folder-open"/> 
+                                    <span t-field="project.name"/>
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Basic Info -->
+                        <div class="row mt16">
+                            <div class="col-6">
+                                <strong>Khách hàng:</strong><br/>
+                                <span t-field="project.partner_id.name"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Hợp đồng liên quan:</strong><br/>
+                                <span t-field="project.contract_id.name"/>
+                            </div>
+                        </div>
+
+                        <!-- Revenue Summary -->
+                        <div class="row mt32">
+                            <div class="col-12">
+                                <h4 style="background-color: #f0f0f0; padding: 10px;">Tóm tắt Doanh thu</h4>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered mt16">
+                            <thead style="background-color: #875A7B; color: white;">
+                                <tr>
+                                    <th>Chỉ tiêu</th>
+                                    <th class="text-right">Giá trị</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Giá trị Hợp đồng</strong></td>
+                                    <td class="text-right">
+                                        <span t-if="project.contract_id" 
+                                              t-field="project.contract_id.contract_value"
+                                              t-options='{"widget": "monetary", "display_currency": project.contract_id.currency_id}'/>
+                                        <span t-else="">N/A</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày bắt đầu</td>
+                                    <td class="text-right">
+                                        <span t-if="project.contract_id" t-field="project.contract_id.start_date"/>
+                                        <span t-else="">N/A</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày kết thúc</td>
+                                    <td class="text-right">
+                                        <span t-if="project.contract_id" t-field="project.contract_id.end_date"/>
+                                        <span t-else="">N/A</span>
+                                    </td>
+                                </tr>
+                                <tr style="background-color: #f9f9f9;">
+                                    <td><strong>Trạng thái Hợp đồng</strong></td>
+                                    <td class="text-right">
+                                        <span t-if="project.contract_id" t-field="project.contract_id.state"/>
+                                        <span t-else="">N/A</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Expense Summary -->
+                        <div class="row mt32">
+                            <div class="col-12">
+                                <h4 style="background-color: #f0f0f0; padding: 10px;">Chi phí Tạm ứng</h4>
+                            </div>
+                        </div>
+
+                        <t t-set="advances" t-value="project.env['sgc.expense.advance'].search([('project_id', '=', project.id)])"/>
+                        <t t-set="total_advance" t-value="sum(advances.mapped('amount'))"/>
+
+                        <table class="table table-bordered mt16">
+                            <thead style="background-color: #875A7B; color: white;">
+                                <tr>
+                                    <th>Mã đề nghị</th>
+                                    <th>Nhân viên</th>
+                                    <th class="text-right">Số tiền</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="advances">
+                                    <tr t-foreach="advances" t-as="advance">
+                                        <td><span t-field="advance.name"/></td>
+                                        <td><span t-field="advance.employee_id.name"/></td>
+                                        <td class="text-right">
+                                            <span t-field="advance.amount"
+                                                  t-options='{"widget": "monetary", "display_currency": advance.currency_id}'/>
+                                        </td>
+                                        <td><span t-field="advance.state"/></td>
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr>
+                                        <td colspan="4" class="text-center" style="color: #888;">
+                                            Chưa có đề nghị tạm ứng nào
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <tfoot style="background-color: #f9f9f9;">
+                                <tr>
+                                    <td colspan="2"><strong>Tổng chi phí Tạm ứng</strong></td>
+                                    <td class="text-right">
+                                        <strong>
+                                            <span t-esc="'{:,.0f}'.format(total_advance)"/> VNĐ
+                                        </strong>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- Footer Note -->
+                        <div class="row mt32">
+                            <div class="col-12">
+                                <p style="font-style: italic; color: #888; font-size: 12px;">
+                                    * Báo cáo được tạo tự động từ hệ thống SGC Management<br/>
+                                    * Ngày in: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y %H:%M')"/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

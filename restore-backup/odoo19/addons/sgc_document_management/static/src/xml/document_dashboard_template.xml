@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="SGCDocumentDashboard" owl="1">
+        <div class="o_document_dashboard">
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <h2>Tổng quan công văn</h2>
+                        <select class="form-select" t-att-value="filterState.monthFilter" t-on-change="onMonthFilterChange">
+                            <option value="this_month">Tháng này</option>
+                            <option value="last_month">Tháng trước</option>
+                            <option value="this_year">Năm nay</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Incoming Documents Stats -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h4>Văn bản đến</h4>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-danger text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('in')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-bar-chart fa-2x mb-2"></i>
+                                <h3 t-esc="state.incoming_total"/>
+                                <p>Văn bản đến</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-warning text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('in', 'new')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-calendar fa-2x mb-2"></i>
+                                <h3 t-esc="state.incoming_new"/>
+                                <p>Mới đến</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-info text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('in', 'directive')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-cog fa-2x mb-2"></i>
+                                <h3 t-esc="state.incoming_directive"/>
+                                <p>Chỉ đạo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-primary text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('in', 'processing')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-ellipsis-h fa-2x mb-2"></i>
+                                <h3 t-esc="state.incoming_processing"/>
+                                <p>Đang xử lý</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-success text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('in', 'confirmed')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-star fa-2x mb-2"></i>
+                                <h3 t-esc="state.incoming_confirmed"/>
+                                <p>Xác nhận</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-secondary text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('in', 'archived')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-check fa-2x mb-2"></i>
+                                <h3 t-esc="state.incoming_archived"/>
+                                <p>Lưu trữ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Outgoing Documents Stats -->
+                <div class="row">
+                    <div class="col-12">
+                        <h4>Văn bản đi</h4>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-success text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('out')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-bar-chart fa-2x mb-2"></i>
+                                <h3 t-esc="state.outgoing_total"/>
+                                <p>Văn bản đi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-warning text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('out', 'sent_approval')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-clock-o fa-2x mb-2"></i>
+                                <h3 t-esc="state.outgoing_sent_approval"/>
+                                <p>Gửi duyệt</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-info text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('out', 'hardcopy_signed')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-file-text fa-2x mb-2"></i>
+                                <h3 t-esc="state.outgoing_hardcopy_signed"/>
+                                <p>Ký bản cứng</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-primary text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('out', 'awaiting_feedback')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-search fa-2x mb-2"></i>
+                                <h3 t-esc="state.outgoing_awaiting_feedback"/>
+                                <p>Chờ phản hồi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-secondary text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('out', 'archived')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-check fa-2x mb-2"></i>
+                                <h3 t-esc="state.outgoing_archived"/>
+                                <p>Lưu trữ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="card bg-danger text-white" style="cursor: pointer;" t-on-click="() => navigateToDocuments('out', 'rejected')">
+                            <div class="card-body text-center">
+                                <i class="fa fa-calendar-times-o fa-2x mb-2"></i>
+                                <h3 t-esc="state.outgoing_rejected"/>
+                                <p>Từ chối</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

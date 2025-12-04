@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_crm_lead_form_sgc" model="ir.ui.view">
+            <field name="name">crm.lead.form.sgc</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group" position="after">
+                    <group string="Quy trình CRM SGC">
+                        <attribute name="modifiers">{ "invisible": [["sgc_stage_key","=",False]] }</attribute>
+                        <field name="sgc_stage_key" readonly="1"/>
+                        <field name="sgc_stage_description" readonly="1" widget="html"/>
+                        <field name="sgc_stage_sales_tasks" readonly="1" widget="text"/>
+                        <field name="sgc_stage_marketing_tasks" readonly="1" widget="text"/>
+                        <field name="sgc_stage_reference" readonly="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

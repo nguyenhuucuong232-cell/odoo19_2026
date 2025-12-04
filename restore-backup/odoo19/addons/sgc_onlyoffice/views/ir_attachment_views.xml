@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add OnlyOffice button to attachment form -->
+    <record id="view_attachment_form_onlyoffice" model="ir.ui.view">
+        <field name="name">ir.attachment.form.onlyoffice</field>
+        <field name="model">ir.attachment</field>
+        <field name="inherit_id" ref="base.view_attachment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="action_open_onlyoffice" 
+                            string="Mở với OnlyOffice" 
+                            type="object"
+                            class="oe_highlight"
+                            icon="fa-edit"
+                            invisible="not sgc_can_edit_onlyoffice"/>
+                </header>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <field name="sgc_can_edit_onlyoffice" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Editor Page Template -->
+    <template id="editor_page">
+        <t t-call="web.layout">
+            <t t-set="head">
+                <script t-att-src="onlyoffice_url + '/web-apps/apps/api/documents/api.js'"/>
+                <style>
+                    body { margin: 0; padding: 0; overflow: hidden; }
+                    #onlyoffice-editor { width: 100%; height: 100vh; }
+                </style>
+            </t>
+            <div id="onlyoffice-editor"/>
+            <script>
+                var config = <t t-raw="config"/>;
+                new DocsAPI.DocEditor("onlyoffice-editor", config);
+            </script>
+        </t>
+    </template>
+
+    <!-- Error Page Template -->
+    <template id="error_page">
+        <t t-call="web.layout">
+            <div class="container mt-5">
+                <div class="alert alert-danger">
+                    <h4>Lỗi</h4>
+                    <p t-esc="error"/>
+                </div>
+                <a href="javascript:window.close()" class="btn btn-primary">Đóng</a>
+            </div>
+        </t>
+    </template>
+</odoo>

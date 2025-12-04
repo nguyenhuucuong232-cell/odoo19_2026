@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Product Template Form View -->
+    <record id="product_template_form_view_inherit_sgc" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.sgc</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Thêm trường Mẫu dự án -->
+            <xpath expr="//page[@name='general_information']//group[@name='group_general']" position="inside">
+                <field name="project_template_id" 
+                       string="Mẫu dự án"
+                       invisible="type != 'service'"
+                       options="{'no_create': True}"/>
+            </xpath>
+            
+            <!-- Thêm trường Thẻ mẫu sản phẩm -->
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="product_tag_ids" 
+                       string="Thẻ mẫu sản phẩm"
+                       widget="many2many_tags"
+                       options="{'color_field': 'color', 'no_create_edit': True}"/>
+            </xpath>
+            
+            <!-- Thêm trường Công ty -->
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="company_id" 
+                       string="Công ty"
+                       options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Product Product Form View -->
+    <record id="product_product_form_view_inherit_sgc" model="ir.ui.view">
+        <field name="name">product.product.form.inherit.sgc</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Add project_template_id field -->
+            <xpath expr="//group[@name='group_general']" position="inside">
+                <field name="project_template_id" 
+                       string="Mẫu dự án"
+                       invisible="type != 'service'"
+                       options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

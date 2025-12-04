@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="sgc_item_detail_view_form" model="ir.ui.view">
+        <field name="name">sgc.item.detail.form</field>
+        <field name="model">sgc.item.detail</field>
+        <field name="arch" type="xml">
+            <form string="Chi tiết khoản mục">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="category_id"/>
+                        </group>
+                        <group>
+                            <field name="account_id"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="sgc_item_detail_view_tree" model="ir.ui.view">
+        <field name="name">sgc.item.detail.tree</field>
+        <field name="model">sgc.item.detail</field>
+        <field name="arch" type="xml">
+            <list string="Chi tiết khoản mục">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="account_id"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="sgc_item_detail_action" model="ir.actions.act_window">
+        <field name="name">Chi tiết khoản mục</field>
+        <field name="res_model">sgc.item.detail</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo chi tiết khoản mục mới
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem name="Chi tiết khoản mục" id="sgc_item_detail_menu"
+              parent="sgc_payment_config_menu"
+              action="sgc_item_detail_action" 
+              sequence="2"/>
+</odoo>

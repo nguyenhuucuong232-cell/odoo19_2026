@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sgc_document_user_wizard_form" model="ir.ui.view">
+        <field name="name">sgc.document.user.wizard.form</field>
+        <field name="model">sgc.document.user.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Chọn người xử lý">
+                <group>
+                    <field name="document_id" readonly="1"/>
+                    <field name="next_status_id" readonly="1"/>
+                    <field name="show_response" invisible="1"/>
+                    <field name="show_users" invisible="1"/>
+                    <field name="user_ids" widget="many2many_tags" invisible="not show_users"/>
+                    <field name="response" invisible="not show_response"/>
+                </group>
+                <footer>
+                    <button name="action_confirm" string="Xác nhận" type="object" class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

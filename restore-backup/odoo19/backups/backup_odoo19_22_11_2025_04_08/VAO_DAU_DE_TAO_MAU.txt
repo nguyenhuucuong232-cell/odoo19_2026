@@ -1,0 +1,173 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║              VÀO ĐÂU ĐỂ TẠO CÁC BIỂU MẪU? (TIẾNG VIỆT)                    ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 1️⃣  TẠO MẪU BÁO GIÁ (QUOTATION TEMPLATES)                                ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+📍 VÀO ĐÂU:
+   Bán hàng → Đơn hàng (Orders)
+   
+🔍 LÀM THẾ NÀO:
+   Bước 1: Click "Tạo mới" (New)
+   Bước 2: Điền thông tin:
+           - Khách hàng: Chọn bất kỳ (hoặc để trống)
+           - Tên: "MẪU - BÁO GIÁ QTMT 2025"
+   Bước 3: Tab "Chi tiết sản phẩm":
+           - Click "Thêm sản phẩm"
+           - Chọn sản phẩm (ví dụ: Vi khí hậu)
+           - Nhập số lượng: 48
+           - Chọn thuế: Thuế 8%
+   Bước 4: Tab "Thông tin khác":
+           - Điều khoản thanh toán
+           - Ghi chú
+   Bước 5: Lưu (Ctrl+S)
+   Bước 6: KHÔNG xác nhận đơn hàng (để ở trạng thái "Báo giá")
+
+✨ SỬ DỤNG MẪU:
+   - Vào Bán hàng → Đơn hàng
+   - Tìm mẫu
+   - Click ⚙️ Action → Duplicate
+   - Đổi khách hàng thành khách thật
+   - Gửi cho khách
+
+📊 ĐÃ CÓ SẴN 16 MẪU:
+   ✓ BG QUAN TRẮC MÔI TRƯỜNG LAO ĐỘNG NĂM
+   ✓ BG QTMTLD + QTMT
+   ✓ BG Lập hồ sơ ĐTM
+   ✓ ... (và 13 mẫu khác)
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 2️⃣  TẠO MẪU EMAIL                                                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+📍 VÀO ĐÂU:
+   Settings → Technical → Email → Mẫu email
+   
+   🔗 URL: http://localhost:10019/web#action=mail.action_email_template_tree_all
+
+🔍 LÀM THẾ NÀO:
+   Bước 1: Click "Tạo mới"
+   Bước 2: Điền:
+           - Tên: "Email gửi báo giá"
+           - Áp dụng cho: Sale Order (sale.order)
+           - Chủ đề: Báo giá {{object.name}}
+   Bước 3: Tab "Nội dung":
+           - Viết nội dung email (có thể dùng HTML)
+           - Dùng biến: {{object.partner_id.name}}, {{object.amount_total}}
+   Bước 4: Tab "Cài đặt nâng cao":
+           - Đính kèm PDF: Chọn "Báo giá SGC"
+           - Email trả lời: info@hsevn.com.vn
+   Bước 5: Lưu
+
+✨ SỬ DỤNG:
+   - Mở báo giá → Click "Gửi bằng Email"
+   - Chọn mẫu email đã tạo
+   - Gửi
+
+📊 ĐÃ CÓ SẴN 3 MẪU EMAIL:
+   ✓ Email gửi báo giá
+   ✓ Email nhắc nhở khách hàng
+   ✓ Email cảm ơn sau khi ký hợp đồng
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 3️⃣  TẠO MẪU IN PDF (REPORT TEMPLATES)                                     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+📍 VÀO ĐÂU:
+   Settings → Technical → Báo cáo (Reports)
+   
+   🔗 URL: http://localhost:10019/web#action=base.action_report
+
+🔍 ĐỂ SỬA MẪU CÓ SẴN:
+   Bước 1: Tìm "Báo giá SGC" trong danh sách
+   Bước 2: Click vào tên
+   Bước 3: Click "Edit Template" (nút </> hoặc chữ "Edit")
+   Bước 4: Sửa code XML:
+           - Header: Dòng 70-77
+           - Logo: Dòng 81-86
+           - Bảng: Dòng 128-202
+           - Footer: Dòng 237-249
+   Bước 5: Lưu
+   Bước 6: Test bằng cách Print 1 báo giá
+
+🔍 ĐỂ TẠO MẪU MỚI:
+   Bước 1: Click "Tạo mới"
+   Bước 2: Điền:
+           - Tên: "Biên bản lấy mẫu"
+           - Model: sale.order (hoặc model khác)
+           - Report Type: PDF
+           - Template Name: sgc_management_core.report_sampling
+   Bước 3: Tạo file XML trong thư mục:
+           addons/sgc_management_core/report/report_sampling.xml
+   Bước 4: Thêm vào __manifest__.py
+   Bước 5: Upgrade module
+
+📊 ĐÃ CÓ SẴN:
+   ✓ Báo giá SGC (đã tạo)
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 4️⃣  TẠO MẪU HỢP ĐỒNG                                                      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+📍 CÁCH 1: Dùng Sale Order
+   Bán hàng → Đơn hàng
+   → Tạo đơn hàng mới
+   → Đặt tên: "HỢP ĐỒNG MẪU - QTMT"
+   → Thêm điều khoản hợp đồng vào tab "Terms"
+   → Lưu ở trạng thái "Đã xác nhận" (Confirmed)
+
+📍 CÁCH 2: Cài module Contract (Nâng cao)
+   Apps → Tìm "Contract" → Install
+   → Sau đó vào: Contracts → Configuration → Contract Templates
+
+📍 CÁCH 3: Dùng module SGC (Đã có)
+   Module sgc_management_core đã có model: sgc.signed.contract
+   Cần tạo menu và views cho nó
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    BẢNG TÓM TẮT NHANH                                      ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┌────────────────────────┬────────────────────────────────────────────────┐
+│ MUỐN TẠO               │ VÀO ĐÂU?                                       │
+├────────────────────────┼────────────────────────────────────────────────┤
+│ Mẫu báo giá            │ Bán hàng → Đơn hàng (filter: Quotation)        │
+├────────────────────────┼────────────────────────────────────────────────┤
+│ Mẫu email              │ Settings → Technical → Email Templates         │
+├────────────────────────┼────────────────────────────────────────────────┤
+│ Mẫu in PDF             │ Settings → Technical → Reports                 │
+├────────────────────────┼────────────────────────────────────────────────┤
+│ Mẫu hợp đồng           │ Bán hàng → Đơn hàng (dạng Sale Order)          │
+├────────────────────────┼────────────────────────────────────────────────┤
+│ Thêm trường mới        │ Sửa file: models/sale_order.py + views/*.xml   │
+└────────────────────────┴────────────────────────────────────────────────┘
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    TRẠNG THÁI HIỆN TẠI                                     ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+✅ ĐÃ CÓ:
+   • 16 mẫu báo giá (quotation templates)
+   • 3 mẫu email
+   • 1 mẫu in PDF (Báo giá SGC)
+   • 259 sản phẩm
+   • 30 khách hàng
+   • 40 nhân viên
+   • 18 phòng ban
+
+⏳ CẦN TẠO THÊM:
+   • Mẫu hợp đồng PDF
+   • Mẫu biên bản lấy mẫu
+   • Mẫu biên bản nghiệm thu
+   • Mẫu đề nghị thanh toán
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    CÁCH MỞ FILE HƯỚNG DẪN                                  ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+cat /home/sgc/odoo19/VAO_DAU_DE_TAO_MAU.txt
+cat /home/sgc/odoo19/HUONG_DAN_TIENG_VIET.md
+cat /home/sgc/odoo19/MENU_TIENG_VIET.txt
+

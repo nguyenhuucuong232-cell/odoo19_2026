@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_signed_contract_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sgc_management_core.external_layout_sgc">
+                    <div class="page">
+                        <h2>HỢP ĐỒNG DỊCH VỤ SGC</h2>
+                        <p>Đây là báo cáo cho Hợp đồng:
+                            <span t-field="doc.name"/>
+                        </p>
+
+                        <div id="contract_details" class="row mt32">
+                            <div class="col-6">
+                                <strong>Khách hàng:</strong><br/>
+                                <span t-field="doc.partner_id.name"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Giá trị Hợp đồng:</strong><br/>
+                                <span t-field="doc.contract_value" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                            </div>
+                        </div>
+
+                        <div id="contract_dates" class="row mt16">
+                            <div class="col-4">
+                                <strong>Ngày ký:</strong>
+                                <span t-field="doc.sign_date"/>
+                            </div>
+                            <div class="col-4">
+                                <strong>Ngày hiệu lực:</strong>
+                                <span t-field="doc.start_date"/>
+                            </div>
+                            <div class="col-4">
+                                <strong>Ngày kết thúc:</strong>
+                                <span t-field="doc.end_date"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

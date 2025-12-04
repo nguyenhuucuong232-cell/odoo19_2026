@@ -1,0 +1,66 @@
+services:
+  odoo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: odoo-19-enterprise
+    depends_on:
+      - db
+    ports:
+      - "10019:8069" # Odoo Web
+      - "20019:8072" # Odoo Longpolling
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+      - TZ=Asia/Ho_Chi_Minh
+      - LANG=vi_VN.UTF-8
+      - LC_ALL=vi_VN.UTF-8
+    volumes:
+      - odoo-data:/var/lib/odoo
+      - odoo-config:/etc/odoo
+      - odoo-logs:/var/log/odoo
+      - ./odoo.conf:/etc/odoo/odoo.conf:ro
+      - ./enterprise-addons:/mnt/enterprise-addons:ro
+    command: ["odoo", "-c", "/etc/odoo/odoo.conf"]
+    restart: unless-stopped
+
+  db:
+    image: postgres:17.7
+    container_name: postgres-17
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: odoo
+      TZ: Asia/Ho_Chi_Minh
+      PGTZ: Asia/Ho_Chi_Minh
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  onlyoffice:
+    image: onlyoffice/documentserver:latest
+    container_name: onlyoffice
+    ports:
+      - "8081:80" # OnlyOffice
+    environment:
+      - JWT_ENABLED=true
+      - JWT_SECRET=secret
+      - TZ=Asia/Ho_Chi_Minh
+    volumes:
+      - onlyoffice-data:/var/www/onlyoffice/Data
+      - onlyoffice-logs:/var/log/onlyoffice
+    restart: unless-stopped
+
+volumes:
+  odoo-data:
+  odoo-config:
+  odoo-logs:
+  db-data:
+  onlyoffice-data:
+  onlyoffice-logs:

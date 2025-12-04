@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Dashboard menu action -->
+    <record id="sgc_activity_management_dashboard_action" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">sgc_activity_dashboard</field>
+        <field name="target">current</field>
+    </record>
+    
+    <!-- Dashboard menu - Root level for dashboard -->
+    <menuitem id="sgc_activity_management_dashboard_menu"
+              name="Giám sát hoạt động"
+              action="sgc_activity_management_dashboard_action"
+              web_icon="sgc_activity_dashboard,static/description/icon.png"
+              sequence="10"/>
+</odoo>

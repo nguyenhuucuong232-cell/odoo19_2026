@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- CRM -->
+        <record id="process_crm_01" model="sgc.process.template">
+            <field name="name">Quy trình CRM - Chăm sóc khách hàng</field>
+            <field name="code">CRM.01</field>
+            <field name="module_area">crm</field>
+            <field name="sequence">10</field>
+            <field name="cloudmedia_status">review</field>
+            <field name="sgc_status">new</field>
+        </record>
+        <record id="process_crm_01_step_1" model="sgc.process.step">
+            <field name="template_id" ref="process_crm_01"/>
+            <field name="sequence">10</field>
+            <field name="name">Thu thập &amp; chuẩn hóa dữ liệu khách hàng</field>
+            <field name="description">Đồng bộ thông tin từ hợp đồng, dự án và khảo sát sau triển khai.</field>
+        </record>
+        <record id="process_crm_01_step_2" model="sgc.process.step">
+            <field name="template_id" ref="process_crm_01"/>
+            <field name="sequence">20</field>
+            <field name="name">Phân loại - Chấm điểm CSKH</field>
+            <field name="description">Tự động phân loại khách hàng theo ngành, doanh thu và lịch sử tương tác.</field>
+        </record>
+        <record id="process_crm_01_step_3" model="sgc.process.step">
+            <field name="template_id" ref="process_crm_01"/>
+            <field name="sequence">30</field>
+            <field name="name">Lập lịch CSKH định kỳ</field>
+            <field name="description">Sinh kế hoạch chăm sóc (email, Zalo, gọi điện) theo template.</field>
+        </record>
+        <record id="process_crm_01_step_4" model="sgc.process.step">
+            <field name="template_id" ref="process_crm_01"/>
+            <field name="sequence">40</field>
+            <field name="name">Ghi nhận phản hồi &amp; cải tiến</field>
+            <field name="description">Gắn feedback vào hồ sơ khách hàng, đề xuất cải thiện quy trình.</field>
+        </record>
+
+        <!-- Project -->
+        <record id="process_prj_01" model="sgc.process.template">
+            <field name="name">Quy trình quản lý Hợp đồng - Dự án</field>
+            <field name="code">PRJ.01</field>
+            <field name="module_area">project</field>
+            <field name="sequence">20</field>
+            <field name="cloudmedia_status">review</field>
+            <field name="sgc_status">new</field>
+        </record>
+        <record id="process_prj_01_step_1" model="sgc.process.step">
+            <field name="template_id" ref="process_prj_01"/>
+            <field name="sequence">10</field>
+            <field name="name">Nhận hợp đồng &amp; bàn giao thông tin</field>
+            <field name="description">Sales chuyển hồ sơ sang PM cùng checklist pháp lý.</field>
+        </record>
+        <record id="process_prj_01_step_2" model="sgc.process.step">
+            <field name="template_id" ref="process_prj_01"/>
+            <field name="sequence">20</field>
+            <field name="name">Khởi tạo dự án mẫu</field>
+            <field name="description">Sinh dự án từ template, phân công team kỹ thuật.</field>
+        </record>
+        <record id="process_prj_01_step_3" model="sgc.process.step">
+            <field name="template_id" ref="process_prj_01"/>
+            <field name="sequence">30</field>
+            <field name="name">Theo dõi tiến độ &amp; chất lượng</field>
+            <field name="description">Báo cáo milestone, cảnh báo trễ hạn.</field>
+        </record>
+        <record id="process_prj_01_step_4" model="sgc.process.step">
+            <field name="template_id" ref="process_prj_01"/>
+            <field name="sequence">40</field>
+            <field name="name">Nghiệm thu &amp; bàn giao</field>
+            <field name="description">Chốt biên bản nghiệm thu, cập nhật trạng thái hợp đồng.</field>
+        </record>
+
+        <!-- Sales -->
+        <record id="process_sale_01" model="sgc.process.template">
+            <field name="name">Quy trình cung cấp dịch vụ</field>
+            <field name="code">SALE.01</field>
+            <field name="module_area">sale</field>
+            <field name="sequence">30</field>
+            <field name="cloudmedia_status">review</field>
+            <field name="sgc_status">new</field>
+        </record>
+        <record id="process_sale_01_step_1" model="sgc.process.step">
+            <field name="template_id" ref="process_sale_01"/>
+            <field name="sequence">10</field>
+            <field name="name">Tiếp nhận yêu cầu khách hàng</field>
+            <field name="description">Ghi nhận thông tin đầu vào, chuẩn hóa hồ sơ.</field>
+        </record>
+        <record id="process_sale_01_step_2" model="sgc.process.step">
+            <field name="template_id" ref="process_sale_01"/>
+            <field name="sequence">20</field>
+            <field name="name">Lập và gửi báo giá</field>
+            <field name="description">Áp dụng mẫu báo giá SGC, trình trưởng đội duyệt.</field>
+        </record>
+        <record id="process_sale_01_step_3" model="sgc.process.step">
+            <field name="template_id" ref="process_sale_01"/>
+            <field name="sequence">30</field>
+            <field name="name">Đàm phán - cập nhật điều khoản</field>
+            <field name="description">Theo dõi lịch sử đàm phán, lưu chỉnh sửa.</field>
+        </record>
+        <record id="process_sale_01_step_4" model="sgc.process.step">
+            <field name="template_id" ref="process_sale_01"/>
+            <field name="sequence">40</field>
+            <field name="name">Ký hợp đồng / chuyển triển khai</field>
+            <field name="description">Đánh dấu sẵn sàng chuyển sang PRJ.01.</field>
+        </record>
+
+        <!-- Purchase request -->
+        <record id="process_inv_01" model="sgc.process.template">
+            <field name="name">Quy trình yêu cầu duyệt mua hàng</field>
+            <field name="code">INV.01</field>
+            <field name="module_area">purchase</field>
+            <field name="sequence">40</field>
+            <field name="cloudmedia_status">review</field>
+            <field name="sgc_status">new</field>
+        </record>
+        <record id="process_inv_01_step_1" model="sgc.process.step">
+            <field name="template_id" ref="process_inv_01"/>
+            <field name="sequence">10</field>
+            <field name="name">Nộp đề nghị mua</field>
+            <field name="description">Nhân viên lập request, đính kèm nhu cầu và dự toán.</field>
+        </record>
+        <record id="process_inv_01_step_2" model="sgc.process.step">
+            <field name="template_id" ref="process_inv_01"/>
+            <field name="sequence">20</field>
+            <field name="name">Duyệt trưởng phòng</field>
+            <field name="description">Trưởng phòng kiểm tra ngân sách, ưu tiên.</field>
+        </record>
+        <record id="process_inv_01_step_3" model="sgc.process.step">
+            <field name="template_id" ref="process_inv_01"/>
+            <field name="sequence">30</field>
+            <field name="name">Duyệt Ban Giám Đốc</field>
+            <field name="description">BGĐ approve, chuyển sang quy trình đặt hàng.</field>
+        </record>
+
+        <!-- Purchase receipt -->
+        <record id="process_inv_02" model="sgc.process.template">
+            <field name="name">Quy trình mua hàng nhập kho</field>
+            <field name="code">INV.02</field>
+            <field name="module_area">stock</field>
+            <field name="sequence">50</field>
+            <field name="cloudmedia_status">review</field>
+            <field name="sgc_status">new</field>
+        </record>
+        <record id="process_inv_02_step_1" model="sgc.process.step">
+            <field name="template_id" ref="process_inv_02"/>
+            <field name="sequence">10</field>
+            <field name="name">Nhận hàng &amp; kiểm đếm</field>
+            <field name="description">Kho xác nhận số lượng thực nhận.</field>
+        </record>
+        <record id="process_inv_02_step_2" model="sgc.process.step">
+            <field name="template_id" ref="process_inv_02"/>
+            <field name="sequence">20</field>
+            <field name="name">Kiểm định chất lượng</field>
+            <field name="description">Ghi log QC, cảnh báo thiết bị cần hiệu chuẩn.</field>
+        </record>
+        <record id="process_inv_02_step_3" model="sgc.process.step">
+            <field name="template_id" ref="process_inv_02"/>
+            <field name="sequence">30</field>
+            <field name="name">Nhập kho &amp; bàn giao</field>
+            <field name="description">Đóng phiếu nhập, cập nhật tồn kho dùng cho mượn/ trả.</field>
+        </record>
+
+        <!-- Accounts Receivable -->
+        <record id="process_ar_01" model="sgc.process.template">
+            <field name="name">Quy trình quản lý công nợ khách hàng</field>
+            <field name="code">AR.01</field>
+            <field name="module_area">account</field>
+            <field name="sequence">60</field>
+            <field name="cloudmedia_status">review</field>
+            <field name="sgc_status">new</field>
+        </record>
+        <record id="process_ar_01_step_1" model="sgc.process.step">
+            <field name="template_id" ref="process_ar_01"/>
+            <field name="sequence">10</field>
+            <field name="name">Đối chiếu chứng từ</field>
+            <field name="description">Đảm bảo hóa đơn, nghiệm thu khớp với hợp đồng.</field>
+        </record>
+        <record id="process_ar_01_step_2" model="sgc.process.step">
+            <field name="template_id" ref="process_ar_01"/>
+            <field name="sequence">20</field>
+            <field name="name">Nhắc nợ đa kênh</field>
+            <field name="description">Gửi email, SMS, call theo lịch.</field>
+        </record>
+        <record id="process_ar_01_step_3" model="sgc.process.step">
+            <field name="template_id" ref="process_ar_01"/>
+            <field name="sequence">30</field>
+            <field name="name">Báo cáo trạng thái</field>
+            <field name="description">Cập nhật tuổi nợ, trình BGD xử lý.</field>
+        </record>
+
+        <!-- Accounts Payable -->
+        <record id="process_ap_01" model="sgc.process.template">
+            <field name="name">Quy trình quản lý công nợ nhà cung cấp</field>
+            <field name="code">AP.01</field>
+            <field name="module_area">account</field>
+            <field name="sequence">70</field>
+            <field name="cloudmedia_status">review</field>
+            <field name="sgc_status">new</field>
+        </record>
+        <record id="process_ap_01_step_1" model="sgc.process.step">
+            <field name="template_id" ref="process_ap_01"/>
+            <field name="sequence">10</field>
+            <field name="name">Tiếp nhận hóa đơn NCC</field>
+            <field name="description">Đối chiếu PO, phiếu nhập.</field>
+        </record>
+        <record id="process_ap_01_step_2" model="sgc.process.step">
+            <field name="template_id" ref="process_ap_01"/>
+            <field name="sequence">20</field>
+            <field name="name">Lập đề nghị thanh toán</field>
+            <field name="description">Đảm bảo ngân sách, hạn thanh toán.</field>
+        </record>
+        <record id="process_ap_01_step_3" model="sgc.process.step">
+            <field name="template_id" ref="process_ap_01"/>
+            <field name="sequence">30</field>
+            <field name="name">Phê duyệt &amp; thực hiện chi</field>
+            <field name="description">BGĐ duyệt, kế toán ghi nhận chứng từ.</field>
+        </record>
+
+        <!-- Expense -->
+        <record id="process_exp_01" model="sgc.process.template">
+            <field name="name">Quy trình quản lý chi phí</field>
+            <field name="code">EXP.01</field>
+            <field name="module_area">expense</field>
+            <field name="sequence">80</field>
+            <field name="cloudmedia_status">review</field>
+            <field name="sgc_status">new</field>
+        </record>
+        <record id="process_exp_01_step_1" model="sgc.process.step">
+            <field name="template_id" ref="process_exp_01"/>
+            <field name="sequence">10</field>
+            <field name="name">Thu thập chứng từ</field>
+            <field name="description">Tập hợp hóa đơn, biên nhận.</field>
+        </record>
+        <record id="process_exp_01_step_2" model="sgc.process.step">
+            <field name="template_id" ref="process_exp_01"/>
+            <field name="sequence">20</field>
+            <field name="name">Duyệt tạm ứng / hoàn ứng</field>
+            <field name="description">Áp dụng workflow nhiều cấp cho đề nghị tạm ứng.</field>
+        </record>
+        <record id="process_exp_01_step_3" model="sgc.process.step">
+            <field name="template_id" ref="process_exp_01"/>
+            <field name="sequence">30</field>
+            <field name="name">Ghi nhận kế toán</field>
+            <field name="description">Kết nối hr.expense và account move.</field>
+        </record>
+
+    </data>
+</odoo>

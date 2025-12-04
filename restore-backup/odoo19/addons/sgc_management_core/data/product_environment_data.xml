@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- NHÓM 1: QUAN TRẮC MÔI TRƯỜNG KHÔNG KHÍ (20 sản phẩm) -->
+        
+        <record id="product_qtmt_khongkhi_01" model="product.template">
+            <field name="name">Quan trắc chất lượng không khí xung quanh - Gói cơ bản</field>
+            <field name="type">service</field>
+            <field name="list_price">8500000</field>
+            <field name="standard_price">6000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Quan trắc 8 thông số: Bụi, SO2, NO2, CO, Ồn, độ ẩm, nhiệt độ, tốc độ gió</field>
+            <field name="detailed_type">service</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_02" model="product.template">
+            <field name="name">Quan trắc chất lượng không khí - Gói nâng cao</field>
+            <field name="type">service</field>
+            <field name="list_price">15000000</field>
+            <field name="standard_price">10500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Quan trắc 15 thông số bao gồm: TSP, PM10, PM2.5, SO2, NO2, CO, O3, VOCs, độ ẩm, nhiệt độ</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_03" model="product.template">
+            <field name="name">Đo bụi tổng số (TSP) không khí xung quanh</field>
+            <field name="type">service</field>
+            <field name="list_price">2500000</field>
+            <field name="standard_price">1800000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo bụi tổng số trong không khí xung quanh theo QCVN 05:2013/BTNMT</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_04" model="product.template">
+            <field name="name">Đo bụi PM10 trong không khí</field>
+            <field name="type">service</field>
+            <field name="list_price">3000000</field>
+            <field name="standard_price">2100000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ bụi PM10 trong không khí xung quanh</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_05" model="product.template">
+            <field name="name">Đo bụi PM2.5 trong không khí</field>
+            <field name="type">service</field>
+            <field name="list_price">3500000</field>
+            <field name="standard_price">2500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ bụi PM2.5 theo QCVN 05:2013/BTNMT</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_06" model="product.template">
+            <field name="name">Đo khí SO2 (Sulfur dioxide)</field>
+            <field name="type">service</field>
+            <field name="list_price">2800000</field>
+            <field name="standard_price">2000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ khí SO2 trong không khí xung quanh</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_07" model="product.template">
+            <field name="name">Đo khí NO2 (Nitrogen dioxide)</field>
+            <field name="type">service</field>
+            <field name="list_price">2800000</field>
+            <field name="standard_price">2000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ khí NO2 trong không khí theo TCVN</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_08" model="product.template">
+            <field name="name">Đo khí CO (Carbon monoxide)</field>
+            <field name="type">service</field>
+            <field name="list_price">2500000</field>
+            <field name="standard_price">1800000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ khí CO trong không khí xung quanh</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_09" model="product.template">
+            <field name="name">Đo khí O3 (Ozone)</field>
+            <field name="type">service</field>
+            <field name="list_price">3200000</field>
+            <field name="standard_price">2300000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ khí O3 trong không khí theo QCVN</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_10" model="product.template">
+            <field name="name">Đo VOCs (Hợp chất hữu cơ dễ bay hơi)</field>
+            <field name="type">service</field>
+            <field name="list_price">4500000</field>
+            <field name="standard_price">3200000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích các hợp chất VOCs như Benzene, Toluene, Xylene</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_11" model="product.template">
+            <field name="name">Đo tiếng ồn môi trường</field>
+            <field name="type">service</field>
+            <field name="list_price">1800000</field>
+            <field name="standard_price">1200000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo cường độ tiếng ồn theo QCVN 26:2010/BTNMT</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_12" model="product.template">
+            <field name="name">Quan trắc khí thải công nghiệp</field>
+            <field name="type">service</field>
+            <field name="list_price">12000000</field>
+            <field name="standard_price">8500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo đạc khí thải từ ống khói nhà máy, xí nghiệp</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_13" model="product.template">
+            <field name="name">Đo nồng độ H2S (Hydrogen sulfide)</field>
+            <field name="type">service</field>
+            <field name="list_price">3000000</field>
+            <field name="standard_price">2100000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích khí H2S trong không khí xung quanh khu vực</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_14" model="product.template">
+            <field name="name">Đo nồng độ NH3 (Ammonia)</field>
+            <field name="type">service</field>
+            <field name="list_price">2800000</field>
+            <field name="standard_price">2000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích khí NH3 trong không khí</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_15" model="product.template">
+            <field name="name">Đo kim loại nặng trong bụi không khí</field>
+            <field name="type">service</field>
+            <field name="list_price">5500000</field>
+            <field name="standard_price">4000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích Pb, Cd, As, Hg trong bụi không khí</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_16" model="product.template">
+            <field name="name">Quan trắc không khí liên tục 24h</field>
+            <field name="type">service</field>
+            <field name="list_price">18000000</field>
+            <field name="standard_price">13000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Giám sát chất lượng không khí liên tục trong 24 giờ</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_17" model="product.template">
+            <field name="name">Đo độ ẩm và nhiệt độ không khí</field>
+            <field name="type">service</field>
+            <field name="list_price">1500000</field>
+            <field name="standard_price">1000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo các thông số khí tượng cơ bản</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_18" model="product.template">
+            <field name="name">Đo tốc độ và hướng gió</field>
+            <field name="type">service</field>
+            <field name="list_price">1800000</field>
+            <field name="standard_price">1200000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo đạc các thông số gió tại hiện trường</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_19" model="product.template">
+            <field name="name">Đo áp suất khí quyển</field>
+            <field name="type">service</field>
+            <field name="list_price">1200000</field>
+            <field name="standard_price">800000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo áp suất không khí tại khu vực quan trắc</field>
+        </record>
+        
+        <record id="product_qtmt_khongkhi_20" model="product.template">
+            <field name="name">Gói quan trắc không khí định kỳ (Quý)</field>
+            <field name="type">service</field>
+            <field name="list_price">32000000</field>
+            <field name="standard_price">23000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Quan trắc định kỳ 4 lần/năm theo yêu cầu cơ quan quản lý</field>
+        </record>
+
+        <!-- NHÓM 2: QUAN TRẮC NƯỚC THẢI &amp; NƯỚC MẶT (25 sản phẩm) -->
+        
+        <record id="product_qtmt_nuoc_01" model="product.template">
+            <field name="name">Phân tích nước thải - Gói cơ bản</field>
+            <field name="type">service</field>
+            <field name="list_price">4500000</field>
+            <field name="standard_price">3200000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích 12 thông số: pH, TSS, COD, BOD5, Coliform, N-NH4+, P-PO43-, dầu mỡ...</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_02" model="product.template">
+            <field name="name">Phân tích nước thải - Gói đầy đủ</field>
+            <field name="type">service</field>
+            <field name="list_price">8500000</field>
+            <field name="standard_price">6000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích 25 thông số bao gồm kim loại nặng, hóa chất độc hại</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_03" model="product.template">
+            <field name="name">Đo pH nước thải</field>
+            <field name="type">service</field>
+            <field name="list_price">800000</field>
+            <field name="standard_price">500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo độ pH của nước thải theo TCVN 6492:2011</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_04" model="product.template">
+            <field name="name">Đo TSS (Chất rắn lơ lửng)</field>
+            <field name="type">service</field>
+            <field name="list_price">1200000</field>
+            <field name="standard_price">850000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích hàm lượng chất rắn lơ lửng trong nước</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_05" model="product.template">
+            <field name="name">Đo COD (Nhu cầu oxy hóa học)</field>
+            <field name="type">service</field>
+            <field name="list_price">1500000</field>
+            <field name="standard_price">1100000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích COD theo TCVN 6491:1999</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_06" model="product.template">
+            <field name="name">Đo BOD5 (Nhu cầu oxy sinh học)</field>
+            <field name="type">service</field>
+            <field name="list_price">1800000</field>
+            <field name="standard_price">1300000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích BOD5 sau 5 ngày ủ mẫu</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_07" model="product.template">
+            <field name="name">Đo Ammonium (NH4+)</field>
+            <field name="type">service</field>
+            <field name="list_price">1200000</field>
+            <field name="standard_price">850000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ ion Ammonium trong nước</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_08" model="product.template">
+            <field name="name">Đo Phosphate (PO43-)</field>
+            <field name="type">service</field>
+            <field name="list_price">1200000</field>
+            <field name="standard_price">850000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ Phosphate trong nước thải</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_09" model="product.template">
+            <field name="name">Đo Tổng Nitơ (TN)</field>
+            <field name="type">service</field>
+            <field name="list_price">1800000</field>
+            <field name="standard_price">1300000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích tổng hàm lượng Nitơ trong nước</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_10" model="product.template">
+            <field name="name">Đo Tổng Phospho (TP)</field>
+            <field name="type">service</field>
+            <field name="list_price">1800000</field>
+            <field name="standard_price">1300000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích tổng hàm lượng Phospho trong nước</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_11" model="product.template">
+            <field name="name">Đo Coliform (Vi sinh)</field>
+            <field name="type">service</field>
+            <field name="list_price">1500000</field>
+            <field name="standard_price">1100000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích vi sinh Coliform theo TCVN 6187:1996</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_12" model="product.template">
+            <field name="name">Đo Dầu mỡ động thực vật</field>
+            <field name="type">service</field>
+            <field name="list_price">2000000</field>
+            <field name="standard_price">1450000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích hàm lượng dầu mỡ trong nước thải</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_13" model="product.template">
+            <field name="name">Đo Clo dư</field>
+            <field name="type">service</field>
+            <field name="list_price">900000</field>
+            <field name="standard_price">650000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ Clo dư trong nước</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_14" model="product.template">
+            <field name="name">Đo kim loại nặng Pb (Chì)</field>
+            <field name="type">service</field>
+            <field name="list_price">1500000</field>
+            <field name="standard_price">1100000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ Chì bằng AAS hoặc ICP</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_15" model="product.template">
+            <field name="name">Đo kim loại nặng Cd (Cadmium)</field>
+            <field name="type">service</field>
+            <field name="list_price">1500000</field>
+            <field name="standard_price">1100000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ Cadmium trong nước</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_16" model="product.template">
+            <field name="name">Đo kim loại nặng As (Arsenic)</field>
+            <field name="type">service</field>
+            <field name="list_price">1800000</field>
+            <field name="standard_price">1300000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ Arsenic bằng AAS-HG</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_17" model="product.template">
+            <field name="name">Đo kim loại nặng Hg (Thủy ngân)</field>
+            <field name="type">service</field>
+            <field name="list_price">2000000</field>
+            <field name="standard_price">1450000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ Thủy ngân bằng AAS-CV</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_18" model="product.template">
+            <field name="name">Đo kim loại nặng Cr6+ (Crom VI)</field>
+            <field name="type">service</field>
+            <field name="list_price">1800000</field>
+            <field name="standard_price">1300000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích Crom hóa trị 6 trong nước</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_19" model="product.template">
+            <field name="name">Đo Phenol</field>
+            <field name="type">service</field>
+            <field name="list_price">2200000</field>
+            <field name="standard_price">1600000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ Phenol theo TCVN</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_20" model="product.template">
+            <field name="name">Đo Cyanide (CN-)</field>
+            <field name="type">service</field>
+            <field name="list_price">2000000</field>
+            <field name="standard_price">1450000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích ion Cyanide trong nước thải</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_21" model="product.template">
+            <field name="name">Đo Sulfide (S2-)</field>
+            <field name="type">service</field>
+            <field name="list_price">1500000</field>
+            <field name="standard_price">1100000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích ion Sulfide trong nước</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_22" model="product.template">
+            <field name="name">Đo Chloride (Cl-)</field>
+            <field name="type">service</field>
+            <field name="list_price">1000000</field>
+            <field name="standard_price">700000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích nồng độ ion Clorua</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_23" model="product.template">
+            <field name="name">Đo độ màu nước</field>
+            <field name="type">service</field>
+            <field name="list_price">800000</field>
+            <field name="standard_price">550000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo độ màu bằng phương pháp Pt-Co</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_24" model="product.template">
+            <field name="name">Đo độ đục nước</field>
+            <field name="type">service</field>
+            <field name="list_price">800000</field>
+            <field name="standard_price">550000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo độ đục bằng đơn vị NTU</field>
+        </record>
+        
+        <record id="product_qtmt_nuoc_25" model="product.template">
+            <field name="name">Gói quan trắc nước định kỳ (Quý)</field>
+            <field name="type">service</field>
+            <field name="list_price">28000000</field>
+            <field name="standard_price">20000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Quan trắc nước thải 4 lần/năm theo QCVN</field>
+        </record>
+
+        <!-- NHÓM 3: QUAN TRẮC MÔI TRƯỜNG LAO ĐỘNG (25 sản phẩm) -->
+        
+        <record id="product_qtmt_laodong_01" model="product.template">
+            <field name="name">Đánh giá môi trường lao động - Gói cơ bản</field>
+            <field name="type">service</field>
+            <field name="list_price">12000000</field>
+            <field name="standard_price">8500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đánh giá các yếu tố: bụi, hóa chất, tiếng ồn, ánh sáng, vi khí hậu</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_02" model="product.template">
+            <field name="name">Đánh giá môi trường lao động - Gói toàn diện</field>
+            <field name="type">service</field>
+            <field name="list_price">25000000</field>
+            <field name="standard_price">18000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đánh giá đầy đủ theo Thông tư 19/2016/TT-BYT</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_03" model="product.template">
+            <field name="name">Đo bụi hô hấp tại nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">2500000</field>
+            <field name="standard_price">1800000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo nồng độ bụi hô hấp theo TCVN 5507:2009</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_04" model="product.template">
+            <field name="name">Đo bụi Silica tự do (SiO2)</field>
+            <field name="type">service</field>
+            <field name="list_price">3500000</field>
+            <field name="standard_price">2500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích hàm lượng Silica gây bệnh phổi</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_05" model="product.template">
+            <field name="name">Đo bụi Amiăng (Asbestos)</field>
+            <field name="type">service</field>
+            <field name="list_price">4500000</field>
+            <field name="standard_price">3200000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích sợi Amiăng trong không khí lao động</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_06" model="product.template">
+            <field name="name">Đo kim loại nặng trong không khí lao động</field>
+            <field name="type">service</field>
+            <field name="list_price">5000000</field>
+            <field name="standard_price">3600000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích Pb, Mn, Cr, Ni, Cd trong không khí</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_07" model="product.template">
+            <field name="name">Đo hơi thủy ngân tại nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">3500000</field>
+            <field name="standard_price">2500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo nồng độ hơi thủy ngân bằng thiết bị chuyên dụng</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_08" model="product.template">
+            <field name="name">Đo dung môi hữu cơ (VOCs) lao động</field>
+            <field name="type">service</field>
+            <field name="list_price">4000000</field>
+            <field name="standard_price">2900000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích Benzene, Toluene, Xylene, Acetone</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_09" model="product.template">
+            <field name="name">Đo Formaldehyde tại nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">2800000</field>
+            <field name="standard_price">2000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích khí Formaldehyde gây ung thư</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_10" model="product.template">
+            <field name="name">Đo CO (Carbon monoxide) lao động</field>
+            <field name="type">service</field>
+            <field name="list_price">2200000</field>
+            <field name="standard_price">1600000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo nồng độ khí CO tại khu vực làm việc</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_11" model="product.template">
+            <field name="name">Đo SO2 tại nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">2200000</field>
+            <field name="standard_price">1600000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích khí SO2 trong môi trường lao động</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_12" model="product.template">
+            <field name="name">Đo NO2 tại nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">2200000</field>
+            <field name="standard_price">1600000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Phân tích khí NO2 trong không khí lao động</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_13" model="product.template">
+            <field name="name">Đo H2S tại nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">2500000</field>
+            <field name="standard_price">1800000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo nồng độ khí H2S độc hại</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_14" model="product.template">
+            <field name="name">Đo tiếng ồn tại nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">2000000</field>
+            <field name="standard_price">1450000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo cường độ tiếng ồn theo TCVN 7878-3:2014</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_15" model="product.template">
+            <field name="name">Đo rung động tại nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">2500000</field>
+            <field name="standard_price">1800000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo độ rung toàn thân và cục bộ</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_16" model="product.template">
+            <field name="name">Đo vi khí hậu (nhiệt, ẩm, tốc độ gió)</field>
+            <field name="type">service</field>
+            <field name="list_price">1800000</field>
+            <field name="standard_price">1300000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo các thông số vi khí hậu lao động</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_17" model="product.template">
+            <field name="name">Đo cường độ ánh sáng tại nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">1500000</field>
+            <field name="standard_price">1100000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo độ rọi sáng theo TCVN 7114:2008</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_18" model="product.template">
+            <field name="name">Đo bức xạ nhiệt</field>
+            <field name="type">service</field>
+            <field name="list_price">2000000</field>
+            <field name="standard_price">1450000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo cường độ bức xạ nhiệt tại các vị trí lao động</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_19" model="product.template">
+            <field name="name">Đo bức xạ tử ngoại (UV)</field>
+            <field name="type">service</field>
+            <field name="list_price">2200000</field>
+            <field name="standard_price">1600000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo cường độ bức xạ UV trong môi trường làm việc</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_20" model="product.template">
+            <field name="name">Đo bức xạ ion hóa</field>
+            <field name="type">service</field>
+            <field name="list_price">3500000</field>
+            <field name="standard_price">2500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo liều lượng bức xạ alpha, beta, gamma</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_21" model="product.template">
+            <field name="name">Đánh giá ergonomics (Công thái học)</field>
+            <field name="type">service</field>
+            <field name="list_price">8000000</field>
+            <field name="standard_price">5700000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đánh giá tư thế làm việc và thiết kế công việc</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_22" model="product.template">
+            <field name="name">Đánh giá rủi ro hóa chất</field>
+            <field name="type">service</field>
+            <field name="list_price">15000000</field>
+            <field name="standard_price">11000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đánh giá và quản lý rủi ro hóa chất nguy hiểm</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_23" model="product.template">
+            <field name="name">Lập bản đồ nhiệt độ nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">5000000</field>
+            <field name="standard_price">3600000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Lập bản đồ phân bố nhiệt độ trong nhà xưởng</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_24" model="product.template">
+            <field name="name">Lập bản đồ tiếng ồn nơi làm việc</field>
+            <field name="type">service</field>
+            <field name="list_price">5000000</field>
+            <field name="standard_price">3600000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Lập bản đồ phân bố cường độ tiếng ồn</field>
+        </record>
+        
+        <record id="product_qtmt_laodong_25" model="product.template">
+            <field name="name">Gói đánh giá MTLD định kỳ (Năm)</field>
+            <field name="type">service</field>
+            <field name="list_price">45000000</field>
+            <field name="standard_price">32000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đánh giá môi trường lao động định kỳ hàng năm</field>
+        </record>
+
+        <!-- NHÓM 4: XỬ LÝ NƯỚC THẢI &amp; TƯ VẤN (30 sản phẩm) -->
+        
+        <record id="product_xuly_nuoc_01" model="product.template">
+            <field name="name">Thiết kế hệ thống xử lý nước thải sinh hoạt</field>
+            <field name="type">service</field>
+            <field name="list_price">35000000</field>
+            <field name="standard_price">25000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế hệ thống xử lý nước thải sinh hoạt công suất từ 10-50m3/ngày</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_02" model="product.template">
+            <field name="name">Thiết kế hệ thống xử lý nước thải công nghiệp</field>
+            <field name="type">service</field>
+            <field name="list_price">75000000</field>
+            <field name="standard_price">55000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế hệ thống XLNT công nghiệp theo QCVN</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_03" model="product.template">
+            <field name="name">Thiết kế hệ thống xử lý nước thải bệnh viện</field>
+            <field name="type">service</field>
+            <field name="list_price">55000000</field>
+            <field name="standard_price">40000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế XLNT y tế có khử trùng theo QCVN 28:2010/BTNMT</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_04" model="product.template">
+            <field name="name">Thiết kế hệ thống xử lý nước thải khách sạn</field>
+            <field name="type">service</field>
+            <field name="list_price">45000000</field>
+            <field name="standard_price">32000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế XLNT khách sạn, resort, khu nghỉ dưỡng</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_05" model="product.template">
+            <field name="name">Thiết kế hệ thống xử lý nước thải nhà hàng</field>
+            <field name="type">service</field>
+            <field name="list_price">28000000</field>
+            <field name="standard_price">20000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế XLNT có tách mỡ cho nhà hàng, quán ăn</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_06" model="product.template">
+            <field name="name">Thiết kế hệ thống xử lý nước thải chăn nuôi</field>
+            <field name="type">service</field>
+            <field name="list_price">65000000</field>
+            <field name="standard_price">47000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế XLNT chăn nuôi lợn, gà, bò theo QCVN 62:2016</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_07" model="product.template">
+            <field name="name">Thiết kế hệ thống xử lý nước thải dệt nhuộm</field>
+            <field name="type">service</field>
+            <field name="list_price">95000000</field>
+            <field name="standard_price">70000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế XLNT dệt nhuộm có khử màu theo QCVN 13:2015</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_08" model="product.template">
+            <field name="name">Thiết kế hệ thống xử lý nước thải thực phẩm</field>
+            <field name="type">service</field>
+            <field name="list_price">55000000</field>
+            <field name="standard_price">40000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế XLNT nhà máy chế biến thực phẩm</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_09" model="product.template">
+            <field name="name">Thiết kế hệ thống xử lý nước thải giết mổ</field>
+            <field name="type">service</field>
+            <field name="list_price">48000000</field>
+            <field name="standard_price">35000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế XLNT lò giết mổ gia súc, gia cầm</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_10" model="product.template">
+            <field name="name">Thiết kế hệ thống xử lý nước thải sản xuất bia</field>
+            <field name="type">service</field>
+            <field name="list_price">65000000</field>
+            <field name="standard_price">47000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế XLNT nhà máy bia, rượu có COD cao</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_11" model="product.template">
+            <field name="name">Thi công lắp đặt hệ thống XLNT nhỏ (dưới 20m3/ngày)</field>
+            <field name="type">service</field>
+            <field name="list_price">150000000</field>
+            <field name="standard_price">110000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thi công trọn gói hệ thống xử lý nước thải quy mô nhỏ</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_12" model="product.template">
+            <field name="name">Thi công lắp đặt hệ thống XLNT trung (20-50m3/ngày)</field>
+            <field name="type">service</field>
+            <field name="list_price">350000000</field>
+            <field name="standard_price">260000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thi công hệ thống XLNT quy mô trung bình</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_13" model="product.template">
+            <field name="name">Thi công lắp đặt hệ thống XLNT lớn (trên 50m3/ngày)</field>
+            <field name="type">service</field>
+            <field name="list_price">750000000</field>
+            <field name="standard_price">550000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thi công hệ thống XLNT quy mô lớn theo thiết kế</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_14" model="product.template">
+            <field name="name">Vận hành XLNT theo giờ (On-site)</field>
+            <field name="type">service</field>
+            <field name="list_price">500000</field>
+            <field name="standard_price">350000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Dịch vụ vận hành hệ thống XLNT tính theo giờ</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_15" model="product.template">
+            <field name="name">Vận hành XLNT trọn gói (Tháng)</field>
+            <field name="type">service</field>
+            <field name="list_price">25000000</field>
+            <field name="standard_price">18000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Vận hành trọn gói bao gồm nhân sự, hóa chất, bảo trì</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_16" model="product.template">
+            <field name="name">Bảo trì hệ thống XLNT (Lần)</field>
+            <field name="type">service</field>
+            <field name="list_price">8000000</field>
+            <field name="standard_price">5700000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Bảo dưỡng, sửa chữa hệ thống XLNT định kỳ</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_17" model="product.template">
+            <field name="name">Nâng cấp cải tạo hệ thống XLNT</field>
+            <field name="type">service</field>
+            <field name="list_price">45000000</field>
+            <field name="standard_price">32000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Cải tạo, nâng cấp hệ thống XLNT cũ</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_18" model="product.template">
+            <field name="name">Cung cấp hóa chất xử lý nước thải (PAC)</field>
+            <field name="type">consu</field>
+            <field name="list_price">15000</field>
+            <field name="standard_price">12000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="description">PAC (Poly Aluminum Chloride) - đơn giá/kg</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_19" model="product.template">
+            <field name="name">Cung cấp hóa chất xử lý nước thải (PAM)</field>
+            <field name="type">consu</field>
+            <field name="list_price">85000</field>
+            <field name="standard_price">70000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="description">PAM (Polyacrylamide) - polymer tạo bông</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_20" model="product.template">
+            <field name="name">Cung cấp Clorin khử trùng</field>
+            <field name="type">consu</field>
+            <field name="list_price">45000</field>
+            <field name="standard_price">35000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="description">Calcium Hypochlorite 70% - khử trùng nước thải</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_21" model="product.template">
+            <field name="name">Kiểm định vận hành thử nghiệm XLNT</field>
+            <field name="type">service</field>
+            <field name="list_price">18000000</field>
+            <field name="standard_price">13000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Vận hành thử nghiệm 3 mẫu đạt QCVN</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_22" model="product.template">
+            <field name="name">Lập hồ sơ xin cấp phép xả thải</field>
+            <field name="type">service</field>
+            <field name="list_price">25000000</field>
+            <field name="standard_price">18000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Chuẩn bị hồ sơ, thủ tục xin giấy phép xả thải</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_23" model="product.template">
+            <field name="name">Tư vấn tối ưu hóa vận hành XLNT</field>
+            <field name="type">service</field>
+            <field name="list_price">15000000</field>
+            <field name="standard_price">11000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Tư vấn giảm chi phí vận hành, tối ưu hiệu suất</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_24" model="product.template">
+            <field name="name">Đào tạo vận hành viên XLNT</field>
+            <field name="type">service</field>
+            <field name="list_price">8000000</field>
+            <field name="standard_price">5700000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Khóa đào tạo 3 ngày cho vận hành viên (tối đa 10 người)</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_25" model="product.template">
+            <field name="name">Đào tạo ISO 14001 - Quản lý môi trường</field>
+            <field name="type">service</field>
+            <field name="list_price">12000000</field>
+            <field name="standard_price">8500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Khóa đào tạo ISO 14001 cho doanh nghiệp</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_26" model="product.template">
+            <field name="name">Xử lý sự cố hệ thống XLNT (Khẩn cấp)</field>
+            <field name="type">service</field>
+            <field name="list_price">15000000</field>
+            <field name="standard_price">11000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Xử lý sự cố khẩn cấp 24/7 (bao gồm ngày lễ)</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_27" model="product.template">
+            <field name="name">Đo lưu lượng nước thải</field>
+            <field name="type">service</field>
+            <field name="list_price">3500000</field>
+            <field name="standard_price">2500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Đo và tính toán lưu lượng nước thải trung bình</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_28" model="product.template">
+            <field name="name">Thiết kế bể tách mỡ nhà hàng</field>
+            <field name="type">service</field>
+            <field name="list_price">8000000</field>
+            <field name="standard_price">5700000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế bể tách mỡ theo quy chuẩn xây dựng</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_29" model="product.template">
+            <field name="name">Thiết kế hệ thống thu gom nước thải</field>
+            <field name="type">service</field>
+            <field name="list_price">12000000</field>
+            <field name="standard_price">8500000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Thiết kế hệ thống đường ống thu gom nước thải</field>
+        </record>
+        
+        <record id="product_xuly_nuoc_30" model="product.template">
+            <field name="name">Lập phương án quản lý chất thải rắn</field>
+            <field name="type">service</field>
+            <field name="list_price">18000000</field>
+            <field name="standard_price">13000000</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="description">Lập phương án quản lý, xử lý CTR công nghiệp</field>
+        </record>
+
+    </data>
+</odoo>

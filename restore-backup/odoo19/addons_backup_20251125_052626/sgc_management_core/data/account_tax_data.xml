@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sales Taxes -->
+        <record id="sgc_tax_10_sale" model="account.tax">
+            <field name="name">10% Bán ra</field>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">10.0</field>
+            <field name="description">Thuế GTGT 10% (Bán)</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="sgc_tax_8_sale" model="account.tax">
+            <field name="name">8% Bán ra</field>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">8.0</field>
+            <field name="description">Thuế GTGT 8% (Bán)</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="sgc_tax_0_sale" model="account.tax">
+            <field name="name">0% Bán ra</field>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">0.0</field>
+            <field name="description">Thuế GTGT 0% (Bán)</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <!-- Purchase Taxes -->
+        <record id="sgc_tax_10_purchase" model="account.tax">
+            <field name="name">10% Mua vào</field>
+            <field name="type_tax_use">purchase</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">10.0</field>
+            <field name="description">Thuế GTGT 10% (Mua)</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="sgc_tax_8_purchase" model="account.tax">
+            <field name="name">8% Mua vào</field>
+            <field name="type_tax_use">purchase</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">8.0</field>
+            <field name="description">Thuế GTGT 8% (Mua)</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="sgc_tax_0_purchase" model="account.tax">
+            <field name="name">0% Mua vào</field>
+            <field name="type_tax_use">purchase</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">0.0</field>
+            <field name="description">Thuế GTGT 0% (Mua)</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        
+    </data>
+</odoo>

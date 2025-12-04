@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sgc_activity_alarm_view_form" model="ir.ui.view">
+        <field name="name">sgc.activity.alarm.form</field>
+        <field name="model">sgc.activity.alarm</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="remind_before"/>
+                            <field name="reminder_unit"/>
+                        </group>
+                        <group>
+                            <field name="type"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="sgc_activity_alarm_view_tree" model="ir.ui.view">
+        <field name="name">sgc.activity.alarm.tree</field>
+        <field name="model">sgc.activity.alarm</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="type"/>
+                <field name="remind_before"/>
+                <field name="reminder_unit"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+    
+    <record id="sgc_activity_alarm_action" model="ir.actions.act_window">
+        <field name="name">Cài đặt nhắc nhở</field>
+        <field name="res_model">sgc.activity.alarm</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Tạo nhắc nhở hoạt động mới</p>
+        </field>
+    </record>
+    
+    <!-- Add to configuration menu -->
+    <menuitem id="sgc_activity_alarm_menu" 
+              name="Cài đặt nhắc nhở"
+              parent="sgc_activity_menu_configuration"
+              action="sgc_activity_alarm_action"
+              sequence="90"/>
+</odoo>

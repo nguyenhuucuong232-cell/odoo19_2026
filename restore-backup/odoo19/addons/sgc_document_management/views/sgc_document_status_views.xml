@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Status Form View -->
+    <record id="sgc_document_status_view_form" model="ir.ui.view">
+        <field name="name">sgc.document.status.form</field>
+        <field name="model">sgc.document.status</field>
+        <field name="arch" type="xml">
+            <form string="Trạng thái văn bản">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="type"/>
+                            <field name="priority"/>
+                        </group>
+                        <group>
+                            <field name="is_default"/>
+                            <field name="is_won"/>
+                            <field name="active"/>
+                            <field name="is_processing_status"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Nút hành động 1">
+                            <group>
+                                <field name="is_show_1"/>
+                                <field name="name_1" invisible="not is_show_1"/>
+                                <field name="next_stage_1" invisible="not is_show_1"
+                                       domain="[('type', '=', type)]"/>
+                            </group>
+                        </page>
+                        <page string="Nút hành động 2">
+                            <group>
+                                <field name="is_show_2"/>
+                                <field name="name_2" invisible="not is_show_2"/>
+                                <field name="next_stage_2" invisible="not is_show_2"
+                                       domain="[('type', '=', type)]"/>
+                            </group>
+                        </page>
+                        <page string="Cấu hình khác">
+                            <group>
+                                <field name="select_responsive_user"/>
+                                <field name="is_show_response"/>
+                                <field name="is_print_pdf"/>
+                            </group>
+                            <group string="Người xử lý mặc định">
+                                <field name="user_ids" widget="many2many_tags" 
+                                       invisible="select_responsive_user"/>
+                            </group>
+                        </page>
+                        <page string="Giao diện">
+                            <group>
+                                <field name="text_color" widget="color"/>
+                                <field name="background_color" widget="color"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Status List View -->
+    <record id="sgc_document_status_view_list" model="ir.ui.view">
+        <field name="name">sgc.document.status.list</field>
+        <field name="model">sgc.document.status</field>
+        <field name="arch" type="xml">
+            <list string="Trạng thái văn bản">
+                <field name="priority" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="type"/>
+                <field name="is_default"/>
+                <field name="is_won"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Status Action -->
+    <record id="sgc_document_status_action" model="ir.actions.act_window">
+        <field name="name">Trạng thái văn bản</field>
+        <field name="res_model">sgc.document.status</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo trạng thái văn bản mới
+            </p>
+        </field>
+    </record>
+</odoo>

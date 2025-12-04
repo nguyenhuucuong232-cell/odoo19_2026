@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Units of Measure for SGC -->
+        <record id="uom_lan" model="uom.uom">
+            <field name="name">Lần</field>
+            <field name="category_id" ref="uom.uom_categ_unit"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv">1</field>
+            <field name="rounding">1.0</field>
+        </record>
+
+        <record id="uom_mau" model="uom.uom">
+            <field name="name">Mẫu</field>
+            <field name="category_id" ref="uom.uom_categ_unit"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv">1</field>
+            <field name="rounding">1.0</field>
+        </record>
+
+        <record id="uom_chuyen_de" model="uom.uom">
+            <field name="name">Chuyên đề</field>
+            <field name="category_id" ref="uom.uom_categ_unit"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv">1</field>
+            <field name="rounding">1.0</field>
+        </record>
+
+    </data>
+</odoo>

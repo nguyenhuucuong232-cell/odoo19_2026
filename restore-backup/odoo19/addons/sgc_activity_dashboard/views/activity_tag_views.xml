@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Activity tag form view -->
+    <record id="sgc_activity_tag_view_form" model="ir.ui.view">
+        <field name="name">sgc.activity.tag.view.form</field>
+        <field name="model">sgc.activity.tag</field>
+        <field name="arch" type="xml">
+            <form string="Tags">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Urgent"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="color" required="True" widget="color_picker"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Activity tag tree view -->
+    <record id="sgc_activity_tag_view_tree" model="ir.ui.view">
+        <field name="name">sgc.activity.tag.view.tree</field>
+        <field name="model">sgc.activity.tag</field>
+        <field name="arch" type="xml">
+            <list string="Tags" editable="bottom" sample="1">
+                <field name="name"/>
+                <field name="color" widget="color_picker"/>
+            </list>
+        </field>
+    </record>
+    
+    <!-- Activity tag form action -->
+    <record id="sgc_activity_tag_action" model="ir.actions.act_window">
+        <field name="name">Activity Tag</field>
+        <field name="res_model">sgc.activity.tag</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có tag nào. Tạo tag mới!
+            </p>
+            <p>
+                Tags giúp phân loại các hoạt động.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Activity Dashboard menu - Hidden root, only submenus visible -->
+    <record id="sgc_activity_menu_root" model="ir.ui.menu">
+        <field name="name">Activity Dashboard</field>
+        <field name="sequence">25</field>
+        <field name="web_icon">sgc_activity_dashboard,static/description/icon.png</field>
+        <field name="active" eval="False"/>
+    </record>
+    
+    <!-- Configuration menu -->
+    <menuitem id="sgc_activity_menu_configuration" 
+              name="Cấu hình"
+              parent="sgc_activity_menu_root"
+              sequence="30"/>
+    
+    <!-- Activity tag menu -->
+    <menuitem id="sgc_activity_tag_menu" 
+              name="Activity Tag"
+              parent="sgc_activity_menu_configuration"
+              action="sgc_activity_tag_action"
+              sequence="100"/>
+    
+    <!-- Activity type menu -->
+    <menuitem id="sgc_activity_type_menu" 
+              name="Activity Type"
+              parent="sgc_activity_menu_configuration"
+              action="mail.mail_activity_type_action" 
+              sequence="110"/>
+</odoo>

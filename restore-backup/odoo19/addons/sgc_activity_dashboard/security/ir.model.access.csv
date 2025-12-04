@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sgc_activity_tag_user,access.sgc.activity.tag.user,model_sgc_activity_tag,base.group_user,1,1,1,1
+access_sgc_activity_alarm,access.sgc.activity.alarm,model_sgc_activity_alarm,base.group_user,1,1,1,1

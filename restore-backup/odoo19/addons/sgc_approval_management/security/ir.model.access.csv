@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sgc_approval_category_user,sgc.approval.category.user,model_sgc_approval_category,base.group_user,1,0,0,0
+access_sgc_approval_category_manager,sgc.approval.category.manager,model_sgc_approval_category,sgc_approval_management.group_sgc_approval_manager,1,1,1,1
+access_sgc_approval_category_approver_user,sgc.approval.category.approver.user,model_sgc_approval_category_approver,base.group_user,1,0,0,0
+access_sgc_approval_category_approver_manager,sgc.approval.category.approver.manager,model_sgc_approval_category_approver,sgc_approval_management.group_sgc_approval_manager,1,1,1,1
+access_sgc_approval_request_user,sgc.approval.request.user,model_sgc_approval_request,base.group_user,1,1,1,0
+access_sgc_approval_request_manager,sgc.approval.request.manager,model_sgc_approval_request,sgc_approval_management.group_sgc_approval_manager,1,1,1,1
+access_sgc_approval_approver_user,sgc.approval.approver.user,model_sgc_approval_approver,base.group_user,1,1,1,0
+access_sgc_approval_approver_manager,sgc.approval.approver.manager,model_sgc_approval_approver,sgc_approval_management.group_sgc_approval_manager,1,1,1,1
+access_sgc_approval_refuse_wizard,sgc.approval.refuse.wizard,model_sgc_approval_refuse_wizard,base.group_user,1,1,1,1
+

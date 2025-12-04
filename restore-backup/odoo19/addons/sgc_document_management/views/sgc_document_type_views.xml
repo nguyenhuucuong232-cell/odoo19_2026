@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Type Form View -->
+    <record id="sgc_document_type_view_form" model="ir.ui.view">
+        <field name="name">sgc.document.type.form</field>
+        <field name="model">sgc.document.type</field>
+        <field name="arch" type="xml">
+            <form string="Loại văn bản">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Type List View -->
+    <record id="sgc_document_type_view_list" model="ir.ui.view">
+        <field name="name">sgc.document.type.list</field>
+        <field name="model">sgc.document.type</field>
+        <field name="arch" type="xml">
+            <list string="Loại văn bản" editable="bottom">
+                <field name="name"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Type Action -->
+    <record id="sgc_document_type_action" model="ir.actions.act_window">
+        <field name="name">Loại văn bản</field>
+        <field name="res_model">sgc.document.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo loại văn bản mới
+            </p>
+        </field>
+    </record>
+</odoo>

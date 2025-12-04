@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu - Root level for dashboard -->
+    <menuitem id="sgc_kpi_menu_root"
+              name="KPI"
+              action="sgc_kpi.sgc_kpi_report_action"
+              web_icon="sgc_kpi,static/description/icon.png"
+              sequence="30"/>
+    
+    <!-- Hidden submenu for configuration -->
+    <record id="sgc_kpi_menu_config" model="ir.ui.menu">
+        <field name="name">SGC KPI</field>
+        <field name="sequence">50</field>
+        <field name="active" eval="False"/>
+    </record>
+    
+    <!-- Report Menu -->
+    <menuitem id="sgc_kpi_report_menu"
+              name="Báo cáo KPI"
+              parent="sgc_kpi_menu_config"
+              action="sgc_kpi_report_action"
+              sequence="1"/>
+    
+    <!-- Configuration Menu -->
+    <menuitem id="sgc_kpi_config_menu"
+              name="Cấu hình"
+              parent="sgc_kpi_menu_config"
+              sequence="100"/>
+    
+    <menuitem id="sgc_kpi_criteria_menu"
+              name="Tiêu chí KPI"
+              parent="sgc_kpi_config_menu"
+              action="sgc_kpi_criteria_action"
+              sequence="1"/>
+</odoo>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Request Form View -->
+    <record id="sgc_approval_request_view_form" model="ir.ui.view">
+        <field name="name">sgc.approval.request.form</field>
+        <field name="model">sgc.approval.request</field>
+        <field name="arch" type="xml">
+            <form string="Yêu cầu phê duyệt">
+                <header>
+                    <button name="action_submit" string="Gửi yêu cầu" type="object" 
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_approve" string="Phê duyệt" type="object" 
+                            class="oe_highlight" invisible="state != 'pending'"/>
+                    <button name="action_refuse" string="Từ chối" type="object" 
+                            invisible="state != 'pending'"/>
+                    <button name="action_cancel" string="Hủy" type="object" 
+                            invisible="state in ['approved', 'refused', 'cancel']"/>
+                    <button name="action_draft" string="Chuyển về nháp" type="object" 
+                            invisible="state not in ['refused', 'cancel']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,pending,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="category_id" readonly="state != 'draft'"/>
+                            <field name="request_owner_id"/>
+                            <field name="date"/>
+                            <field name="date_deadline"/>
+                        </group>
+                        <group>
+                            <field name="sale_order_id" readonly="state != 'draft'"/>
+                            <field name="partner_id"/>
+                            <field name="amount_total"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Người phê duyệt">
+                            <field name="approver_ids" readonly="state != 'draft'">
+                                <list editable="bottom" create="0" delete="0">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="user_id"/>
+                                    <field name="level"/>
+                                    <field name="required"/>
+                                    <field name="status" widget="badge"
+                                           decoration-info="status == 'pending'"
+                                           decoration-success="status == 'approved'"
+                                           decoration-danger="status == 'refused'"
+                                           decoration-muted="status in ['new', 'waiting']"/>
+                                    <field name="approve_date"/>
+                                    <field name="note"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Chi tiết">
+                            <group>
+                                <field name="reason"/>
+                            </group>
+                            <group invisible="state != 'refused'">
+                                <field name="rejection_reason"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Request Tree View -->
+    <record id="sgc_approval_request_view_tree" model="ir.ui.view">
+        <field name="name">sgc.approval.request.tree</field>
+        <field name="model">sgc.approval.request</field>
+        <field name="arch" type="xml">
+            <list string="Yêu cầu phê duyệt">
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="request_owner_id"/>
+                <field name="sale_order_id"/>
+                <field name="partner_id"/>
+                <field name="amount_total"/>
+                <field name="date"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'pending'"
+                       decoration-success="state == 'approved'"
+                       decoration-danger="state == 'refused'"
+                       decoration-muted="state in ['draft', 'cancel']"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Request Search View -->
+    <record id="sgc_approval_request_view_search" model="ir.ui.view">
+        <field name="name">sgc.approval.request.search</field>
+        <field name="model">sgc.approval.request</field>
+        <field name="arch" type="xml">
+            <search string="Yêu cầu phê duyệt">
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="request_owner_id"/>
+                <field name="sale_order_id"/>
+                <field name="partner_id"/>
+                <filter name="my_requests" string="Yêu cầu của tôi" 
+                        domain="[('request_owner_id', '=', uid)]"/>
+                <filter name="to_approve" string="Cần tôi duyệt" 
+                        domain="[('approver_ids.user_id', '=', uid), ('approver_ids.status', '=', 'pending')]"/>
+                <separator/>
+                <filter name="pending" string="Chờ duyệt" domain="[('state', '=', 'pending')]"/>
+                <filter name="approved" string="Đã duyệt" domain="[('state', '=', 'approved')]"/>
+                <filter name="refused" string="Từ chối" domain="[('state', '=', 'refused')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Request Action -->
+    <record id="sgc_approval_request_action" model="ir.actions.act_window">
+        <field name="name">Yêu cầu phê duyệt</field>
+        <field name="res_model">sgc.approval.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="sgc_approval_request_view_search"/>
+        <field name="context">{'search_default_to_approve': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Không có yêu cầu phê duyệt nào
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu - under Sales -->
+    <menuitem id="sgc_approval_request_menu"
+              name="Yêu cầu phê duyệt"
+              parent="sgc_approval_config_menu"
+              action="sgc_approval_request_action"
+              sequence="1"/>
+</odoo>

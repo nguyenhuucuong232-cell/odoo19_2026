@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-azuretools.vscode-docker",
+    "redhat.vscode-xml",
+    "cweijan.vscode-postgresql-client2",
+    "eamodio.gitlens",
+    "mrob95.vscode-odoo-snippets",
+    "google.geminicodeassist"
+  ]
+}
+

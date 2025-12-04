@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sgc_kpi_criteria_user,sgc.kpi.criteria.user,model_sgc_kpi_criteria,base.group_user,1,0,0,0
+access_sgc_kpi_criteria_manager,sgc.kpi.criteria.manager,model_sgc_kpi_criteria,sgc_kpi.group_sgc_kpi_manager,1,1,1,1
+access_sgc_kpi_report_user,sgc.kpi.report.user,model_sgc_kpi_report,base.group_user,1,1,1,0
+access_sgc_kpi_report_manager,sgc.kpi.report.manager,model_sgc_kpi_report,sgc_kpi.group_sgc_kpi_manager,1,1,1,1
+access_sgc_kpi_report_line_user,sgc.kpi.report.line.user,model_sgc_kpi_report_line,base.group_user,1,1,1,0
+access_sgc_kpi_report_line_manager,sgc.kpi.report.line.manager,model_sgc_kpi_report_line,sgc_kpi.group_sgc_kpi_manager,1,1,1,1
+

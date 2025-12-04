@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="sgc_item_detail_view_form" model="ir.ui.view">
+        <field name="name">sgc.item.detail.form</field>
+        <field name="model">sgc.item.detail</field>
+        <field name="arch" type="xml">
+            <form string="Chi tiết khoản mục">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Tên khoản mục..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="category_id"/>
+                            <field name="account_id"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="sgc_item_detail_view_list" model="ir.ui.view">
+        <field name="name">sgc.item.detail.list</field>
+        <field name="model">sgc.item.detail</field>
+        <field name="arch" type="xml">
+            <list string="Chi tiết khoản mục">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="account_id"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="sgc_item_detail_view_search" model="ir.ui.view">
+        <field name="name">sgc.item.detail.search</field>
+        <field name="model">sgc.item.detail</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm khoản mục">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="category_id"/>
+                <group string="Nhóm theo">
+                    <filter string="Danh mục" name="group_category" context="{'group_by': 'category_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="sgc_item_detail_action" model="ir.actions.act_window">
+        <field name="name">Chi tiết khoản mục</field>
+        <field name="res_model">sgc.item.detail</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_category': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo khoản mục mới
+            </p>
+        </field>
+    </record>
+</odoo>

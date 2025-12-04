@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Criteria Form View -->
+    <record id="sgc_kpi_criteria_view_form" model="ir.ui.view">
+        <field name="name">sgc.kpi.criteria.form</field>
+        <field name="model">sgc.kpi.criteria</field>
+        <field name="arch" type="xml">
+            <form string="Tiêu chí KPI">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Tên tiêu chí"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="department_id"/>
+                            <field name="default_target"/>
+                            <field name="unit"/>
+                        </group>
+                        <group>
+                            <field name="weight"/>
+                            <field name="target_type"/>
+                            <field name="calculation_method"/>
+                            <field name="active"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Mô tả tiêu chí..."/>
+                    <notebook>
+                        <page string="Hệ số thời gian">
+                            <group>
+                                <group>
+                                    <field name="month_01"/>
+                                    <field name="month_02"/>
+                                    <field name="month_03"/>
+                                    <field name="month_04"/>
+                                    <field name="month_05"/>
+                                    <field name="month_06"/>
+                                </group>
+                                <group>
+                                    <field name="month_07"/>
+                                    <field name="month_08"/>
+                                    <field name="month_09"/>
+                                    <field name="month_10"/>
+                                    <field name="month_11"/>
+                                    <field name="month_12"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Criteria List View -->
+    <record id="sgc_kpi_criteria_view_tree" model="ir.ui.view">
+        <field name="name">sgc.kpi.criteria.list</field>
+        <field name="model">sgc.kpi.criteria</field>
+        <field name="arch" type="xml">
+            <list string="Tiêu chí KPI">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="default_target"/>
+                <field name="unit"/>
+                <field name="weight"/>
+                <field name="target_type"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Criteria Action -->
+    <record id="sgc_kpi_criteria_action" model="ir.actions.act_window">
+        <field name="name">Tiêu chí KPI</field>
+        <field name="res_model">sgc.kpi.criteria</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo tiêu chí KPI mới
+            </p>
+        </field>
+    </record>
+</odoo>

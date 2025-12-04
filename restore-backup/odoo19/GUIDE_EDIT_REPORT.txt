@@ -1,0 +1,158 @@
+================================================================================
+        HƯỚNG DẪN SỬA MẪU BÁO GIÁ CHI TIẾT - ODOO 19
+================================================================================
+
+📂 FILE CẦN SỬA:
+/home/sgc/odoo19/addons/sgc_management_core/report/report_sale_order_sgc.xml
+
+================================================================================
+📝 CÁC PHẦN CÓ THỂ SỬA (VỊ TRÍ DÒNG)
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 1️⃣  HEADER - THÔNG TIN CÔNG TY (Dòng 72-77)                                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TÌM ĐOẠN NÀY:
+  <strong>Trụ sở:</strong> Tầng 14, 104 Tows...
+  <strong>VP Hà Nội:</strong> 08-DQ2, 125 Phố Linh...
+  <strong>Email:</strong> info@hsevn.com.vn
+  <strong>Hotline:</strong> 19001713
+
+SỬA THÀNH:
+  <strong>Trụ sở:</strong> [ĐỊA CHỈ MỚI CỦA BẠN]
+  <strong>Hotline:</strong> [SỐ ĐIỆN THOẠI MỚI]
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 2️⃣  LOGO VÀ TÊN CÔNG TY (Dòng 81-86)                                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TÌM ĐOẠN NÀY:
+  <div style="font-size: 32pt;">SGC</div>
+  <div style="font-size: 11pt;">HSE Consulting</div>
+
+SỬA THÀNH:
+  <div style="font-size: 32pt;">TÊN MỚI</div>
+  Hoặc thay bằng hình ảnh logo:
+  <img src="/web/image/res.company/1/logo" style="max-height: 80px;"/>
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 3️⃣  TIÊU ĐỀ BÁO GIÁ (Dòng 96-102)                                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TÌM ĐOẠN NÀY:
+  <h2 class="title-main">BẢNG BÁO GIÁ</h2>
+  <h3 class="title-sub">QUAN TRẮC MÔI TRƯỜNG LAO ĐỘNG NĂM 2025</h3>
+
+SỬA THÀNH:
+  <h2>PROPOSAL / QUOTATION</h2>
+  <h3>Environmental Monitoring Services</h3>
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 4️⃣  TÊN CỘT TRONG BẢNG (Dòng 145-151)                                       │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TÌM ĐOẠN NÀY:
+  <th>STT</th>
+  <th>Chỉ tiêu</th>
+  <th>Đơn vị tính</th>
+  <th>Số lượng</th>
+  <th>Đơn giá</th>
+  <th>Thành tiền (VNĐ)</th>
+
+SỬA THÀNH:
+  <th>No.</th>
+  <th>Description</th>
+  <th>Unit</th>
+  <th>Qty</th>
+  <th>Unit Price</th>
+  <th>Amount (VND)</th>
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 5️⃣  MÀU SẮC (Dòng 37-63)                                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TÌM ĐOẠN NÀY (trong thẻ <style>):
+  .main-table th {
+      background-color: #FFFF00;  /* Màu vàng */
+  }
+  .grand-total-row {
+      background-color: #FFFF99;  /* Màu vàng nhạt */
+  }
+
+ĐỔI MÀU:
+  #FFFF00 → #4CAF50 (màu xanh lá)
+  #00539F → #FF5722 (màu cam)
+  #FFFF99 → #E3F2FD (màu xanh nhạt)
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 6️⃣  GHI CHÚ VÀ ĐIỀU KIỆN (Dòng 208-233)                                     │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TÌM ĐOẠN NÀY:
+  <li>Thời gian dự kiến lấy mẫu: trong vòng 10 ngày...</li>
+  <li>Lần thanh toán đợt 1 (70%)...</li>
+
+THÊM/XÓA/SỬA theo nhu cầu của bạn
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 7️⃣  FOOTER - NGƯỜI LẬP BÁO GIÁ (Dòng 239-252)                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TÌM ĐOẠN NÀY:
+  <strong>QL Dự Án:</strong> <span t-field="doc.user_id.name"/>
+  <strong>ĐT:</strong> <span t-field="doc.user_id.phone"/>
+
+THÊM TRƯỜNG KHÁC:
+  <strong>Chức vụ:</strong> <span t-field="doc.user_id.function"/>
+  <strong>Phòng ban:</strong> <span t-field="doc.user_id.department_id.name"/>
+
+================================================================================
+🔄 SAU KHI SỬA FILE XML - CHẠY LỆNH NÀY:
+================================================================================
+
+cd /home/sgc/odoo19
+python3 scripts/upgrade_sgc_module.py
+
+Hoặc qua Web UI:
+  → Apps → tìm "SGC Management Core" → Upgrade
+
+================================================================================
+💡 MẸO NHANH
+================================================================================
+
+✅ Sửa đơn giản (văn bản, địa chỉ):
+   → Sửa trực tiếp trong file XML
+   → Chạy upgrade module
+   
+✅ Sửa layout phức tạp (vị trí, cấu trúc):
+   → Vào Settings → Technical → Reports
+   → Edit Template trong web UI
+   
+✅ Test nhanh:
+   → Mở 1 báo giá bất kỳ
+   → Print → Báo giá SGC
+   → Xem kết quả ngay
+
+✅ Sửa nhiều lần:
+   → Giữ 2 cửa sổ: 1 cửa edit code, 1 cửa xem PDF
+   → Sau mỗi lần sửa: upgrade → refresh → print
+
+================================================================================
+📞 CÁC FILE QUAN TRỌNG
+================================================================================
+
+Report Template (Mẫu in):
+  /home/sgc/odoo19/addons/sgc_management_core/report/report_sale_order_sgc.xml
+
+Model (Logic):
+  /home/sgc/odoo19/addons/sgc_management_core/models/sale_order.py
+
+Views (Form trên web):
+  /home/sgc/odoo19/addons/sgc_management_core/views/sale_order_views.xml
+
+Script upgrade:
+  /home/sgc/odoo19/scripts/upgrade_sgc_module.py
+
+================================================================================
+

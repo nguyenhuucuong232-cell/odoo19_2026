@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- Dashboard template -->
+    <t t-name="SGCActivityDashboard">
+        <div class="sgc-activity-dashboard-container">
+            <div class="form-group row">
+                <div class="col-12 col-lg-4">
+                    <h1 class="sgc-dashboard-title" style="margin: 20px;">Activity Dashboard</h1>
+                </div>
+                <div class="col-12 col-lg-8">
+                    <t t-call="sgc_activity_dashboard.search_header" t-if="state and state.res_users"/>
+                </div>
+            </div>
+            <div>
+                <div class="table_view">
+                    <t t-call="SGCManageActivity"/>
+                </div>
+            </div>
+        </div>
+    </t>
+    
+    <t t-name="SGCManageActivity">
+        <section class="sgc-dashboard_main_section">
+            <div class="activity_dash_card row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="sgc-activity-dashboard-card sgc-all_activity"
+                         t-on-click="show_all_activities">
+                        <div class="sgc-activity-dashboard-card__icon-container d-flex">
+                            <i class="fa fa-clock-o sgc-text-mauve"/>
+                        </div>
+                        <div>
+                            <t t-esc="state ? state.len_all : 0"/>
+                        </div>
+                        <div class="sgc-dashboard-card__detail">
+                            <h2 class="sgc-activity-head">Tất cả hoạt động</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="sgc-activity-dashboard-card sgc-planned_activity"
+                         t-on-click="show_planned_activities">
+                        <div class="sgc-activity-dashboard-card__icon-container d-flex">
+                            <i class="fa fa-calendar sgc-text-mauve"/>
+                        </div>
+                        <div>
+                            <t t-esc="state ? state.len_planned : 0"/>
+                        </div>
+                        <div class="sgc-dashboard-card__detail">
+                            <h2 class="sgc-activity-head">Đã lên kế hoạch</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="sgc-activity-dashboard-card sgc-completed_activity"
+                         t-on-click="show_completed_activities">
+                        <div class="sgc-activity-dashboard-card__icon-container d-flex">
+                            <i class="fa fa-check-circle sgc-text-mauve"/>
+                        </div>
+                        <div>
+                            <t t-esc="state ? state.len_done : 0"/>
+                        </div>
+                        <div class="sgc-dashboard-card__detail">
+                            <h2 class="sgc-activity-head">Hoàn thành</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="sgc-activity-dashboard-card sgc-today_activity"
+                         t-on-click="show_today_activities">
+                        <div class="sgc-activity-dashboard-card__icon-container d-flex">
+                            <i class="fa fa-sun-o sgc-text-mauve"/>
+                        </div>
+                        <div>
+                            <t t-esc="state ? state.len_today : 0"/>
+                        </div>
+                        <div class="sgc-dashboard-card__detail">
+                            <h2 class="sgc-activity-head">Hôm nay</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="sgc-activity-dashboard-card sgc-overdue_activity"
+                         t-on-click="show_overdue_activities">
+                        <div class="sgc-activity-dashboard-card__icon-container d-flex">
+                            <i class="fa fa-exclamation-triangle sgc-text-mauve"/>
+                        </div>
+                        <div>
+                            <t t-esc="state ? state.len_overdue : 0"/>
+                        </div>
+                        <div class="sgc-dashboard-card__detail">
+                            <h2 class="sgc-activity-head">Quá hạn</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="sgc-activity-dashboard-card sgc-activity_type"
+                         t-on-click="show_activity_types">
+                        <div class="sgc-activity-dashboard-card__icon-container d-flex">
+                            <i class="fa fa-tags sgc-text-mauve"/>
+                        </div>
+                        <div>
+                            <t t-esc="state ? state.activity_type : 0"/>
+                        </div>
+                        <div class="sgc-dashboard-card__detail">
+                            <h2 class="sgc-activity-head">Loại hoạt động</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Planned Activities Table -->
+        <div class="sgc-table_activity sgc-table_planned_activity">
+            <table cellspacing="10" width="100%">
+                <thead>
+                    <tr>
+                        <th colspan="6" class="sgc-activity_head">Hoạt động đã lên kế hoạch</th>
+                    </tr>
+                    <t t-if="!state or !state.planned_activity or !state.planned_activity.length">
+                        <tr><td colspan="6">Không có dữ liệu</td></tr>
+                    </t>
+                </thead>
+                <t t-if="state and state.planned_activity and state.planned_activity.length">
+                    <thead class="table table-bordered mt32">
+                        <tr class="table_head">
+                            <th style="width:25%">Tên</th>
+                            <th>Loại hoạt động</th>
+                            <th>Người phụ trách</th>
+                            <th>Hạn chót</th>
+                            <th>Xem</th>
+                            <th>Nguồn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="state and state.planned_activity ? state.planned_activity : []" t-as="line" t-key="line.id">
+                            <td><t t-esc="line.display_name"/></td>
+                            <td><t t-esc="line.activity_type_id ? line.activity_type_id[1] : ''"/></td>
+                            <td><t t-esc="line.user_id ? line.user_id[1] : ''"/></td>
+                            <td><t t-esc="line.date_deadline"/></td>
+                            <td>
+                                <button t-att-value="line.id" t-on-click="click_view" class="sgc-click-view">Xem</button>
+                            </td>
+                            <td>
+                                <button t-att-value="line.id" class="sgc-click-origin-view" t-on-click="click_origin">Nguồn</button>
+                            </td>
+                        </tr>
+                        <tr class="sgc-hh-50">
+                            <td colspan="5"></td>
+                            <td>
+                                <a t-on-click="show_planned_activities" class="btn btn-outline-primary">Xem thêm &gt;&gt;&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </table>
+        </div>
+        
+        <!-- Today's Activities Table -->
+        <div class="sgc-table_activity sgc-table_today_activity">
+            <table cellspacing="10" width="100%">
+                <thead>
+                    <tr>
+                        <th colspan="6" class="sgc-activity_head">Hoạt động hôm nay</th>
+                    </tr>
+                    <t t-if="!state or !state.today_activity or !state.today_activity.length">
+                        <tr><td colspan="6">Không có dữ liệu</td></tr>
+                    </t>
+                </thead>
+                <t t-if="state and state.today_activity and state.today_activity.length">
+                    <thead class="table table-bordered mt32">
+                        <tr class="table_head">
+                            <th style="width:25%">Tên</th>
+                            <th>Loại hoạt động</th>
+                            <th>Người phụ trách</th>
+                            <th>Hạn chót</th>
+                            <th>Xem</th>
+                            <th>Nguồn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="state and state.today_activity ? state.today_activity : []" t-as="line" t-key="line.id">
+                            <td><t t-esc="line.display_name"/></td>
+                            <td><t t-esc="line.activity_type_id ? line.activity_type_id[1] : ''"/></td>
+                            <td><t t-esc="line.user_id ? line.user_id[1] : ''"/></td>
+                            <td><t t-esc="line.date_deadline"/></td>
+                            <td>
+                                <button t-att-value="line.id" class="sgc-click-view" t-on-click="click_view">Xem</button>
+                            </td>
+                            <td>
+                                <button t-att-value="line.id" class="sgc-click-origin-view" t-on-click="click_origin">Nguồn</button>
+                            </td>
+                        </tr>
+                        <tr class="sgc-hh-50">
+                            <td colspan="5"></td>
+                            <td>
+                                <a t-on-click="show_today_activities" class="btn btn-outline-primary">Xem thêm &gt;&gt;&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </table>
+        </div>
+        
+        <!-- Completed Activities Table -->
+        <div class="sgc-table_activity sgc-table_main_view">
+            <table cellspacing="10" width="100%">
+                <thead>
+                    <tr>
+                        <th colspan="6" class="sgc-activity_head">Hoạt động hoàn thành</th>
+                    </tr>
+                    <t t-if="!state or !state.done_activity or !state.done_activity.length">
+                        <tr><td colspan="6">Không có dữ liệu</td></tr>
+                    </t>
+                </thead>
+                <t t-if="state and state.done_activity and state.done_activity.length">
+                    <thead class="table table-bordered mt32">
+                        <tr class="table_head">
+                            <th style="width:25%">Tên</th>
+                            <th>Loại hoạt động</th>
+                            <th>Người phụ trách</th>
+                            <th>Hạn chót</th>
+                            <th>Xem</th>
+                            <th>Nguồn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="state and state.done_activity ? state.done_activity : []" t-as="line" t-key="line.id">
+                            <td style="width:25%"><t t-esc="line.display_name"/></td>
+                            <td><t t-esc="line.activity_type_id ? line.activity_type_id[1] : ''"/></td>
+                            <td><t t-esc="line.user_id ? line.user_id[1] : ''"/></td>
+                            <td><t t-esc="line.date_deadline"/></td>
+                            <td>
+                                <button t-att-value="line.id" class="sgc-click-view" t-on-click="click_view">Xem</button>
+                            </td>
+                            <td>
+                                <button t-att-value="line.id" t-on-click="click_origin" class="sgc-click-origin-view">Nguồn</button>
+                            </td>
+                        </tr>
+                        <tr class="sgc-hh-50">
+                            <td colspan="5"></td>
+                            <td>
+                                <a t-on-click="show_completed_activities" class="btn btn-outline-primary">Xem thêm &gt;&gt;&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </table>
+        </div>
+        
+        <!-- Overdue Activities Table -->
+        <div class="sgc-table_activity sgc-table_main_view">
+            <table cellspacing="10" width="100%">
+                <thead>
+                    <tr>
+                        <th colspan="6" class="sgc-activity_head">Hoạt động quá hạn</th>
+                    </tr>
+                    <t t-if="!state or !state.overdue_activity or !state.overdue_activity.length">
+                        <tr><td colspan="6">Không có dữ liệu</td></tr>
+                    </t>
+                </thead>
+                <t t-if="state and state.overdue_activity and state.overdue_activity.length">
+                    <thead class="table table-bordered mt32">
+                        <tr class="table_head">
+                            <th style="width:25%">Tên</th>
+                            <th>Loại hoạt động</th>
+                            <th>Người phụ trách</th>
+                            <th>Hạn chót</th>
+                            <th>Xem</th>
+                            <th>Nguồn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="state and state.overdue_activity ? state.overdue_activity : []" t-as="line" t-key="line.id">
+                            <td style="width:25%"><t t-esc="line.display_name"/></td>
+                            <td><t t-esc="line.activity_type_id ? line.activity_type_id[1] : ''"/></td>
+                            <td><t t-esc="line.user_id ? line.user_id[1] : ''"/></td>
+                            <td><t t-esc="line.date_deadline"/></td>
+                            <td>
+                                <button t-att-value="line.id" t-on-click="click_view" class="sgc-click-view">Xem</button>
+                            </td>
+                            <td>
+                                <button t-att-value="line.id" class="sgc-click-origin-view" t-on-click="click_origin">Nguồn</button>
+                            </td>
+                        </tr>
+                        <tr class="sgc-hh-50">
+                            <td colspan="5"></td>
+                            <td>
+                                <a t-on-click="show_overdue_activities" class="btn btn-outline-primary">Xem thêm &gt;&gt;&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </table>
+        </div>
+    </t>
+</templates>

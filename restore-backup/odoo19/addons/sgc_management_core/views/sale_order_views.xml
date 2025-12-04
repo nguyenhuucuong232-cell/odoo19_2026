@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- ============================================== -->
+    <!-- SALE ORDER FORM VIEW - Inherit & Customize -->
+    <!-- Mau giong het hinh goc Odoo 17 -->
+    <!-- ============================================== -->
+    
+    <record id="view_order_form_inherit_sgc" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.sgc</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            
+            <!-- ======================================== -->
+            <!-- HEADER - Them cac nut quy trinh -->
+            <!-- ======================================== -->
+            <xpath expr="//header" position="inside">
+                <!-- Nut Xay dung phuong an -->
+                <button name="action_sale_flow_prepare_plan" 
+                        string="Xây dựng phương án" 
+                        type="object" 
+                        class="btn-secondary"
+                        invisible="sale_flow_state != 'sale_b1_quote'"/>
+                
+                <!-- Nut Gui phe duyet PRJ -->
+                <button name="action_request_prj_approval" 
+                        string="Gửi phê duyệt PRJ" 
+                        type="object" 
+                        class="btn-secondary"
+                        invisible="prj_flow_state != 'b1_create'"/>
+            </xpath>
+            
+            <!-- ======================================== -->
+            <!-- COT TRAI - Them cac truong -->
+            <!-- ======================================== -->
+            
+            <!-- Them Nguoi lien he sau partner_id -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="contact_id" 
+                       string="Người liên hệ"
+                       domain="[('parent_id', '=', partner_id)]"
+                       context="{'default_parent_id': partner_id}"
+                       options="{'no_create': True}"/>
+            </xpath>
+            
+            <!-- Them Mau bao gia sau partner_shipping_id -->
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="quote_template_id" string="Mẫu báo giá"/>
+            </xpath>
+            
+            <!-- Them Noi dung bao gia sau quote_template_id -->
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="quote_content" string="Nội dung báo giá"/>
+            </xpath>
+            
+            <!-- ======================================== -->
+            <!-- COT PHAI - Them cac truong -->
+            <!-- ======================================== -->
+            
+            <!-- Them cac truong sau validity_date -->
+            <xpath expr="//field[@name='validity_date']" position="after">
+                <field name="have_frequency" string="Tần suất?"/>
+                <field name="priority" string="Độ ưu tiên" widget="priority"/>
+                <field name="task_type" string="Loại nhiệm vụ"/>
+                <field name="progress" string="Tiến triển" widget="progressbar"/>
+                <field name="color" string="Màu" widget="color_picker"/>
+                <field name="result_achieved" string="Kết quả đạt được"/>
+                <field name="state_old_order" string="State Old Order" readonly="1"/>
+                <field name="order_type" string="Loại đơn hàng"/>
+                <field name="commission_budget" string="Hoa hồng dự chi"/>
+                <field name="is_added_position" string="Đã Thêm Vị"/>
+            </xpath>
+            
+            <!-- ======================================== -->
+            <!-- Them truong sau payment_term_id -->
+            <!-- ======================================== -->
+            <xpath expr="//field[@name='pricelist_id']" position="after">
+                <field name="ctv_id" string="CTV"/>
+                <field name="referred_by_id" string="Người được giới thiệu"/>
+                <field name="service_ids" string="Services" widget="many2many_tags"/>
+            </xpath>
+            
+            <!-- ======================================== -->
+            <!-- Them truong SGC Contract va Project -->
+            <!-- ======================================== -->
+            <xpath expr="//group[@name='sale_header']" position="inside">
+                <field name="customer_discount" string="Chiết khấu khách hàng"/>
+                <field name="sgc_contract_id" string="Hợp đồng SGC" readonly="1"/>
+                <field name="sgc_project_id" string="Dự án SGC" readonly="1"/>
+            </xpath>
+            
+            <!-- ======================================== -->
+            <!-- ORDER LINE - Them cot Tan suat -->
+            <!-- ======================================== -->
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="after">
+                <field name="frequency" string="Tần suất" optional="show"/>
+            </xpath>
+            
+            <!-- ======================================== -->
+            <!-- NOTEBOOK - Them cac tab moi -->
+            <!-- ======================================== -->
+            
+            <!-- Tab Chi tiet don hang (Noi bo) -->
+            <xpath expr="//notebook/page[@name='order_lines']" position="after">
+                <page string="Chi tiết đơn hàng (Nội bộ)" name="internal_details">
+                    <group>
+                        <group string="Thông tin nội bộ">
+                            <field name="supplier_id" string="Nhà cung cấp"/>
+                            <field name="purchase_order_id" string="Đơn mua hàng"/>
+                        </group>
+                        <group string="Thông tin bổ sung">
+                            <field name="order_qr_code" string="QR Code" widget="image"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            
+            <!-- Tab Dich vu -->
+            <xpath expr="//notebook/page[@name='internal_details']" position="after">
+                <page string="Dịch vụ" name="services">
+                    <group>
+                        <field name="service_ids" string="Danh sách dịch vụ" widget="many2many_tags" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+            
+            <!-- Tab Phuong an kinh doanh -->
+            <xpath expr="//notebook/page[@name='other_information']" position="after">
+                <page string="Phương án kinh doanh" name="business_plan">
+                    <group>
+                        <group string="Thông tin phương án">
+                            <field name="sale_flow_state" string="Trạng thái SALE" readonly="1"/>
+                            <field name="sale_flow_title" string="Bước hiện tại" readonly="1"/>
+                            <field name="sale_flow_department" string="Phòng ban phụ trách" readonly="1"/>
+                        </group>
+                        <group string="Phê duyệt">
+                            <field name="sale_flow_need_second_level" string="Cần duyệt cấp 2" readonly="1"/>
+                            <field name="sale_flow_lvl1_state" string="Duyệt cấp 1" readonly="1"/>
+                            <field name="sale_flow_lvl1_user_id" string="Người duyệt C1" readonly="1"/>
+                            <field name="sale_flow_lvl2_state" string="Duyệt cấp 2" readonly="1"/>
+                            <field name="sale_flow_lvl2_user_id" string="Người duyệt C2" readonly="1"/>
+                            <field name="sale_flow_customer_response" string="Phản hồi KH" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="sale_flow_description" string="Mô tả bước" readonly="1" nolabel="1" colspan="2"/>
+                    </group>
+                </page>
+                
+                <!-- Tab Nguoi phe duyet -->
+                <page string="Người phê duyệt" name="approvers">
+                    <group>
+                        <group string="Cấp 1 - Trưởng phòng">
+                            <field name="sale_flow_lvl1_state" string="Trạng thái" readonly="1"/>
+                            <field name="sale_flow_lvl1_user_id" string="Người duyệt" readonly="1"/>
+                        </group>
+                        <group string="Cấp 2 - Ban Giám đốc">
+                            <field name="sale_flow_need_second_level" string="Yêu cầu duyệt" readonly="1"/>
+                            <field name="sale_flow_lvl2_state" string="Trạng thái" readonly="1"/>
+                            <field name="sale_flow_lvl2_user_id" string="Người duyệt" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Nút thao tác" invisible="sale_flow_state != 'sale_b3_approval'">
+                        <div class="o_row">
+                            <button name="action_sale_flow_approve_level1" 
+                                    string="Duyệt cấp 1" 
+                                    type="object" 
+                                    class="btn-primary"
+                                    groups="sgc_management_core.group_sgc_sales_manager"
+                                    invisible="sale_flow_lvl1_state != 'waiting'"/>
+                            <button name="action_sale_flow_reject_level1" 
+                                    string="Từ chối cấp 1" 
+                                    type="object" 
+                                    class="btn-danger"
+                                    groups="sgc_management_core.group_sgc_sales_manager"
+                                    invisible="sale_flow_lvl1_state != 'waiting'"/>
+                            <button name="action_sale_flow_approve_level2" 
+                                    string="Duyệt cấp 2" 
+                                    type="object" 
+                                    class="btn-primary"
+                                    groups="sgc_management_core.group_sgc_sales_director"
+                                    invisible="not sale_flow_need_second_level or sale_flow_lvl2_state != 'waiting'"/>
+                            <button name="action_sale_flow_reject_level2" 
+                                    string="Từ chối cấp 2" 
+                                    type="object" 
+                                    class="btn-danger"
+                                    groups="sgc_management_core.group_sgc_sales_director"
+                                    invisible="not sale_flow_need_second_level or sale_flow_lvl2_state != 'waiting'"/>
+                        </div>
+                    </group>
+                </page>
+                
+                <!-- Tab San pham tuy chon -->
+                <page string="Sản phẩm tùy chọn" name="optional_products">
+                    <group>
+                        <p class="text-muted">Các sản phẩm tùy chọn sẽ hiển thị ở đây.</p>
+                    </group>
+                </page>
+            </xpath>
+            
+            <!-- ======================================== -->
+            <!-- Them phan QUY TRINH sau notebook -->
+            <!-- ======================================== -->
+            <xpath expr="//sheet/notebook" position="after">
+                
+                <!-- QUY TRINH SALE.01 -->
+                <group string="QUY TRÌNH SALE.01" invisible="not sale_flow_state" class="mt-4">
+                    <group>
+                        <field name="sale_flow_state" string="Trạng thái" readonly="1"/>
+                        <field name="sale_flow_title" string="Bước hiện tại" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="sale_flow_department" string="Phòng ban" readonly="1"/>
+                    </group>
+                    <group col="4">
+                        <field name="sale_flow_need_second_level" string="Cần duyệt cấp 2" readonly="1"/>
+                        <field name="sale_flow_lvl1_state" string="Duyệt cấp 1" readonly="1"/>
+                        <field name="sale_flow_lvl1_user_id" string="Người duyệt C1" readonly="1"/>
+                        <newline/>
+                        <field name="sale_flow_lvl2_state" string="Duyệt cấp 2" readonly="1"/>
+                        <field name="sale_flow_lvl2_user_id" string="Người duyệt C2" readonly="1"/>
+                        <field name="sale_flow_customer_response" string="Phản hồi KH" readonly="1"/>
+                    </group>
+                </group>
+                
+                <!-- QUY TRINH PRJ.01 -->
+                <group string="QUY TRÌNH PRJ.01" invisible="not prj_flow_state" class="mt-4">
+                    <group>
+                        <field name="prj_flow_state" string="Trạng thái" readonly="1"/>
+                        <field name="prj_flow_title" string="Bước hiện tại" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="prj_flow_department" string="Phòng ban" readonly="1"/>
+                    </group>
+                </group>
+                
+            </xpath>
+            
+        </field>
+    </record>
+    
+    <!-- ============================================== -->
+    <!-- SALE ORDER LINE - Them cac truong cho dich vu -->
+    <!-- ============================================== -->
+    
+    <record id="view_order_line_tree_inherit_sgc" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.inherit.sgc</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_qty']" position="after">
+                <field name="frequency" string="Tần suất" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

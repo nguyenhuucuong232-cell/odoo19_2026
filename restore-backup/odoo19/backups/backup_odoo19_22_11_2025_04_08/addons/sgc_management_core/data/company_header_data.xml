@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- 
+        File này chỉ để tham khảo. Dữ liệu đã được cập nhật trực tiếp vào database.
+        Nếu cần cập nhật lại, sử dụng script update_company_sql.py hoặc cập nhật thủ công trong Odoo.
+        -->
+    </data>
+</odoo>

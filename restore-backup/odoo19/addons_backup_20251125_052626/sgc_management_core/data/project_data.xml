@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1"> <record id="sgc_stage_01_new" model="project.task.type">
+            <field name="name">Mới</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="sgc_stage_02_survey" model="project.task.type">
+            <field name="name">Đang khảo sát</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="sgc_stage_03_sampling" model="project.task.type">
+            <field name="name">Đang lấy mẫu</field>
+            <field name="sequence">30</field>
+        </record>
+        <record id="sgc_stage_04_analyzing" model="project.task.type">
+            <field name="name">Đang phân tích</field>
+            <field name="sequence">40</field>
+        </record>
+        <record id="sgc_stage_05_reporting" model="project.task.type">
+            <field name="name">Làm báo cáo</field>
+            <field name="sequence">50</field>
+        </record>
+        <record id="sgc_stage_06_done" model="project.task.type">
+            <field name="name">Hoàn thành</field>
+            <field name="sequence">60</field>
+        </record>
+
+        <record id="sgc_project_template" model="project.project">
+            <field name="name">Dự án Mẫu Quan trắc SGC</field>
+            <field name="is_template" eval="True"/>
+            <field name="type_ids" eval="[
+                (4, ref('sgc_stage_01_new')),
+                (4, ref('sgc_stage_02_survey')),
+                (4, ref('sgc_stage_03_sampling')),
+                (4, ref('sgc_stage_04_analyzing')),
+                (4, ref('sgc_stage_05_reporting')),
+                (4, ref('sgc_stage_06_done')),
+            ]"/>
+        </record>
+
+    </data>
+</odoo>

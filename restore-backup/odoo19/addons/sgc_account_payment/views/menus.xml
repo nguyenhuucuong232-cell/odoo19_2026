@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="sgc_account_payment_menu_root"
+              name="Thanh toán SGC"
+              parent="account.menu_finance"
+              sequence="20"/>
+
+    <!-- Submenu -->
+    <menuitem id="sgc_payment_transaction_menu_inbound"
+              name="Phiếu thu"
+              parent="sgc_account_payment_menu_root"
+              action="sgc_payment_transaction_action_inbound"
+              sequence="10"/>
+
+    <menuitem id="sgc_payment_transaction_menu_outbound"
+              name="Phiếu chi"
+              parent="sgc_account_payment_menu_root"
+              action="sgc_payment_transaction_action_outbound"
+              sequence="20"/>
+
+    <menuitem id="sgc_payment_transaction_menu_all"
+              name="Tất cả giao dịch"
+              parent="sgc_account_payment_menu_root"
+              action="sgc_payment_transaction_action_all"
+              sequence="30"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="sgc_account_payment_menu_config"
+              name="Cấu hình"
+              parent="sgc_account_payment_menu_root"
+              sequence="100"/>
+
+    <menuitem id="sgc_item_category_menu"
+              name="Danh mục khoản mục"
+              parent="sgc_account_payment_menu_config"
+              action="sgc_item_category_action"
+              sequence="10"/>
+
+    <menuitem id="sgc_item_detail_menu"
+              name="Chi tiết khoản mục"
+              parent="sgc_account_payment_menu_config"
+              action="sgc_item_detail_action"
+              sequence="20"/>
+</odoo>

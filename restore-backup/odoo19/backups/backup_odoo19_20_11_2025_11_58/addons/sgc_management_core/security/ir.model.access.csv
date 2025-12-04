@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sgc_signed_contract_user,access.sgc.signed.contract.user,model_sgc_signed_contract,group_sgc_user,1,1,1,0
+access_sgc_signed_contract_manager,access.sgc.signed.contract.manager,model_sgc_signed_contract,group_sgc_manager,1,1,1,1
+access_sgc_expense_advance_user,access.sgc.expense.advance.user,model_sgc_expense_advance,group_sgc_user,1,1,1,0
+access_sgc_expense_advance_manager,access.sgc.expense.advance.manager,model_sgc_expense_advance,group_sgc_manager,1,1,1,1

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Company Form View -->
+    <record id="view_company_form_inherit_sgc" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.sgc</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            
+            <!-- Thêm tab "Cấu hình SGC" -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Cấu hình SGC" name="sgc_config">
+                    <group>
+                        <group string="Header Report - Banner/Logo">
+                            <field name="report_header_image" widget="image" class="oe_avatar" options="{'size': [1200, 300]}"/>
+                            <div class="text-muted" colspan="2">
+                                <i class="fa fa-info-circle"/> Hình ảnh này sẽ hiển thị ở đầu tất cả báo cáo<br/>
+                                • Kích thước khuyến nghị: <strong>1200x300px</strong> (tỷ lệ 4:1)<br/>
+                                • Format: PNG (nền trong suốt) hoặc JPG<br/>
+                                • Dùng cho: Header của Hợp đồng, Tạm ứng, Reports...
+                            </div>
+                        </group>
+                    </group>
+                    
+                    <separator string="Header Report - Nội dung"/>
+                    <group>
+                        <group string="Header report" colspan="2">
+                            <field name="report_header_text" widget="html" placeholder="Nhập nội dung header report..."/>
+                            <div class="text-muted" colspan="2">
+                                <i class="fa fa-info-circle"/> Nội dung này sẽ hiển thị ở đầu các báo cáo<br/>
+                                • Hỗ trợ HTML để định dạng văn bản<br/>
+                                • Có thể chèn logo, thông tin công ty, địa chỉ...
+                            </div>
+                        </group>
+                    </group>
+                    
+                    <separator string="Thông tin Người đại diện"/>
+                    <group>
+                        <group string="Thông tin cơ bản">
+                            <field name="representative_name" placeholder="VD: Nguyễn Hữu Dương"/>
+                            <field name="representative_position" placeholder="VD: Giám đốc"/>
+                        </group>
+                        
+                        <group string="Chữ ký">
+                            <field name="representative_signature" widget="image" class="oe_avatar" options="{'size': [200, 100]}"/>
+                            <div class="text-muted" colspan="2">
+                                <i class="fa fa-info-circle"/> Chữ ký hiển thị trong footer báo cáo<br/>
+                                • Kích thước khuyến nghị: <strong>200x100px</strong><br/>
+                                • Format: PNG với nền trong suốt<br/>
+                                • Hiển thị cùng tên và chức vụ người đại diện
+                            </div>
+                        </group>
+                    </group>
+                    
+                    <separator string="Quy trình bán hàng"/>
+                    <group>
+                        <group string="Ngưỡng phê duyệt báo giá">
+                            <field name="sale_double_approval_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <div class="text-muted" colspan="2">
+                                <i class="fa fa-info-circle"/> Đơn hàng có giá trị lớn hơn ngưỡng này sẽ yêu cầu phê duyệt cấp 2 (Ban Giám đốc).
+                            </div>
+                        </group>
+                    </group>
+                    
+                    <separator string="Thông tin Pháp lý"/>
+                    <group>
+                        <group>
+                            <field name="tax_code" placeholder="VD: 0310780286"/>
+                            <field name="business_license" placeholder="VD: 0310780286"/>
+                        </group>
+                        <group>
+                            <field name="hotline" placeholder="VD: 19001713"/>
+                            <field name="fax" placeholder="VD: (028) 1234 5678"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="Hướng dẫn" colspan="2">
+                            <div class="alert alert-info" role="alert">
+                                <strong>Thông tin này sẽ hiển thị trên:</strong><br/>
+                                • Header/Footer của tất cả báo cáo<br/>
+                                • Email templates<br/>
+                                • Invoices, Quotations, Contracts...<br/>
+                                <br/>
+                                <strong>Lưu ý:</strong><br/>
+                                • Để thêm logo công ty: Settings → Companies → Upload logo<br/>
+                                • Để tùy chỉnh header/footer: Settings → Companies → Report Configuration
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

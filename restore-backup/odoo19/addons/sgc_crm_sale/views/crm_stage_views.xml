@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SGC CRM Stage Form - Standalone view for auto-change fields -->
+    <!-- Note: Inherit view removed due to Odoo 19 compatibility issues with existing DB views -->
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu root với action mặc định -->
+    <record id="sgc_menu_root" model="ir.ui.menu">
+        <field name="name">Nghiệp vụ SGC</field>
+        <field name="sequence">1</field>
+        <field name="web_icon">sgc_management_core,static/src/img/icon.png</field>
+        <field name="action" ref="sgc_signed_contract_action"/>
+    </record>
+    
+    <record id="sgc_menu_signed_contract" model="ir.ui.menu">
+        <field name="name">Hợp đồng đã ký</field>
+        <field name="parent_id" ref="sgc_menu_root"/>
+        <field name="action" ref="sgc_signed_contract_action"/>
+        <field name="sequence">10</field>
+    </record>
+    
+    <record id="sgc_menu_expense_advance" model="ir.ui.menu">
+        <field name="name">Đề nghị Tạm ứng</field>
+        <field name="parent_id" ref="sgc_menu_root"/>
+        <field name="action" ref="sgc_expense_advance_action"/>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- Menu truy cập website công ty - đặt cuối cùng -->
+    <record id="sgc_website_action" model="ir.actions.act_url">
+        <field name="name">Website Công ty</field>
+        <field name="url">https://hsevn.com.vn/</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="sgc_menu_website" model="ir.ui.menu">
+        <field name="name">Website Công ty</field>
+        <field name="parent_id" ref="sgc_menu_root"/>
+        <field name="action" ref="sgc_website_action"/>
+        <field name="sequence">100</field>
+    </record>
+
+</odoo>

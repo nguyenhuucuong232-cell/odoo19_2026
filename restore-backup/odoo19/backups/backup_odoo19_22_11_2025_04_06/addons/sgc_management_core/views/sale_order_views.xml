@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_inherit_sgc" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.sgc</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_sale_flow_prepare_plan" string="Xây dựng phương án"
+                        type="object" class="btn-secondary">
+                    <attribute name="modifiers">{ "invisible": [["sale_flow_state","!=", "sale_b1_quote"]] }</attribute>
+                </button>
+                <button name="action_sale_flow_request_approval" string="Gửi phê duyệt"
+                        type="object" class="btn-secondary">
+                    <attribute name="modifiers">{ "invisible": [["sale_flow_state","!=", "sale_b2_plan"]] }</attribute>
+                </button>
+                <button name="action_sale_flow_revise_plan" string="Chỉnh sửa phương án"
+                        type="object" class="btn-secondary">
+                    <attribute name="modifiers">{ "invisible": [["sale_flow_state","!=", "sale_b3_approval"]] }</attribute>
+                </button>
+                <button name="action_sale_flow_approve_level1" string="Duyệt cấp 1"
+                        type="object" class="btn-primary"
+                        groups="sgc_management_core.group_sgc_sales_manager">
+                    <attribute name="modifiers">{ "invisible": ["|", ["sale_flow_state","!=", "sale_b3_approval"], ["sale_flow_lvl1_state","!=", "waiting"]] }</attribute>
+                </button>
+                <button name="action_sale_flow_reject_level1" string="Từ chối cấp 1"
+                        type="object" class="btn-secondary"
+                        groups="sgc_management_core.group_sgc_sales_manager">
+                    <attribute name="modifiers">{ "invisible": ["|", ["sale_flow_state","!=", "sale_b3_approval"], ["sale_flow_lvl1_state","!=", "waiting"]] }</attribute>
+                </button>
+                <button name="action_sale_flow_approve_level2" string="Duyệt cấp 2"
+                        type="object" class="btn-primary"
+                        groups="sgc_management_core.group_sgc_sales_director">
+                    <attribute name="modifiers">{ "invisible": ["|", ["sale_flow_state","!=", "sale_b3_approval"], ["|", ["sale_flow_need_second_level","=", False], ["sale_flow_lvl2_state","!=", "waiting"]]] }</attribute>
+                </button>
+                <button name="action_sale_flow_reject_level2" string="Từ chối cấp 2"
+                        type="object" class="btn-secondary"
+                        groups="sgc_management_core.group_sgc_sales_director">
+                    <attribute name="modifiers">{ "invisible": ["|", ["sale_flow_state","!=", "sale_b3_approval"], ["|", ["sale_flow_need_second_level","=", False], ["sale_flow_lvl2_state","!=", "waiting"]]] }</attribute>
+                </button>
+                <button name="action_sale_flow_send_quote" string="Gửi báo giá"
+                        type="object" class="btn-secondary">
+                    <attribute name="modifiers">{ "invisible": [["sale_flow_state","!=", "sale_b3_approval"]] }</attribute>
+                </button>
+                <button name="action_sale_flow_customer_accept" string="Khách đồng ý"
+                        type="object" class="btn-primary">
+                    <attribute name="modifiers">{ "invisible": [["sale_flow_state","!=", "sale_b4_send"]] }</attribute>
+                </button>
+                <button name="action_sale_flow_customer_reject" string="Khách từ chối"
+                        type="object" class="btn-secondary">
+                    <attribute name="modifiers">{ "invisible": [["sale_flow_state","!=", "sale_b4_send"]] }</attribute>
+                </button>
+                <button name="action_request_prj_approval" string="Gửi phê duyệt PRJ"
+                        type="object" class="btn-secondary">
+                    <attribute name="modifiers">{ "invisible": [["prj_flow_state","!=", "b1_create"]] }</attribute>
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="quote_content"/>
+                <field name="contact_id"/>
+                <field name="have_frequency"/>
+                <field name="customer_discount"/>
+                <field name="sgc_contract_id" readonly="1"/>
+                <field name="sgc_project_id" readonly="1"/>
+            </xpath>
+            
+            <xpath expr="//sheet/notebook" position="after">
+                <group string="Quy trình SALE.01">
+                    <attribute name="modifiers">{ "invisible": [["sale_flow_state","=",False]] }</attribute>
+                    <field name="sale_flow_state" readonly="1"/>
+                    <field name="sale_flow_title" readonly="1"/>
+                    <field name="sale_flow_description" readonly="1" widget="html"/>
+                    <field name="sale_flow_department" readonly="1"/>
+                    <field name="sale_flow_tasks" readonly="1" widget="text"/>
+                    <group>
+                        <field name="sale_flow_need_second_level" readonly="1"/>
+                        <field name="sale_flow_lvl1_state" readonly="1"/>
+                        <field name="sale_flow_lvl1_user_id" readonly="1"/>
+                        <field name="sale_flow_lvl2_state" readonly="1"/>
+                        <field name="sale_flow_lvl2_user_id" readonly="1"/>
+                        <field name="sale_flow_customer_response" readonly="1"/>
+                    </group>
+                </group>
+                <group string="Quy trình PRJ.01">
+                    <attribute name="modifiers">{ "invisible": [["prj_flow_state","=",False]] }</attribute>
+                    <field name="prj_flow_state" readonly="1"/>
+                    <field name="prj_flow_title" readonly="1"/>
+                    <field name="prj_flow_description" readonly="1" widget="html"/>
+                    <field name="prj_flow_department" readonly="1"/>
+                    <field name="prj_flow_tasks" readonly="1" widget="text"/>
+                </group>
+            </xpath>
+            
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="after">
+                <field name="frequency" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

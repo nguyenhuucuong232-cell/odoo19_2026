@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sgc_signed_contract_user,access.sgc.signed.contract.user,model_sgc_signed_contract,group_sgc_user,1,1,1,0
+access_sgc_signed_contract_manager,access.sgc.signed.contract.manager,model_sgc_signed_contract,group_sgc_manager,1,1,1,1
+access_sgc_expense_advance_user,access.sgc.expense.advance.user,model_sgc_expense_advance,group_sgc_user,1,1,1,0
+access_sgc_expense_advance_manager,access.sgc.expense.advance.manager,model_sgc_expense_advance,group_sgc_manager,1,1,1,1
+access_sgc_process_template_admin,access.sgc.process.template.admin,model_sgc_process_template,base.group_system,1,1,1,1
+access_sgc_process_step_admin,access.sgc.process.step.admin,model_sgc_process_step,base.group_system,1,1,1,1
+access_sgc_customer_care_template_admin,access.sgc.customer.care.template.admin,model_sgc_customer_care_template,base.group_system,1,1,1,1
+access_sgc_customer_care_template_step_admin,access.sgc.customer.care.template.step.admin,model_sgc_customer_care_template_step,base.group_system,1,1,1,1
+access_sgc_customer_care_log_staff,access.sgc.customer.care.log.staff,model_sgc_customer_care_log,sgc_management_core.group_sgc_sales_staff,1,1,1,0
+access_sgc_customer_care_log_director,access.sgc.customer.care.log.director,model_sgc_customer_care_log,sgc_management_core.group_sgc_sales_director,1,1,1,1

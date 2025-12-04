@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sgc_activity_reminder_config_view" model="ir.ui.view">
+        <field name="name">res.config.settings.sgc.activity.reminder</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="Nhắc nhở hoạt động" name="sgc_activity_reminder_settings">
+                    <setting id="sgc_activity_reminder_setting" string="Bật nhắc nhở hoạt động">
+                        <field name="sgc_display_activity_reminder"/>
+                        <div class="text-muted">
+                            Tự động gửi nhắc nhở cho các hoạt động sắp đến hạn
+                        </div>
+                    </setting>
+                    <setting string="Cấu hình nhắc nhở">
+                        <div class="mt8">
+                            <button name="%(sgc_activity_dashboard.sgc_activity_alarm_action)d" 
+                                    icon="fa-arrow-right" 
+                                    type="action" 
+                                    string="Cấu hình nhắc nhở" 
+                                    class="btn-link"/>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="crm_stage_sgc_1_lead" model="crm.stage">
+            <field name="name">B1. Khách hàng tiềm năng</field>
+            <field name="sequence">5</field>
+            <field name="sgc_stage_key">lead</field>
+            <field name="sgc_description">Tiềm năng (Lead) từ nguồn marketing (quảng cáo, người giới thiệu...) thông tin chưa được xác nhận.</field>
+            <field name="sgc_sales_tasks">NVKD liên hệ xác nhận thông tin khách hàng.\nNếu thông tin không đúng thì loại bỏ hoặc chuyển lại Marketing.</field>
+            <field name="sgc_marketing_tasks">Marketing bổ sung dữ liệu nguồn, cập nhật ghi chú để hỗ trợ NVKD.</field>
+        </record>
+
+        <record id="crm_stage_sgc_2_opportunity" model="crm.stage">
+            <field name="name">B2. Cơ hội</field>
+            <field name="sequence">10</field>
+            <field name="sgc_stage_key">opportunity</field>
+            <field name="sgc_description">Đã có thông tin khách hàng, nhân viên kinh doanh tiếp nhận cơ hội.</field>
+            <field name="sgc_sales_tasks">NVKD cập nhật thông tin yêu cầu, liên hệ xác thực lại nhu cầu.\nThiết lập lịch làm việc 1-1 với khách.</field>
+            <field name="sgc_marketing_tasks">Chuẩn bị bộ tài liệu giới thiệu phù hợp với phân khúc khách hàng.</field>
+        </record>
+
+        <record id="crm_stage_sgc_3_research" model="crm.stage">
+            <field name="name">B3. Đang tìm hiểu</field>
+            <field name="sequence">20</field>
+            <field name="sgc_stage_key">research</field>
+            <field name="sgc_description">Khách hàng đang tìm hiểu về dịch vụ, sản phẩm và chưa có nhu cầu rõ ràng.</field>
+            <field name="sgc_sales_tasks">NVKD lên kế hoạch chăm sóc, xây dựng kịch bản tư vấn theo ngành.\nGhi nhận kết quả làm việc theo từng buổi.</field>
+            <field name="sgc_marketing_tasks">Gửi thông tin quảng bá sản phẩm, chương trình phù hợp.\nChuẩn bị nội dung trình bày cho NVKD.</field>
+        </record>
+
+        <record id="crm_stage_sgc_4_need" model="crm.stage">
+            <field name="name">B4. Có nhu cầu</field>
+            <field name="sequence">30</field>
+            <field name="sgc_stage_key">need</field>
+            <field name="sgc_description">Khách hàng có nhu cầu sử dụng sản phẩm/dịch vụ của công ty.</field>
+            <field name="sgc_sales_tasks">Lên kế hoạch công việc tiếp theo (gọi điện lại, gửi tài liệu, xây dựng phương án kinh doanh).\nPhối hợp với các bộ phận kỹ thuật để chuẩn bị giải pháp.</field>
+            <field name="sgc_marketing_tasks">Gửi thông tin về các chương trình khuyến mại đúng đối tượng khách hàng.</field>
+        </record>
+
+        <record id="crm_stage_sgc_5_quote" model="crm.stage">
+            <field name="name">B5. Báo giá</field>
+            <field name="sequence">40</field>
+            <field name="sgc_stage_key">quotation</field>
+            <field name="sgc_description">Tạo báo giá cho khách hàng và đợi phản hồi.</field>
+            <field name="sgc_sales_tasks">Thực hiện các công việc trong quy trình SALE.01.\nGhi nhận kết quả làm việc, cập nhật báo giá mới nhất.</field>
+            <field name="sgc_marketing_tasks">Gửi thông tin về các chương trình khuyến mại đang diễn ra cho khách.</field>
+            <field name="sgc_reference">SALE.01 - Quy trình cung cấp dịch vụ</field>
+        </record>
+
+        <record id="crm_stage_sgc_6_pending" model="crm.stage">
+            <field name="name">B6. Pending</field>
+            <field name="sequence">50</field>
+            <field name="sgc_stage_key">pending</field>
+            <field name="sgc_description">Khách hàng tạm hoãn quyết định sử dụng sản phẩm/dịch vụ.</field>
+            <field name="sgc_sales_tasks">Ghi chú thời gian tạm hoãn, lên kế hoạch chăm sóc tiếp theo.\nTổng hợp câu hỏi/nhu cầu phát sinh chuyển sang bộ phận liên quan.</field>
+            <field name="sgc_marketing_tasks">Gửi thông tin quảng bá sản phẩm và các case thành công tương tự.</field>
+        </record>
+
+        <record id="crm_stage_sgc_7_success" model="crm.stage">
+            <field name="name">B7a. Thành công</field>
+            <field name="sequence">60</field>
+            <field name="fold">True</field>
+            <field name="is_won">True</field>
+            <field name="sgc_stage_key">success</field>
+            <field name="sgc_description">Khách hàng đồng ý, chuyển sang quy trình tạo hợp đồng.</field>
+            <field name="sgc_sales_tasks">Chuyển trạng thái CRM sang “Thành công”, tạo hợp đồng / dự án.\nBàn giao hồ sơ cho bộ phận thực hiện.</field>
+            <field name="sgc_marketing_tasks">Gửi thông tin chúc mừng và tài liệu giới thiệu dịch vụ hậu mãi.</field>
+            <field name="sgc_reference">PRJ.01 / SALE.01</field>
+        </record>
+
+        <record id="crm_stage_sgc_7_fail" model="crm.stage">
+            <field name="name">B7b. Thất bại</field>
+            <field name="sequence">70</field>
+            <field name="fold">True</field>
+            <field name="sgc_stage_key">fail</field>
+            <field name="sgc_description">Khách hàng từ chối hoặc không còn nhu cầu.</field>
+            <field name="sgc_sales_tasks">Cập nhật lý do thất bại, chuyển sang quy trình chăm sóc lại khách hàng (CSKH).</field>
+            <field name="sgc_marketing_tasks">Vào danh sách remarketing, gửi thông tin phù hợp trong tương lai.</field>
+            <field name="sgc_reference">CSKH.POSTSALE</field>
+        </record>
+
+    </data>
+</odoo>

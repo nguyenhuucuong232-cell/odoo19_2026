@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tạo công ty SGC mới (thay thế công ty mặc định) -->
+    <record id="company_sgc_main" model="res.company">
+        <field name="name">CÔNG TY CỔ PHẦN DỊCH VỤ CÔNG NGHỆ SÀI GÒN</field>
+        <field name="email">info@hsevn.com.vn</field>
+        <field name="phone">19001713</field>
+        <field name="website">https://hsevn.com.vn</field>
+        <field name="street">Tầng 14, HM Town, 412 Nguyễn Thị Minh Khai, P. Bàn Cờ</field>
+        <field name="city">TP Hồ Chí Minh</field>
+        <field name="country_id" ref="base.vn"/>
+        <field name="zip">700000</field>
+    </record>
+
+    <!-- Partner cho công ty SGC -->
+    <record id="partner_sgc_main" model="res.partner">
+        <field name="name">CÔNG TY CỔ PHẦN DỊCH VỤ CÔNG NGHỆ SÀI GÒN</field>
+        <field name="company_id" ref="company_sgc_main"/>
+        <field name="email">info@hsevn.com.vn</field>
+        <field name="phone">19001713</field>
+        <field name="website">https://hsevn.com.vn</field>
+        <field name="street">Tầng 14, HM Town, 412 Nguyễn Thị Minh Khai, P. Bàn Cờ</field>
+        <field name="city">TP Hồ Chí Minh</field>
+        <field name="country_id" ref="base.vn"/>
+        <field name="zip">700000</field>
+        <field name="is_company">True</field>
+        <field name="vat">0310780286</field>
+    </record>
+
+    <!-- Tạo công ty thứ hai: Nam Việt -->
+    <record id="company_nv" model="res.company">
+        <field name="name">CÔNG TY CP AN TOÀN-SỨC KHỎE-MÔI TRƯỜNG NAM VIỆT</field>
+        <field name="company_registry">0311234567</field>
+        <field name="vat">0311234567</field>
+        <field name="email">contact@moitruongnamviet.vn</field>
+        <field name="phone">0982097050</field>
+        <field name="website">https://quantracmoitruong.com.vn/</field>
+        <field name="street">128 Nguyễn Thị Xinh</field>
+        <field name="street2">P.Thới An</field>
+        <field name="city">TP. Hồ Chí Minh</field>
+        <field name="country_id" ref="base.vn"/>
+        <field name="zip">700000</field>
+    </record>
+
+    <!-- Partner cho công ty NV -->
+    <record id="partner_nv" model="res.partner">
+        <field name="name">CÔNG TY CP AN TOÀN-SỨC KHỎE-MÔI TRƯỜNG NAM VIỆT</field>
+        <field name="company_id" ref="company_nv"/>
+        <field name="email">contact@moitruongnamviet.vn</field>
+        <field name="phone">0982097050</field>
+        <field name="website">https://quantracmoitruong.com.vn/</field>
+        <field name="street">128 Nguyễn Thị Xinh</field>
+        <field name="street2">P.Thới An</field>
+        <field name="city">TP. Hồ Chí Minh</field>
+        <field name="country_id" ref="base.vn"/>
+        <field name="zip">700000</field>
+        <field name="is_company">True</field>
+    </record>
+
+    <!-- Địa chỉ VP Đại Mỗ (Hà Nội) -->
+    <record id="partner_sgc_hanoi_daiMo" model="res.partner">
+        <field name="name">VP Hà Nội - Đại Mỗ</field>
+        <field name="parent_id" ref="partner_sgc_main"/>
+        <field name="type">other</field>
+        <field name="street">08-DG2, 125 Phố Đại Linh, Phường Đại Mỗ</field>
+        <field name="street2">TP.HN</field>
+        <field name="city">Hà Nội</field>
+        <field name="country_id" ref="base.vn"/>
+        <field name="phone">19001713</field>
+        <field name="email">info@hsevn.com.vn</field>
+    </record>
+
+    <!-- Địa chỉ VPGD Thới An -->
+    <record id="partner_sgc_thoian" model="res.partner">
+        <field name="name">VPGD Thới An</field>
+        <field name="parent_id" ref="partner_sgc_main"/>
+        <field name="type">other</field>
+        <field name="street">65/17 Nguyễn Thị Xinh, P.Thới An</field>
+        <field name="street2">TP.HCM</field>
+        <field name="city">TP Hồ Chí Minh</field>
+        <field name="country_id" ref="base.vn"/>
+        <field name="phone">19001713</field>
+        <field name="email">info@hsevn.com.vn</field>
+    </record>
+
+    <!-- Thông tin người đại diện -->
+    <record id="partner_sgc_representative" model="res.partner">
+        <field name="name">Nguyễn Hữu Dương</field>
+        <field name="parent_id" ref="partner_sgc_main"/>
+        <field name="type">contact</field>
+        <field name="function">Đại diện</field>
+        <field name="email">info@hsevn.com.vn</field>
+        <field name="phone">19001713</field>
+    </record>
+
+</odoo>

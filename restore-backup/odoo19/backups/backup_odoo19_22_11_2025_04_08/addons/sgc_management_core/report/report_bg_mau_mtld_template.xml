@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_bg_mau_mtld_template">
+        <t t-call="web.basic_layout">
+            <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+            <t t-set="company" t-value="doc.env.company"/>
+            
+            <div class="header">
+                <div class="row" style="border-bottom: 1px solid #333;">
+                    <div class="col-9" style="font-family: Times New Roman; font-size: 14px; max-height: 90%;">
+                        <h5 style="font-weight: 700; margin-bottom:0; color:#1e94d2"><span t-out="company.name"/></h5>
+                        <p style="margin-bottom: 0;padding:0;"><strong>Trụ sở: </strong><span t-out="company.street"/></p>
+                        <p style="margin-bottom: 0;padding:0;"><strong>VP Hà Nội: </strong><span t-out="company.street2"/></p>
+                        <div class="row" style="font-size: 12px;">
+                            <div class="col-4">
+                                <p style="margin-bottom: 0;padding:0;"><strong>Email: </strong><span t-out="company.email"/></p>
+                            </div>
+                            <div class="col-4">
+                                <p style="margin-bottom: 0;padding:0;"><strong>Website: </strong><span t-out="company.website"/></p>
+                            </div>
+                            <div class="col-4">
+                                <p style="margin-bottom: 0;padding:0;"><strong>Phone: </strong><span t-out="company.phone"/></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 float-right">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 30mm;width: 100%;" alt="Logo"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class='page' style="font-family: Times New Roman; font-size: 15px; max-height: 90%;">
+                <div class="oe_structure"/>
+                <div class="text-center pt-2 pb-2" style="padding-top: 30px;padding-bottom: 30px;">
+                    <h2 style="font-weight: 900; margin-bottom:0">BÁO GIÁ DỊCH VỤ</h2>
+                    <p style="margin-bottom: 0;font-size: 1.2rem;padding-left: 5px;padding-right: 5px;"><t t-out="doc.quote_content"/></p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-9">
+                        <strong><u>Khách hàng:</u> <span t-out="doc.partner_id.name"/></strong><br/>
+                        <span>Địa chỉ: </span><span t-out="doc.partner_id.contact_address"/><br/>
+                        <span>MST: <t t-out="doc.partner_id.vat or ''"/></span><br/>
+                    </div>
+                    <div class="col-3" style="width: 20%">
+                        Ngày: <span t-out="doc.date_order.strftime('%d/%m/%Y')"/><br/>
+                        Số: <span t-out="doc.name"/><br/>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <strong><u>Người liên hệ:</u></strong> <span t-out="doc.contact_id.name"/><br/>
+                        <strong>Điện thoại:</strong> <span t-out="doc.contact_id.phone"/><br/>
+                        <strong>Email:</strong> <span t-out="doc.contact_id.email"/>
+                    </div>
+                    <div class="col-6">
+                        <strong><u>Người thực hiện:</u></strong> <span t-out="doc.user_id.name"/><br/>
+                        <strong>Điện thoại:</strong> <span t-out="doc.user_id.phone"/><br/>
+                        <strong>Email:</strong> <span t-out="doc.user_id.email"/>
+                    </div>
+                </div>
+
+                <br/>
+                <p>Trân trọng gửi tới Quý khách hàng báo giá chi tiết như sau:</p>
+
+                <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #ffffcc;">
+                            <th class="text-center">STT</th>
+                            <th class="text-center">Nội dung / Chỉ tiêu</th>
+                            <th class="text-center">ĐVT</th>
+                            <th class="text-center">SL</th>
+                            <t t-if="doc.have_frequency">
+                                <th class="text-center">Tần suất</th>
+                            </t>
+                            <th class="text-center">Đơn giá</th>
+                            <th class="text-center">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="order_line" t-value="doc.get_lines(doc)"/>
+                        <t t-set="roman" t-value="0"/>
+                        
+                        <t t-foreach="order_line" t-as="section_name">
+                            <t t-set="section_data" t-value="order_line[section_name]"/>
+                            
+                            <!-- Section Header Row -->
+                            <tr t-if="section_name != '/'" style="font-weight: bold; background-color: #f0f0f0;">
+                                <t t-set="roman" t-value="roman + 1"/>
+                                <td class="text-center"><span t-out="doc.intToRoman(roman)"/></td>
+                                <t t-if="doc.have_frequency">
+                                    <td colspan="5"><span t-out="section_name"/></td>
+                                </t>
+                                <t t-else="">
+                                    <td colspan="4"><span t-out="section_name"/></td>
+                                </t>
+                                <td class="text-right"><span t-out="doc.format_float_number(section_data['total'])"/></td>
+                            </tr>
+
+                            <!-- Line Rows -->
+                            <t t-set="count" t-value="1"/>
+                            <tr t-foreach="section_data['lines']" t-as="line">
+                                <td class="text-center"><span t-out="count"/></td>
+                                <td><span t-out="line.name"/></td>
+                                <td class="text-center"><span t-out="line.product_uom.name"/></td>
+                                <td class="text-center"><span t-out="doc.format_float_number(line.product_uom_qty)"/></td>
+                                <t t-if="doc.have_frequency">
+                                    <td class="text-center"><span t-out="doc.format_float_number(line.frequency)"/></td>
+                                </t>
+                                <td class="text-right"><span t-out="doc.format_float_number(line.price_unit)"/></td>
+                                <td class="text-right"><span t-out="doc.format_float_number(line.price_subtotal)"/></td>
+                                <t t-set="count" t-value="count + 1"/>
+                            </tr>
+                        </t>
+
+                        <!-- Footer Totals -->
+                         <tr style="font-weight: bold">
+                            <td t-att-colspan="doc.have_frequency and 6 or 5" class="text-right">TỔNG CỘNG</td>
+                            <td class="text-right"><span t-out="doc.format_float_number(doc.amount_untaxed)"/></td>
+                        </tr>
+                        <tr t-if="doc.customer_discount">
+                            <td t-att-colspan="doc.have_frequency and 6 or 5" class="text-right">CHIẾT KHẤU</td>
+                            <td class="text-right"><span t-out="doc.format_float_number(doc.customer_discount)"/></td>
+                        </tr>
+                         <tr t-foreach="doc.get_line_tax(doc)" t-as="tax_group">
+                            <td t-att-colspan="doc.have_frequency and 6 or 5" class="text-right"><span t-out="tax_group['tax_group_name']"/></td>
+                            <td class="text-right"><span t-out="doc.format_float_number(tax_group['tax_group_amount'])"/></td>
+                        </tr>
+                        <tr style="font-weight: bold; font-size: 16px;">
+                            <td t-att-colspan="doc.have_frequency and 6 or 5" class="text-right">TỔNG THANH TOÁN</td>
+                            <td class="text-right"><span t-out="doc.format_float_number(doc.amount_total)"/></td>
+                        </tr>
+                         <tr>
+                            <td t-att-colspan="doc.have_frequency and 7 or 6">
+                                <i>Bằng chữ: <span t-out="doc.currency_id.amount_to_text(doc.amount_total)"/></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="row mt-5">
+                     <div class="col-6 text-center">
+                        <h6><b>NGƯỜI LẬP</b></h6>
+                        <br/><br/><br/>
+                        <span t-out="doc.user_id.name"/>
+                    </div>
+                    <div class="col-6 text-center">
+                        <h6><b>XÁC NHẬN KHÁCH HÀNG</b></h6>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="footer">
+                <div class="row" style="border-top: 1px solid black; font-size: 12px;">
+                    <div class="col-6">
+                        Mẫu báo giá SGC-2025
+                    </div>
+                    <div class="col-6 text-right">
+                        Page <span class="page"/> / <span class="topage"/>
+                    </div>
+                </div>
+            </div>
+
+        </t>
+    </template>
+
+</odoo>
+

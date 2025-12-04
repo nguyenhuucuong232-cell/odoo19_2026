@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Category Form View -->
+    <record id="sgc_approval_category_view_form" model="ir.ui.view">
+        <field name="name">sgc.approval.category.form</field>
+        <field name="model">sgc.approval.category</field>
+        <field name="arch" type="xml">
+            <form string="Loại phê duyệt">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Tên loại phê duyệt"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="approval_type"/>
+                            <field name="approval_minimum"/>
+                        </group>
+                        <group>
+                            <field name="approve_by_level"/>
+                            <field name="active"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Mô tả..."/>
+                    <notebook>
+                        <page string="Người phê duyệt">
+                            <field name="approver_ids">
+                                <list string="Người phê duyệt" editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="user_id"/>
+                                    <field name="level"/>
+                                    <field name="required"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Category List View -->
+    <record id="sgc_approval_category_view_tree" model="ir.ui.view">
+        <field name="name">sgc.approval.category.list</field>
+        <field name="model">sgc.approval.category</field>
+        <field name="arch" type="xml">
+            <list string="Loại phê duyệt">
+                <field name="name"/>
+                <field name="approval_type"/>
+                <field name="approval_minimum"/>
+                <field name="approve_by_level"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Category Action -->
+    <record id="sgc_approval_category_action" model="ir.actions.act_window">
+        <field name="name">Loại phê duyệt</field>
+        <field name="res_model">sgc.approval.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo loại phê duyệt mới
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu - Hidden root, approval runs in background -->
+    <record id="sgc_approval_menu_root" model="ir.ui.menu">
+        <field name="name">SGC Phê duyệt</field>
+        <field name="sequence">35</field>
+        <field name="active" eval="False"/>
+    </record>
+    
+    <!-- Move approval settings to Sales Configuration -->
+    <menuitem id="sgc_approval_config_menu"
+              name="Phê duyệt"
+              parent="sale.sale_menu_root"
+              sequence="100"
+              groups="sales_team.group_sale_manager"/>
+    
+    <menuitem id="sgc_approval_category_menu"
+              name="Loại phê duyệt"
+              parent="sgc_approval_config_menu"
+              action="sgc_approval_category_action"
+              sequence="1"/>
+</odoo>

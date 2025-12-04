@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sgc_signed_contract_action" model="ir.actions.act_window">
+        <field name="name">Hợp đồng đã ký</field>
+        <field name="res_model">sgc.signed.contract</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có hợp đồng nào.
+            </p><p>
+                Nhấn "Mới" để tạo hợp đồng đã ký đầu tiên của bạn.
+            </p>
+        </field>
+    </record>
+
+    <record id="sgc_signed_contract_view_tree" model="ir.ui.view">
+        <field name="name">sgc.signed.contract.view.list</field>
+        <field name="model">sgc.signed.contract</field>
+        <field name="arch" type="xml">
+            <list string="Danh sách Hợp đồng">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="sale_order_id"/>
+                <field name="sign_date"/>
+                <field name="contract_value"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="sgc_signed_contract_view_form" model="ir.ui.view">
+        <field name="name">sgc.signed.contract.view.form</field>
+        <field name="model">sgc.signed.contract</field>
+        <field name="arch" type="xml">
+            <form string="Hợp đồng đã ký">
+                <header>
+                    <button name="action_confirm_contract" 
+                            string="Xác nhận Hợp đồng" 
+                            type="object" 
+                            class="oe_highlight"
+                            invisible="state != 'draft'"/>
+                    <button name="action_mark_as_done" 
+                            string="Hoàn thành" 
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state != 'active'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,done"/>
+                </header>                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin chung">
+                            <field name="partner_id"/>
+                            <field name="sale_order_id"/>
+                            <field name="project_id"/>
+                        </group>
+                        <group string="Giá trị &amp; Thời gian">
+                            <field name="contract_value"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="sign_date"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>

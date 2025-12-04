@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Sale Order Form -->
+    <record id="sgc_sale_order_form_inherit_approval" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.sgc.approval</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add approval button in header -->
+            <xpath expr="//button[@name='action_confirm']" position="before">
+                <button name="action_send_approval_request" 
+                        string="Gửi phê duyệt" 
+                        type="object"
+                        class="oe_highlight"
+                        invisible="sgc_approval_state != 'none' or state != 'draft'"/>
+                <button name="action_view_approval_request"
+                        string="Xem phê duyệt"
+                        type="object"
+                        invisible="not sgc_approval_request_id"/>
+            </xpath>
+            
+            <!-- Add approval fields -->
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="sgc_approval_category_id" 
+                       invisible="sgc_approval_state != 'none'"/>
+                <field name="sgc_approve_date_deadline"
+                       invisible="sgc_approval_state != 'none'"/>
+                <field name="sgc_approval_state" widget="badge"
+                       decoration-info="sgc_approval_state == 'pending'"
+                       decoration-success="sgc_approval_state == 'approved'"
+                       decoration-danger="sgc_approval_state == 'refused'"
+                       invisible="sgc_approval_state == 'none'"/>
+            </xpath>
+            
+            <!-- Add rejection reason if refused -->
+            <xpath expr="//group[@name='sale_header']" position="after">
+                <group invisible="sgc_approval_state != 'refused'">
+                    <field name="sgc_rejection_reason" readonly="1"/>
+                </group>
+            </xpath>
+            
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="sgc_approval_request_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

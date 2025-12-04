@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sgc_item_category,access.sgc.item.category,model_sgc_item_category,base.group_user,1,1,1,1
+access_sgc_item_detail,access.sgc.item.detail,model_sgc_item_detail,base.group_user,1,1,1,1
+access_sgc_payment,access.sgc.payment,model_sgc_payment,base.group_user,1,1,1,1
+access_sgc_payment_line,access.sgc.payment.line,model_sgc_payment_line,base.group_user,1,1,1,1

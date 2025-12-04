@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================== -->
+    <!-- HIDDEN MENU (Ẩn menu cũ) -->
+    <!-- ============================================== -->
+    <record id="sgc_menu_root" model="ir.ui.menu">
+        <field name="name">SGC Menu Root (Hidden)</field>
+        <field name="active">False</field>
+        <field name="parent_id" ref="sgc_main_signed_contract"/>
+    </record>
+
+    <!-- ============================================== -->
+    <!-- MENU CHÍNH - HỢP ĐỒNG KÝ KẾT -->
+    <!-- ============================================== -->
+    
+    <!-- 1. Hợp đồng ký kết (Tất cả) -->
+    <record id="sgc_signed_contract_all_action" model="ir.actions.act_window">
+        <field name="name">Hợp đồng ký kết</field>
+        <field name="res_model">sgc.signed.contract</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="context">{'search_default_active': 1}</field>
+    </record>
+    
+    <menuitem id="sgc_menu_signed_contract_all"
+              name="Hợp đồng ký kết"
+              parent="sgc_main_signed_contract"
+              action="sgc_signed_contract_all_action"
+              sequence="10"/>
+    
+    <!-- 2. Hợp đồng của tôi -->
+    <record id="sgc_signed_contract_my_action" model="ir.actions.act_window">
+        <field name="name">Hợp đồng của tôi</field>
+        <field name="res_model">sgc.signed.contract</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="domain">[('user_id', '=', uid)]</field>
+        <field name="context">{'search_default_active': 1}</field>
+    </record>
+    
+    <menuitem id="sgc_menu_signed_contract_my"
+              name="Hợp đồng của tôi"
+              parent="sgc_main_signed_contract"
+              action="sgc_signed_contract_my_action"
+              sequence="20"/>
+    
+    <!-- 3. Hợp đồng quá hạn -->
+    <record id="sgc_signed_contract_overdue_action" model="ir.actions.act_window">
+        <field name="name">Hợp đồng quá hạn</field>
+        <field name="res_model">sgc.signed.contract</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="domain">[('is_overdue', '=', True)]</field>
+        <field name="context">{'search_default_active': 1}</field>
+    </record>
+    
+    <menuitem id="sgc_menu_signed_contract_overdue"
+              name="Hợp đồng quá hạn"
+              parent="sgc_main_signed_contract"
+              action="sgc_signed_contract_overdue_action"
+              sequence="30"/>
+
+    <!-- ============================================== -->
+    <!-- MENU CÁC BIÊN BẢN -->
+    <!-- ============================================== -->
+    
+    <menuitem id="sgc_menu_documents"
+              name="Các biên bản"
+              parent="sgc_main_signed_contract"
+              sequence="40"/>
+    
+    <!-- Mẫu hợp đồng -->
+    <menuitem id="sgc_menu_contract_template_doc"
+              name="Mẫu hợp đồng"
+              parent="sgc_menu_documents"
+              action="sgc_contract_template_action"
+              sequence="10"/>
+    
+    <!-- Biên bản bàn giao tài liệu -->
+    <menuitem id="sgc_menu_handover_minutes"
+              name="Biên bản bàn giao tài liệu"
+              parent="sgc_menu_documents"
+              action="sgc_handover_minutes_action"
+              sequence="20"/>
+    
+    <!-- Biên bản lấy mẫu -->
+    <menuitem id="sgc_menu_sampling_minutes"
+              name="Biên bản lấy mẫu"
+              parent="sgc_menu_documents"
+              action="sgc_sampling_minutes_action"
+              sequence="30"/>
+    
+    <!-- Biên bản nghiệm thu -->
+    <menuitem id="sgc_menu_acceptance_minutes"
+              name="Biên bản nghiệm thu"
+              parent="sgc_menu_documents"
+              action="sgc_acceptance_minutes_action"
+              sequence="40"/>
+    
+    <!-- Đề nghị thanh toán -->
+    <menuitem id="sgc_menu_payment_request"
+              name="Đề nghị thanh toán"
+              parent="sgc_menu_documents"
+              action="sgc_payment_request_action"
+              sequence="50"/>
+
+    <!-- ============================================== -->
+    <!-- MENU CẤU HÌNH -->
+    <!-- ============================================== -->
+    
+    <menuitem id="sgc_menu_configuration"
+              name="Cấu hình"
+              parent="sgc_main_signed_contract"
+              sequence="90"
+              groups="base.group_system"/>
+    
+    <!-- Loại hợp đồng -->
+    <menuitem id="sgc_menu_contract_type"
+              name="Loại hợp đồng"
+              parent="sgc_menu_configuration"
+              action="sgc_contract_type_action"
+              sequence="10"/>
+    
+    <!-- Hình thức bàn giao -->
+    <menuitem id="sgc_menu_handover_form"
+              name="Hình thức bàn giao"
+              parent="sgc_menu_configuration"
+              action="sgc_handover_form_action"
+              sequence="20"/>
+    
+    <!-- Bàn giao tài liệu -->
+    <menuitem id="sgc_menu_document_handover_config"
+              name="Bàn giao tài liệu"
+              parent="sgc_menu_configuration"
+              action="sgc_document_handover_config_action"
+              sequence="30"/>
+    
+    <!-- Giấy ủy quyền -->
+    <menuitem id="sgc_menu_power_of_attorney"
+              name="Giấy ủy quyền"
+              parent="sgc_menu_configuration"
+              action="sgc_power_of_attorney_action"
+              sequence="40"/>
+    
+    <!-- Phương thức thanh toán -->
+    <menuitem id="sgc_menu_payment_method"
+              name="Phương thức thanh toán"
+              parent="sgc_menu_configuration"
+              action="sgc_payment_method_action"
+              sequence="50"/>
+    
+    <!-- Lý do quá hạn HĐ -->
+    <menuitem id="sgc_menu_overdue_reason"
+              name="Lý do quá hạn HĐ"
+              parent="sgc_menu_configuration"
+              action="sgc_overdue_reason_action"
+              sequence="60"/>
+
+    <!-- ============================================== -->
+    <!-- MENU ẨN -->
+    <!-- ============================================== -->
+    
+    <!-- Đề nghị Tạm ứng (ẨN) -->
+    <record id="sgc_menu_expense_advance" model="ir.ui.menu">
+        <field name="name">Đề nghị Tạm ứng</field>
+        <field name="parent_id" ref="sgc_main_signed_contract"/>
+        <field name="action" ref="sgc_expense_advance_action"/>
+        <field name="sequence">35</field>
+        <field name="active">False</field>
+    </record>
+
+    <!-- Website Công ty (ẨN) -->
+    <record id="sgc_website_action" model="ir.actions.act_url">
+        <field name="name">Website Công ty</field>
+        <field name="url">https://hsevn.com.vn/</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="sgc_menu_website" model="ir.ui.menu">
+        <field name="name">Website Công ty</field>
+        <field name="parent_id" ref="sgc_main_signed_contract"/>
+        <field name="action" ref="sgc_website_action"/>
+        <field name="sequence">100</field>
+        <field name="active">False</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,172 @@
+================================================================================
+        HƯỚNG DẪN SỬA TỪNG PHẦN CỤ THỂ TRONG MẪU BÁO GIÁ
+================================================================================
+
+📂 File: /home/sgc/odoo19/addons/sgc_management_core/report/report_sale_order_sgc.xml
+
+================================================================================
+🎨 PHẦN 1: THÔNG TIN CÔNG TY (HEADER)
+================================================================================
+Vị trí: Dòng 72-77
+
+HIỆN TẠI:
+┌─────────────────────────────────────────────────────────────────┐
+│ CÔNG TY CỔ PHẦN DỊCH VỤ CÔNG NGHỆ SÀI GÒN                      │
+│ Trụ sở: Tầng 14, 104 Tows, 412 Nguyễn Thị Minh Khai...         │
+│ VP Hà Nội: 08-DQ2, 125 Phố Linh...                             │
+│ Email: info@hsevn.com.vn │ Website: https://hsevn.com.vn       │
+│ Hotline: 19001713                                              │
+└─────────────────────────────────────────────────────────────────┘
+
+CÁCH SỬA:
+  1. Mở file bằng editor (nano, vi, hoặc VSCode)
+  2. Tìm dòng có text "Trụ sở:"
+  3. Thay đổi địa chỉ theo ý bạn
+  4. Lưu file
+  5. Chạy: python3 scripts/upgrade_sgc_module.py
+
+VÍ DỤ SỬA:
+  <strong>Trụ sở:</strong> 123 Đường ABC, Quận XYZ, TP.HCM<br/>
+  <strong>Chi nhánh:</strong> 456 Đường DEF, Hà Nội<br/>
+  <strong>Hotline:</strong> 1900-XXXX
+
+================================================================================
+🎨 PHẦN 2: LOGO CÔNG TY (Dòng 81-86)
+================================================================================
+
+HIỆN TẠI (text logo):
+┌─────────────┐
+│    SGC      │
+│HSE Consult. │
+└─────────────┘
+
+ĐỔI THÀNH HÌNH ẢNH THẬT:
+  Bước 1: Upload logo vào Settings → Company → Logo
+  Bước 2: Thay đoạn code dòng 81-86 thành:
+  
+  <img t-if="doc.company_id.logo" 
+       t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)" 
+       style="max-height: 80px; max-width: 200px;" 
+       alt="Company Logo"/>
+
+================================================================================
+🎨 PHẦN 3: TIÊU ĐỀ BÁO GIÁ (Dòng 96-102)
+================================================================================
+
+HIỆN TẠI:
+  BẢNG BÁO GIÁ
+  QUAN TRẮC MÔI TRƯỜNG LAO ĐỘNG NĂM 2025
+
+ĐỔI THÀNH TIẾNG ANH:
+  <h2 class="title-main">QUOTATION</h2>
+  <h3 class="title-sub">Environmental Monitoring Services 2025</h3>
+
+HOẶC THÊM QR CODE:
+  <h2>BẢNG BÁO GIÁ <img src="/report/barcode/?type=QR&amp;value={doc.name}" 
+      style="height: 50px;"/></h2>
+
+================================================================================
+🎨 PHẦN 4: MÀU SẮC BẢNG (Dòng 42-63 trong <style>)
+================================================================================
+
+MÀU HEADER BẢNG (dòng 42):
+  .main-table th {
+      background-color: #FFFF00;  /* ← ĐỔI MÀU Ở ĐÂY */
+  }
+
+MÀU TỔNG CHI PHÍ (dòng 53):
+  .grand-total-row {
+      background-color: #FFFF99;  /* ← ĐỔI MÀU Ở ĐÂY */
+  }
+
+GỢI Ý MÀU:
+  #FFFF00 = Vàng (hiện tại)
+  #4CAF50 = Xanh lá
+  #2196F3 = Xanh dương
+  #FF9800 = Cam
+  #E91E63 = Hồng
+  #9C27B0 = Tím
+
+================================================================================
+🎨 PHẦN 5: NỘI DUNG GHI CHÚ (Dòng 208-215)
+================================================================================
+
+THÊM/XÓA GHI CHÚ:
+  <ul>
+      <li>Ghi chú dòng 1 của bạn</li>
+      <li>Ghi chú dòng 2 của bạn</li>
+      <li>Ghi chú dòng 3...</li>
+  </ul>
+
+THÊM CHỮ KÝ SỐ:
+  <li>Báo giá này có giá trị pháp lý khi được ký số bởi: 
+      <span t-field="doc.user_id.name"/></li>
+
+================================================================================
+🎨 PHẦN 6: FOOTER - THÔNG TIN NGƯỜI LẬP (Dòng 239-252)
+================================================================================
+
+HIỆN TẠI:
+  QL Dự Án: [Tên]
+  ĐT: [SĐT] │ Mail: [Email]
+
+THÊM THÔNG TIN:
+  <strong>Người lập báo giá:</strong> <span t-field="doc.user_id.name"/><br/>
+  <strong>Chức vụ:</strong> Chuyên viên tư vấn<br/>
+  <strong>Phòng ban:</strong> Phòng Kinh doanh<br/>
+  <strong>ĐT:</strong> +84 xxx xxx xxx<br/>
+  <strong>Email:</strong> <span t-field="doc.user_id.email"/>
+
+================================================================================
+🔄 CÁC LỆNH CẦN THIẾT
+================================================================================
+
+SAU KHI SỬA FILE XML:
+  cd /home/sgc/odoo19
+  python3 scripts/upgrade_sgc_module.py
+
+MỞ FILE ĐỂ CHỈNH SỬA:
+  nano addons/sgc_management_core/report/report_sale_order_sgc.xml
+  
+  Hoặc dùng editor khác:
+  code addons/sgc_management_core/report/report_sale_order_sgc.xml
+  gedit addons/sgc_management_core/report/report_sale_order_sgc.xml
+
+BACKUP TRƯỚC KHI SỬA:
+  cp addons/sgc_management_core/report/report_sale_order_sgc.xml \
+     addons/sgc_management_core/report/report_sale_order_sgc.xml.backup
+
+KHÔI PHỤC NẾU LỖI:
+  cp addons/sgc_management_core/report/report_sale_order_sgc.xml.backup \
+     addons/sgc_management_core/report/report_sale_order_sgc.xml
+
+================================================================================
+📍 ĐƯỜNG DẪN NHANH TRONG ODOO WEB
+================================================================================
+
+Để vào phần sửa report qua Web UI:
+
+1. Bật Developer Mode:
+   http://localhost:10019/web#action=base.action_server_module_immediate_install&menu_id=XXX
+   
+2. Vào Reports:
+   http://localhost:10019/web#action=base.action_report&menu_id=XXX
+   
+3. Search "Báo giá SGC" → Click Edit
+
+4. Hoặc từ báo giá:
+   Mở 1 báo giá → Click Print → Click "Báo giá SGC"
+   → Trong Developer Mode sẽ có button "Edit Template"
+
+================================================================================
+✅ CHECKLIST SAU KHI SỬA
+================================================================================
+
+□ Đã sửa file XML
+□ Đã chạy upgrade module
+□ Đã test print 1 báo giá
+□ PDF hiển thị đúng như mong muốn
+□ Đã backup file XML (phòng khi lỗi)
+
+================================================================================
+

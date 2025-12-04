@@ -1,0 +1,6 @@
+venv/
+odoo-src/
+__pycache__/
+*.pyc
+*.log
+.DS_Store

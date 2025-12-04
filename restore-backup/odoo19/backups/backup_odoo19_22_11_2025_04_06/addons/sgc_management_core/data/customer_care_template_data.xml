@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="customer_care_template_default" model="sgc.customer.care.template">
+            <field name="name">CSKH Sau Bán hàng</field>
+            <field name="code">CSKH.POSTSALE</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="customer_care_template_step_email" model="sgc.customer.care.template.step">
+            <field name="template_id" ref="customer_care_template_default"/>
+            <field name="sequence">10</field>
+            <field name="name">Gửi Email cảm ơn + tài liệu hướng dẫn</field>
+            <field name="activity_type">email</field>
+            <field name="lead_time_days">0</field>
+            <field name="description">Gửi email kèm tài liệu sử dụng dịch vụ sau khi hợp đồng ký hoặc hoàn tất.</field>
+        </record>
+
+        <record id="customer_care_template_step_zalo" model="sgc.customer.care.template.step">
+            <field name="template_id" ref="customer_care_template_default"/>
+            <field name="sequence">20</field>
+            <field name="name">Nhắn Zalo / mạng xã hội</field>
+            <field name="activity_type">zalo</field>
+            <field name="lead_time_days">7</field>
+            <field name="description">Gửi tin nhắn cập nhật tiến độ, hỏi thăm trải nghiệm sau 1 tuần.</field>
+        </record>
+
+        <record id="customer_care_template_step_event" model="sgc.customer.care.template.step">
+            <field name="template_id" ref="customer_care_template_default"/>
+            <field name="sequence">30</field>
+            <field name="name">Mời tham dự sự kiện / webinar</field>
+            <field name="activity_type">event</field>
+            <field name="lead_time_days">30</field>
+            <field name="description">Mời khách tham gia sự kiện doanh nghiệp, webinar chia sẻ kiến thức.</field>
+        </record>
+
+        <record id="customer_care_template_step_program" model="sgc.customer.care.template.step">
+            <field name="template_id" ref="customer_care_template_default"/>
+            <field name="sequence">40</field>
+            <field name="name">Thông báo chương trình ưu đãi / dịch vụ mới</field>
+            <field name="activity_type">program</field>
+            <field name="lead_time_days">60</field>
+            <field name="description">Thông báo các chương trình ưu đãi, dịch vụ mới của SGC qua email hoặc call.</field>
+        </record>
+
+        <record id="customer_care_template_step_survey" model="sgc.customer.care.template.step">
+            <field name="template_id" ref="customer_care_template_default"/>
+            <field name="sequence">50</field>
+            <field name="name">Khảo sát mức độ hài lòng</field>
+            <field name="activity_type">survey</field>
+            <field name="lead_time_days">90</field>
+            <field name="description">Gửi form khảo sát, ghi nhận phản hồi để cải tiến dịch vụ.</field>
+        </record>
+
+    </data>
+</odoo>

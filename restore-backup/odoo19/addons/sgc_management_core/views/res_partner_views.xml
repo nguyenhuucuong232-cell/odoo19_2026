@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Kế thừa form view của res.partner để thêm tab SGC -->
+    <record id="view_partner_form_sgc_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.sgc.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Nghiệp vụ SGC" name="sgc_business_tab">
+                    <group>
+                        <group string="Thông tin khách hàng SGC">
+                            <field name="sgc_customer_type"/>
+                            <field name="sgc_industry"/>
+                            <field name="sgc_business_scale"/>
+                        </group>
+                        <group string="Người liên hệ SGC">
+                            <field name="sgc_contact_person"/>
+                            <field name="sgc_contact_phone"/>
+                            <field name="sgc_contact_email"/>
+                        </group>
+                    </group>
+                    <group string="Thống kê SGC">
+                        <field name="sgc_contract_count" widget="statinfo" string="Hợp đồng"/>
+                        <field name="sgc_project_count" widget="statinfo" string="Dự án"/>
+                        <field name="sgc_sale_order_count" widget="statinfo" string="Đơn hàng"/>
+                    </group>
+                    <group string="Ghi chú SGC">
+                        <field name="sgc_notes"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

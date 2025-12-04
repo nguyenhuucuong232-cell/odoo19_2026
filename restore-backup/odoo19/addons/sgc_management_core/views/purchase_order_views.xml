@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_order_form_inherit_sgc" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.sgc</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_submit_approval_level1" string="Gửi duyệt cấp 1" type="object" class="btn-secondary">
+                    <attribute name="modifiers">{ "invisible": [["approval_level1_state","!=","none"]] }</attribute>
+                </button>
+                <button name="action_approve_level1" string="Duyệt cấp 1" type="object" class="btn-primary" groups="sgc_management_core.group_sgc_purchase_manager">
+                    <attribute name="modifiers">{ "invisible": [["approval_level1_state","!=","waiting"]] }</attribute>
+                </button>
+                <button name="action_reject_level1" string="Từ chối cấp 1" type="object" class="btn-secondary" groups="sgc_management_core.group_sgc_purchase_manager">
+                    <attribute name="modifiers">{ "invisible": [["approval_level1_state","!=","waiting"]] }</attribute>
+                </button>
+                <button name="action_approve_level2" string="Duyệt cấp 2" type="object" class="btn-primary" groups="sgc_management_core.group_sgc_purchase_director">
+                    <attribute name="modifiers">{ "invisible": [["approval_level2_state","!=","waiting"]] }</attribute>
+                </button>
+                <button name="action_reject_level2" string="Từ chối cấp 2" type="object" class="btn-secondary" groups="sgc_management_core.group_sgc_purchase_director">
+                    <attribute name="modifiers">{ "invisible": [["approval_level2_state","!=","waiting"]] }</attribute>
+                </button>
+                <button name="action_send_rfq" string="Gửi báo giá cho NCC" type="object" class="btn-secondary">
+                    <attribute name="modifiers">{ "invisible": [["approval_level2_state","!=","approved"]] }</attribute>
+                </button>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group string="Phê duyệt mua hàng SGC">
+                    <field name="approval_level1_state" readonly="1"/>
+                    <field name="approval_level1_user_id" readonly="1"/>
+                    <field name="approval_level2_state" readonly="1"/>
+                    <field name="approval_level2_user_id" readonly="1"/>
+                    <field name="rfq_sent_state" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

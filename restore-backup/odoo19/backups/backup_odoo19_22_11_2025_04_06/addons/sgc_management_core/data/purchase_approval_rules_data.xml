@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Kích hoạt tính năng phê duyệt đơn hàng trong cài đặt -->
+        <record id="base.main_company" model="res.company">
+            <field name="po_order_approval" eval="True"/>
+        </record>
+
+        <!-- 
+        Quy tắc phê duyệt cho Trưởng phòng Mua hàng
+        - Áp dụng cho các đơn hàng có giá trị từ 5,000,000 trở lên.
+        - Gửi yêu cầu phê duyệt đến nhóm "Purchase - Trưởng phòng".
+        - Bạn có thể thay đổi giá trị min_amount ở đây hoặc trong giao diện Odoo tại menu:
+          Mua hàng > Cấu hình > Cấu hình Phê duyệt
+        -->
+        <record id="purchase_approval_rule_manager" model="purchase.approval.rule">
+            <field name="name">Phê duyệt của Trưởng phòng Mua hàng (>= 5,000,000)</field>
+            <field name="rule_type">min_amount</field>
+            <field name="min_amount">5000000</field>
+            <field name="approver_group_id" ref="sgc_management_core.group_sgc_purchase_manager"/>
+            <field name="sequence">10</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <!-- 
+        Quy tắc phê duyệt cho Giám đốc
+        - Áp dụng cho các đơn hàng có giá trị từ 20,000,000 trở lên.
+        - Gửi yêu cầu phê duyệt đến nhóm "Purchase - Giám đốc".
+        - Bạn có thể thay đổi giá trị min_amount ở đây hoặc trong giao diện Odoo.
+        -->
+        <record id="purchase_approval_rule_director" model="purchase.approval.rule">
+            <field name="name">Phê duyệt của Giám đốc (>= 20,000,000)</field>
+            <field name="rule_type">min_amount</field>
+            <field name="min_amount">20000000</field>
+            <field name="approver_group_id" ref="sgc_management_core.group_sgc_purchase_director"/>
+            <field name="sequence">20</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Quy tắc multi-company cho thông báo đã được quản lý trong module sgc_hr_announcement -->
+
+    <record id="group_sgc_announcement_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="implied_ids" eval="[(4, ref('hr.group_hr_user'))]"/>
+    </record>
+
+    <record id="group_sgc_announcement_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="implied_ids" eval="[(4, ref('group_sgc_announcement_user'))]"/>
+    </record>
+    
+    <!-- Sequences -->
+    <record id="sgc_general_announcement_seq" model="ir.sequence">
+        <field name="name">SGC General Announcement</field>
+        <field name="code">sgc.hr.announcement.general</field>
+        <field name="prefix">GA</field>
+        <field eval="4" name="padding"/>
+    </record>
+
+    <record id="sgc_announcement_seq" model="ir.sequence">
+        <field name="name">SGC Announcement</field>
+        <field name="code">sgc.hr.announcement</field>
+        <field name="prefix">AN</field>
+        <field eval="4" name="padding"/>
+    </record>
+</odoo>

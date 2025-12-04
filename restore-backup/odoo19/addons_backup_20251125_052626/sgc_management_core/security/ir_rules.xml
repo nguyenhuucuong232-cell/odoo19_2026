@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sale Order rules -->
+        <record id="rule_sgc_sale_staff" model="ir.rule">
+            <field name="name">SGC Sales Staff - Sale Orders</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="groups" eval="[(4, ref('sgc_management_core.group_sgc_sales_staff'))]"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+        </record>
+
+        <record id="rule_sgc_sale_lead" model="ir.rule">
+            <field name="name">SGC Sales Lead - Sale Orders</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="groups" eval="[(4, ref('sgc_management_core.group_sgc_sales_lead'))]"/>
+            <field name="domain_force">
+                ['|','|','|', ('user_id', '=', user.id), ('team_id.user_id', '=', user.id), ('team_id.member_ids', 'in', user.id), ('team_id', '=', False)]
+            </field>
+        </record>
+
+        <!-- Purchase Order rules -->
+        <record id="rule_sgc_purchase_staff" model="ir.rule">
+            <field name="name">SGC Purchase Staff - Purchase Orders</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="groups" eval="[(4, ref('sgc_management_core.group_sgc_purchase_staff'))]"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+        </record>
+
+        <record id="rule_sgc_purchase_manager" model="ir.rule">
+            <field name="name">SGC Purchase Manager - Purchase Orders</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="groups" eval="[(4, ref('sgc_management_core.group_sgc_purchase_manager'))]"/>
+            <field name="domain_force">
+                ['|', ('user_id', '=', user.id), ('company_id', 'in', user.company_ids.ids)]
+            </field>
+        </record>
+
+        <!-- Project / Task -->
+        <record id="rule_sgc_project_staff" model="ir.rule">
+            <field name="name">SGC Tech Staff - Projects</field>
+            <field name="model_id" ref="project.model_project_project"/>
+            <field name="groups" eval="[(4, ref('sgc_management_core.group_sgc_tech_staff'))]"/>
+            <field name="domain_force">[('department_id', '=', user.employee_id.department_id.id)]</field>
+        </record>
+
+        <record id="rule_sgc_project_manager" model="ir.rule">
+            <field name="name">SGC Tech Manager - Projects</field>
+            <field name="model_id" ref="project.model_project_project"/>
+            <field name="groups" eval="[(4, ref('sgc_management_core.group_sgc_tech_manager'))]"/>
+            <field name="domain_force">[('department_id', 'child_of', user.employee_id.department_id.id)]</field>
+        </record>
+
+        <record id="rule_sgc_task_staff" model="ir.rule">
+            <field name="name">SGC Tech Staff - Tasks</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="groups" eval="[(4, ref('sgc_management_core.group_sgc_tech_staff'))]"/>
+            <field name="domain_force">
+                ['|', ('user_ids', 'in', user.id), ('project_id.department_id', '=', user.employee_id.department_id.id)]
+            </field>
+        </record>
+
+        <record id="rule_sgc_task_manager" model="ir.rule">
+            <field name="name">SGC Tech Manager - Tasks</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="groups" eval="[(4, ref('sgc_management_core.group_sgc_tech_manager'))]"/>
+            <field name="domain_force">[('project_id.department_id', 'child_of', user.employee_id.department_id.id)]</field>
+        </record>
+
+        <!-- Timesheet -->
+        <record id="rule_sgc_timesheet_staff" model="ir.rule">
+            <field name="name">SGC Tech Staff - Timesheets</field>
+            <field name="model_id" ref="hr_timesheet.model_account_analytic_line"/>
+            <field name="groups" eval="[(4, ref('sgc_management_core.group_sgc_tech_staff'))]"/>
+            <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        </record>
+
+        <record id="rule_sgc_timesheet_manager" model="ir.rule">
+            <field name="name">SGC Tech Manager - Timesheets</field>
+            <field name="model_id" ref="hr_timesheet.model_account_analytic_line"/>
+            <field name="groups" eval="[(4, ref('sgc_management_core.group_sgc_tech_manager'))]"/>
+            <field name="domain_force">[('department_id', '=', user.employee_id.department_id.id)]</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sgc_approval_refuse_wizard_form" model="ir.ui.view">
+        <field name="name">sgc.approval.refuse.wizard.form</field>
+        <field name="model">sgc.approval.refuse.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Từ chối yêu cầu">
+                <group>
+                    <field name="request_id" readonly="1"/>
+                    <field name="reason" placeholder="Nhập lý do từ chối..."/>
+                </group>
+                <footer>
+                    <button name="action_refuse" string="Từ chối" type="object" class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

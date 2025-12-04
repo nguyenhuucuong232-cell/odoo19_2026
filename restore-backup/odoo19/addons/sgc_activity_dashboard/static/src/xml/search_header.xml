@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="sgc_activity_dashboard.search_header">
+        <div class="o_control_panel sgc-filter-section" style="margin: 20px; border-bottom:0;">
+            <div class="o_cp_top">
+                <div class="row mr-0">
+                    <div class="col-12 col-md-3 mt-2">
+                        <select class="btn btn-outline-primary w-100" name="search"
+                                t-on-change="onUserChange" t-att-value="filterState.resUsersValue">
+                            <option value="0" selected="selected">Tất cả người dùng</option>
+                            <t t-if="state and state.res_users">
+                                <t t-foreach="state.res_users" t-as="res" t-key="res.id">
+                                    <option t-att-value="res.id">
+                                        <t t-esc="res.name"/>
+                                    </option>
+                                </t>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-3 mt-2">
+                        <select class="btn btn-outline-primary w-100" name="search"
+                                t-on-change="onChangeHrDepartments" t-att-value="filterState.hrDepartmentsValue">
+                            <option value="0" selected="selected">Tất cả phòng ban</option>
+                            <t t-if="state and state.hr_departments">
+                                <t t-foreach="state.hr_departments" t-as="hr" t-key="hr.id">
+                                    <option t-att-value="hr.id">
+                                        <t t-esc="hr.name"/>
+                                    </option>
+                                </t>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 mt-2">
+                        <div class="o_date_range_picker">
+                            <div class="o_date_range_picker_input d-flex">
+                                <label for="o_date_range_picker_input_start"
+                                       style="display: flex; align-items: center; font-weight: 700;">Từ:</label>
+                                <input type="date" id="o_date_range_picker_input_start"
+                                       style="max-width: 157px; margin-right: 1rem;"
+                                       t-on-change="onDateChange" t-att-value="filterState.startDate"
+                                       class="o_date_range_picker_input_start form-control"
+                                       placeholder="Từ ngày"/>
+                                <label for="o_date_range_picker_input_end"
+                                       style="display: flex; align-items: center; font-weight: 700;">Đến:</label>
+                                <input type="date" id="o_date_range_picker_input_end"
+                                       style="max-width: 157px; margin-right: 1rem;"
+                                       t-on-change="onDateChange" t-att-value="filterState.endDate"
+                                       class="o_date_range_picker_input_end form-control"
+                                       placeholder="Đến ngày"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

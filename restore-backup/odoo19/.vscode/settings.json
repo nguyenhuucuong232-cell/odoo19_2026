@@ -1,0 +1,26 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/odoo-enterprise/src"
+  ],
+  "files.associations": {
+    "*.xml": "xml",
+    "*.csv": "csv"
+  },
+  "xml.fileAssociations": [
+    {
+      "systemId": "${workspaceFolder}/odoo-enterprise/src/odoo/addons/base/data/ir_ui_view.rng",
+      "pattern": "**/views/*.xml"
+    }
+  ],
+  "search.exclude": {
+    "**/odoo-src/**": true,
+    "**/odoo-enterprise/src/**": true,
+    "**/venv/**": true
+  },
+  "xml.symbols.enabled": false,
+  "cursorpyright.analysis.extraPaths": [
+    "${workspaceFolder}/odoo-enterprise/src"
+  ],
+  "git.ignoreLimitWarning": true
+}

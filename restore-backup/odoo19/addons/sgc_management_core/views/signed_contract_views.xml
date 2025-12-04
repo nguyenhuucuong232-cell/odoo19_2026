@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================== -->
+    <!-- ACTION WINDOW -->
+    <!-- ============================================== -->
+    
+    <record id="sgc_signed_contract_action" model="ir.actions.act_window">
+        <field name="name">Hợp đồng đã ký</field>
+        <field name="res_model">sgc.signed.contract</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Chưa có hợp đồng nào.
+            </p>
+            <p>
+                Nhấn "Mới" để tạo hợp đồng đã ký đầu tiên của bạn.
+            </p>
+        </field>
+    </record>
+
+    <!-- ============================================== -->
+    <!-- SEARCH VIEW -->
+    <!-- ============================================== -->
+    
+    <record id="sgc_signed_contract_view_search" model="ir.ui.view">
+        <field name="name">sgc.signed.contract.view.search</field>
+        <field name="model">sgc.signed.contract</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm hợp đồng">
+                <field name="name" string="Số hợp đồng"/>
+                <field name="internal_code" string="Mã nội bộ"/>
+                <field name="partner_id" string="Khách hàng"/>
+                <field name="user_id" string="Nhân viên phụ trách"/>
+                <separator/>
+                <filter string="Mới tạo" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Đang thực hiện" name="in_progress" domain="[('state', '=', 'in_progress')]"/>
+                <filter string="Bàn giao" name="handover" domain="[('state', '=', 'handover')]"/>
+                <filter string="Nghiệm thu" name="acceptance" domain="[('state', '=', 'acceptance')]"/>
+                <filter string="Hoàn tất" name="done" domain="[('state', '=', 'done')]"/>
+                <filter string="Đã hủy" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <separator/>
+                <filter string="Quá hạn" name="overdue" domain="[('is_overdue', '=', True)]"/>
+                <filter string="Đang hoạt động" name="active" domain="[('active', '=', True)]"/>
+                <separator/>
+                <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
+                <filter string="Khách hàng" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                <filter string="Nhân viên" name="group_user" context="{'group_by': 'user_id'}"/>
+                <filter string="Ngày ký" name="group_sign_date" context="{'group_by': 'date_signed:month'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============================================== -->
+    <!-- LIST VIEW -->
+    <!-- ============================================== -->
+    
+    <record id="sgc_signed_contract_view_tree" model="ir.ui.view">
+        <field name="name">sgc.signed.contract.view.list</field>
+        <field name="model">sgc.signed.contract</field>
+        <field name="arch" type="xml">
+            <list string="Danh sách Hợp đồng" decoration-danger="is_overdue == True" decoration-muted="state == 'cancelled'">
+                <field name="name" string="Số"/>
+                <field name="internal_code" string="Mã hợp đồng nội bộ" optional="show"/>
+                <field name="description" string="Nội dung"/>
+                <field name="activity_ids" widget="list_activity" string="Các hoạt động"/>
+                <field name="user_id" string="Nhân viên phụ trách" widget="many2one_avatar_user"/>
+                <field name="partner_id" string="Bên A"/>
+                <field name="amount_total" string="Tổng tiền" widget="monetary"/>
+                <field name="date_signed" string="Ngày thực hiện"/>
+                <field name="date_end" string="Ngày kết thúc"/>
+                <field name="overdue_reason_id" string="Lý do quá hạn" optional="show"/>
+                <field name="overdue_description" string="Mô tả chi tiết lý do..." optional="show"/>
+                <field name="is_overdue" column_invisible="True"/>
+                <field name="state" string="Trạng thái" widget="badge" 
+                       decoration-info="state == 'draft'" 
+                       decoration-primary="state == 'in_progress'" 
+                       decoration-warning="state in ('handover', 'acceptance')" 
+                       decoration-success="state == 'done'" 
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============================================== -->
+    <!-- KANBAN VIEW -->
+    <!-- ============================================== -->
+    
+    <record id="sgc_signed_contract_view_kanban" model="ir.ui.view">
+        <field name="name">sgc.signed.contract.view.kanban</field>
+        <field name="model">sgc.signed.contract</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="amount_total"/>
+                <field name="currency_id"/>
+                <field name="state"/>
+                <field name="is_overdue"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_record_top mb-0">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <field name="state" widget="label_selection" options="{'classes': {'draft': 'info', 'in_progress': 'primary', 'handover': 'warning', 'acceptance': 'warning', 'done': 'success', 'cancelled': 'danger'}}"/>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <field name="partner_id"/>
+                                <div class="text-muted">
+                                    <field name="amount_total" widget="monetary"/>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <field name="activity_ids" widget="kanban_activity"/>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ============================================== -->
+    <!-- FORM VIEW - MAIN (Giống mẫu Odoo 17 100%) -->
+    <!-- ============================================== -->
+    
+    <record id="sgc_signed_contract_view_form" model="ir.ui.view">
+        <field name="name">sgc.signed.contract.view.form</field>
+        <field name="model">sgc.signed.contract</field>
+        <!-- Đặt priority thấp để view này luôn là form chính -->
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Hợp đồng ký kết">
+                
+                <!-- ======================================== -->
+                <!-- 1. HEADER - THANH TRẠNG THÁI -->
+                <!-- ======================================== -->
+                <header>
+                    <!-- Nút Bắt đầu (btn-primary khi state=draft) -->
+                    <button name="action_start" 
+                            string="Bắt đầu" 
+                            type="object" 
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    
+                    <!-- Nút In PDF -->
+                    <button name="action_print_pdf" 
+                            string="In PDF" 
+                            type="object"/>
+                    
+                    <!-- Nút Hủy -->
+                    <button name="action_cancel" 
+                            string="Hủy" 
+                            type="object"
+                            invisible="state in ('done', 'cancelled')"
+                            confirm="Bạn có chắc chắn muốn hủy hợp đồng này?"/>
+                    
+                    <!-- Nút Tạo BBQT -->
+                    <button name="action_create_bbqt" 
+                            string="Tạo BBQT" 
+                            type="object"
+                            class="btn-secondary"/>
+                    
+                    <!-- Thanh trạng thái -->
+                    <field name="state" 
+                           widget="statusbar" 
+                           statusbar_visible="draft,in_progress,handover,acceptance,done"/>
+                </header>
+                
+                <!-- ======================================== -->
+                <!-- 2. SHEET - NỘI DUNG CHÍNH -->
+                <!-- ======================================== -->
+                <sheet>
+                    
+                    <!-- Ribbon khi bị Archive -->
+                    <widget name="web_ribbon" 
+                            title="Đã lưu trữ" 
+                            bg_color="text-bg-danger" 
+                            invisible="active"/>
+                    
+                    <!-- ================================== -->
+                    <!-- A. SMART BUTTONS (Góc trên phải) -->
+                    <!-- ================================== -->
+                    <div class="oe_button_box" name="button_box">
+                        
+                        <!-- Biên bản nghiệm thu -->
+                        <button name="action_view_acceptance" 
+                                type="object" 
+                                class="oe_stat_button" 
+                                icon="fa-check-square-o">
+                            <field name="acceptance_count" 
+                                   widget="statinfo" 
+                                   string="Biên bản nghiệm thu"/>
+                        </button>
+                        
+                        <!-- Biên bản bàn giao -->
+                        <button name="action_view_handover" 
+                                type="object" 
+                                class="oe_stat_button" 
+                                icon="fa-truck">
+                            <field name="handover_count" 
+                                   widget="statinfo" 
+                                   string="Biên bản bàn giao"/>
+                        </button>
+                        
+                        <!-- Biên bản lấy mẫu -->
+                        <button name="action_view_sampling" 
+                                type="object" 
+                                class="oe_stat_button" 
+                                icon="fa-flask">
+                            <field name="sampling_count" 
+                                   widget="statinfo" 
+                                   string="Biên bản lấy mẫu"/>
+                        </button>
+                        
+                        <!-- BBQT -->
+                        <button name="action_view_bbqt" 
+                                type="object" 
+                                class="oe_stat_button" 
+                                icon="fa-file-text-o">
+                            <field name="bbqt_count" 
+                                   widget="statinfo" 
+                                   string="BBQT"/>
+                        </button>
+                        
+                        <!-- Documents -->
+                        <button name="action_view_documents" 
+                                type="object" 
+                                class="oe_stat_button" 
+                                icon="fa-file-o">
+                            <field name="document_count" 
+                                   widget="statinfo" 
+                                   string="Documents"/>
+                        </button>
+                        
+                    </div>
+                    
+                    <!-- ================================== -->
+                    <!-- B. TITLE - TIÊU ĐỀ -->
+                    <!-- ================================== -->
+                    <div class="oe_title">
+                        <label for="name" string="Hợp đồng ký kết"/>
+                        <h1>
+                            <field name="name" 
+                                   placeholder="HĐ2025/xxxxx" 
+                                   readonly="state != 'draft'"/>
+                        </h1>
+                    </div>
+                    
+                    <!-- ================================== -->
+                    <!-- C. MAIN GROUP - 2 CỘT CHÍNH -->
+                    <!-- ================================== -->
+                    <group>
+                        
+                        <!-- ============================== -->
+                        <!-- CỘT TRÁI -->
+                        <!-- ============================== -->
+                        <group>
+                            
+                            <!-- ========================== -->
+                            <!-- SECTION: THÔNG TIN HỢP ĐỒNG -->
+                            <!-- ========================== -->
+                            <separator string="THÔNG TIN HỢP ĐỒNG"/>
+                            
+                            <field name="name" string="Số hợp đồng" readonly="1"/>
+                            <field name="internal_code" string="Mã hợp đồng nội bộ" placeholder="Sinh khi xác nhận"/>
+                            <field name="template_id" string="Mẫu hợp đồng" options="{'no_create': True}"/>
+                            <field name="contract_type" string="Loại hợp đồng"/>
+                            <field name="ref_order_id" string="Đơn hàng tham chiếu" options="{'no_create': True}"/>
+                            <field name="user_id" string="Nhân viên phụ trách" widget="many2one_avatar_user"/>
+                            <field name="description" string="Nội dung hợp đồng"/>
+                            
+                            <!-- Separator line -->
+                            <separator/>
+                            
+                            <!-- Ngày tháng -->
+                            <field name="date_signed" string="Ngày ký hợp đồng"/>
+                            <field name="date_end" string="Ngày kết thúc"/>
+                            <field name="notice_days" string="Số ngày thông báo"/>
+                            <field name="is_overdue" string="Quá hạn" readonly="1"/>
+                            <field name="overdue_reason_id" string="Lý do quá hạn" invisible="not is_overdue"/>
+                            <field name="overdue_description" string="Mô tả chi tiết lý do quá hạn" invisible="not is_overdue"/>
+                            <field name="date_create" string="Ngày tạo" readonly="1"/>
+                            <field name="frequency" string="Tần suất"/>
+                            
+                            <!-- ========================== -->
+                            <!-- SECTION: BÊN A - KHÁCH HÀNG -->
+                            <!-- ========================== -->
+                            <separator string="THUÊ DỊCH VỤ (BÊN A)"/>
+                            
+                            <field name="partner_id" string="Khách hàng" options="{'no_quick_create': True}"/>
+                            <field name="partner_phone" string="Điện thoại liên hệ"/>
+                            <field name="representative_a" string="Đại diện"/>
+                            <field name="bank_account_a" string="Tài khoản thanh toán" 
+                                   options="{'no_create': True}" 
+                                   domain="[('partner_id', '=', partner_id)]"/>
+                            <field name="auth_number_a" string="Theo giấy ủy quyền số"/>
+                            <field name="show_auth_a" string="Hiển thị giấy ủy quyền"/>
+                            
+                        </group>
+                        
+                        <!-- ============================== -->
+                        <!-- CỘT PHẢI -->
+                        <!-- ============================== -->
+                        <group>
+                            
+                            <!-- ========================== -->
+                            <!-- SECTION: BÊN B - CÔNG TY -->
+                            <!-- ========================== -->
+                            <separator string="CUNG CẤP DỊCH VỤ (BÊN B)"/>
+                            
+                            <field name="company_id" string="Công ty" options="{'no_create': True}"/>
+                            <field name="representative_b" string="Đại diện"/>
+                            <field name="bank_account_b" string="Tài khoản thanh toán" options="{'no_create': True}"/>
+                            <field name="auth_number_b" string="Theo giấy ủy quyền số"/>
+                            <field name="show_auth_b" string="Hiển thị giấy ủy quyền"/>
+                            
+                            <!-- ========================== -->
+                            <!-- SECTION: ĐIỀU KHOẢN HỢP ĐỒNG -->
+                            <!-- ========================== -->
+                            <separator string="ĐIỀU KHOẢN HỢP ĐỒNG"/>
+                            
+                            <field name="contract_product_desc" string="Sản phẩm của hợp đồng"/>
+                            <field name="quality_desc" string="Chất lượng hợp đồng"/>
+                            <field name="form_type" string="Hình thức hợp đồng"/>
+                            <field name="show_signer" string="Hiển thị người ký"/>
+                            <field name="sampling_location" string="Địa điểm lấy mẫu"/>
+                            <field name="sampling_time" string="Thời gian lấy mẫu thực hiện"/>
+                            
+                            <!-- Thời hạn thực hiện với đơn vị Ngày -->
+                            <label for="duration_days" string="Thời hạn thực hiện hợp đồng"/>
+                            <div class="o_row">
+                                <field name="duration_days" class="oe_inline" style="width: 60px;"/>
+                                <span class="ms-2">Ngày</span>
+                            </div>
+                            
+                            <!-- Thời gian cho phép thanh toán với đơn vị Ngày -->
+                            <label for="payment_term_days" string="Thời gian cho phép thanh toán"/>
+                            <div class="o_row">
+                                <field name="payment_term_days" class="oe_inline" style="width: 60px;"/>
+                                <span class="ms-2">Ngày</span>
+                            </div>
+                            
+                        </group>
+                        
+                    </group>
+                    
+                    <!-- ================================== -->
+                    <!-- D. ĐIỀU KHOẢN THANH TOÁN -->
+                    <!-- ================================== -->
+                    <separator string="ĐIỀU KHOẢN THANH TOÁN"/>
+                    
+                    <group>
+                        <group>
+                            <field name="payment_condition" string="Điều kiện"/>
+                        </group>
+                    </group>
+                    
+                    <label for="payment_line_ids" string="Phương thức thanh toán"/>
+                    <field name="payment_line_ids" nolabel="1">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="product_id" string="Sản phẩm" options="{'no_create': True}"/>
+                            <field name="name" string="Diễn giải"/>
+                            <field name="product_uom_qty" string="Số lượng"/>
+                            <field name="product_uom" string="Đơn vị tính" options="{'no_create': True}"/>
+                            <field name="price_unit" string="Đơn giá" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="frequency" string="Tần suất..."/>
+                            <field name="tax_ids" string="Thuế" widget="many2many_tags" options="{'no_create': True}"/>
+                            <field name="price_subtotal" string="Thành tiền" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="currency_id" column_invisible="1"/>
+                        </list>
+                    </field>
+                    
+                    <!-- Tổng cộng -->
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="amount_total" 
+                               string="Tổng cộng"
+                               widget="monetary"
+                               class="oe_subtotal_footer_separator"/>
+                        <field name="currency_id" invisible="1"/>
+                    </group>
+                    <div class="oe_clear"/>
+                    
+                    <!-- ================================== -->
+                    <!-- E. NOTEBOOK - CẤU HÌNH FILE IN -->
+                    <!-- ================================== -->
+                    <notebook>
+                        <page string="Cấu hình file in" name="print_config">
+                            <group>
+                                <group>
+                                    <field name="line_spacing" string="Khoảng cách dòng"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                    
+                </sheet>
+                
+                <!-- ======================================== -->
+                <!-- 3. FOOTER - CHATTER -->
+                <!-- ======================================== -->
+                <chatter/>
+                
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================================== -->
+    <!-- CONTRACT TYPE VIEWS -->
+    <!-- ============================================== -->
+    
+    <record id="sgc_contract_type_action" model="ir.actions.act_window">
+        <field name="name">Loại hợp đồng</field>
+        <field name="res_model">sgc.contract.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    
+    <record id="sgc_contract_type_view_tree" model="ir.ui.view">
+        <field name="name">sgc.contract.type.view.list</field>
+        <field name="model">sgc.contract.type</field>
+        <field name="arch" type="xml">
+            <list string="Loại hợp đồng">
+                <field name="sequence" widget="handle" column_invisible="1"/>
+                <field name="name" string="Loại hợp đồng"/>
+                <field name="short_name" string="Tên viết tắt"/>
+                <field name="description" string="Diễn giải loại hợp đồng"/>
+            </list>
+        </field>
+    </record>
+    
+    <record id="sgc_contract_type_view_form" model="ir.ui.view">
+        <field name="name">sgc.contract.type.view.form</field>
+        <field name="model">sgc.contract.type</field>
+        <field name="arch" type="xml">
+            <form string="Loại hợp đồng">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Loại hợp đồng"/>
+                            <field name="short_name" string="Tên viết tắt"/>
+                        </group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description" string="Diễn giải loại hợp đồng"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- ============================================== -->
+    <!-- CONTRACT TEMPLATE VIEWS -->
+    <!-- ============================================== -->
+    
+    <record id="sgc_contract_template_action" model="ir.actions.act_window">
+        <field name="name">Mẫu hợp đồng</field>
+        <field name="res_model">sgc.contract.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    
+    <record id="sgc_contract_template_view_tree" model="ir.ui.view">
+        <field name="name">sgc.contract.template.view.list</field>
+        <field name="model">sgc.contract.template</field>
+        <field name="arch" type="xml">
+            <list string="Mẫu hợp đồng">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="contract_type_id"/>
+                <field name="create_date"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+    
+    <record id="sgc_contract_template_view_form" model="ir.ui.view">
+        <field name="name">sgc.contract.template.view.form</field>
+        <field name="model">sgc.contract.template</field>
+        <field name="arch" type="xml">
+            <form string="Mẫu hợp đồng">
+                <sheet>
+                    
+                    <!-- ================================== -->
+                    <!-- TITLE - TIÊU ĐỀ -->
+                    <!-- ================================== -->
+                    <div class="oe_title">
+                        <label for="code" string="Mẫu hợp đồng"/>
+                        <h1>
+                            <field name="code" placeholder="Mã mẫu hợp đồng"/>
+                        </h1>
+                    </div>
+                    
+                    <!-- ================================== -->
+                    <!-- MAIN GROUP - 2 CỘT CHÍNH -->
+                    <!-- ================================== -->
+                    <group>
+                        
+                        <!-- CỘT TRÁI -->
+                        <group>
+                            <field name="name" string="Tên mẫu"/>
+                            <field name="create_date" string="Ngày tạo" readonly="1"/>
+                            <field name="description" string="Diễn giải"/>
+                        </group>
+                        
+                        <!-- CỘT PHẢI -->
+                        <group>
+                            <field name="contract_type_id" string="Loại hợp đồng" options="{'no_create': True}"/>
+                            <field name="contract_product_desc" string="Sản phẩm của hợp đồng"/>
+                            <field name="quality_desc" string="Chất lượng hợp đồng"/>
+                            <field name="form_type" string="Hình thức hợp đồng"/>
+                        </group>
+                        
+                    </group>
+                    
+                    <!-- ================================== -->
+                    <!-- NỘI DUNG MẪU -->
+                    <!-- ================================== -->
+                    <field name="content" widget="html" placeholder="Nhập nội dung mẫu hợp đồng..."/>
+                    
+                    <!-- Hidden active field -->
+                    <field name="active" invisible="1"/>
+                    
+                </sheet>
+                
+                <!-- ================================== -->
+                <!-- CHATTER - LỊCH SỬ THAY ĐỔI -->
+                <!-- ================================== -->
+                <chatter/>
+                
+            </form>
+        </field>
+    </record>
+
+</odoo>

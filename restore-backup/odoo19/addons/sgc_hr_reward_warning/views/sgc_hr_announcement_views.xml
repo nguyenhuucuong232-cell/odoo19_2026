@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="sgc_hr_announcement_view_form" model="ir.ui.view">
+        <field name="name">sgc.hr.announcement.form</field>
+        <field name="model">sgc.hr.announcement</field>
+        <field name="arch" type="xml">
+            <form string="Thông báo">
+                <header>
+                    <button string="Gửi phê duyệt" 
+                            class="btn-primary" 
+                            type="object" 
+                            name="action_send_for_approval"
+                            groups="hr.group_hr_user"
+                            invisible="state != 'draft'"/>
+                    <button string="Phê duyệt" 
+                            class="btn-primary" 
+                            groups="hr.group_hr_manager" 
+                            type="object" 
+                            name="action_approve"
+                            invisible="state != 'to_approve'"/>
+                    <button string="Từ chối" 
+                            groups="hr.group_hr_manager" 
+                            type="object"
+                            name="action_reject" 
+                            invisible="state != 'to_approve'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to_approve,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" class="oe_inline" readonly="1"/>
+                        </h1>
+                        <div name="options_active">
+                            <div>
+                                <label for="is_general" class="oe_inline" string="Thông báo chung"/>
+                                <field name="is_general" class="oe_inline" readonly="name != False"/>
+                            </div>
+                        </div>
+                    </div>
+                    <group>
+                        <label for="title"/>
+                        <div>
+                            <field name="title" readonly="state != 'draft'"/>
+                        </div>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="announcement_type" invisible="is_general"/>
+                            <field name="attachment_ids" widget="many2many_binary" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="date_end"/>
+                            <field name="employee_ids" widget="many2many_tags"
+                                   invisible="is_general or announcement_type != 'employee'"/>
+                            <field name="department_ids" widget="many2many_tags"
+                                   invisible="is_general or announcement_type != 'department'"/>
+                            <field name="position_ids" widget="many2many_tags"
+                                   invisible="is_general or announcement_type != 'job_position'"/>
+                            <field name="requested_date" readonly="1"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="content" string="Nội dung">
+                            <field name="content" readonly="state != 'draft'"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="sgc_hr_announcement_view_list" model="ir.ui.view">
+        <field name="name">sgc.hr.announcement.list</field>
+        <field name="model">sgc.hr.announcement</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="title"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" 
+                       decoration-warning="state == 'to_approve'" 
+                       decoration-success="state == 'approved'"
+                       decoration-danger="state == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="sgc_hr_announcement_view_search" model="ir.ui.view">
+        <field name="name">sgc.hr.announcement.search</field>
+        <field name="model">sgc.hr.announcement</field>
+        <field name="arch" type="xml">
+            <search string="Thông báo">
+                <field name="name" string="Mã số"/>
+                <field name="title" string="Tiêu đề"/>
+                <field name="is_general" string="Thông báo chung"/>
+                <field name="state" string="Trạng thái"/>
+                <separator/>
+                <filter name="approved" string="Đã phê duyệt" domain="[('state', '=', 'approved')]"/>
+                <filter name="general" string="Thông báo chung" domain="[('is_general', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="sgc_hr_announcement_action" model="ir.actions.act_window">
+        <field name="name">Thông báo</field>
+        <field name="res_model">sgc.hr.announcement</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="sgc_hr_announcement_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo thông báo mới
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu -->
+<!--     <menuitem id="sgc_hr_announcement_menu_root" -->
+<!--               name="Thông báo" -->
+<!--               groups="hr.group_hr_user,hr.group_hr_manager" -->
+<!--               web_icon="sgc_hr_reward_warning,static/description/icon.png" -->
+<!--               sequence="25"/> -->
+<!--  -->
+<!--     <menuitem id="sgc_hr_announcement_menu" -->
+<!--               name="Thông báo" -->
+<!--               action="sgc_hr_announcement_action" -->
+<!--               parent="sgc_hr_announcement_menu_root" -->
+<!--               groups="hr.group_hr_user,hr.group_hr_manager" -->
+<!--               sequence="1"/> -->
+
+    <!-- Employee Form Inherit -->
+    <record model="ir.ui.view" id="sgc_hr_employee_form_inherit">
+        <field name="name">hr.employee.form.inherit.sgc.announcement</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button class="oe_stat_button" 
+                        name="action_view_announcements" 
+                        type="object" 
+                        icon="fa-bullhorn"
+                        invisible="sgc_announcement_count == 0">
+                    <field string="Thông báo" name="sgc_announcement_count" widget="statinfo"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <!-- Cron Job -->
+    <record model="ir.cron" id="sgc_hr_announcement_expiry_cron">
+        <field name="name">SGC HR Announcement Expiry</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="model_id" ref="model_sgc_hr_announcement"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_check_expiry()</field>
+    </record>
+</odoo>

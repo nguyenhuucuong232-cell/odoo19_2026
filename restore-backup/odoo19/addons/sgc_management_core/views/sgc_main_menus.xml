@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Dashboard Menus - Hiển thị trên bảng điều khiển -->
+    
+    <!-- Note: Menu "Giám sát hoạt động" đã được tạo trong sgc_activity_dashboard module -->
+    <!-- Không tạo menu trùng lặp ở đây -->
+    
+    <!-- 1. Hợp đồng ký kết (Signed Contract) -->
+    <menuitem id="sgc_main_signed_contract"
+              name="Hợp đồng ký kết"
+              action="sgc_management_core.sgc_signed_contract_action"
+              web_icon="sgc_management_core,static/description/icon.png"
+              sequence="10"/>
+    
+    <!-- Đã có app riêng từ module sgc_document_management, tránh trùng icon trên dashboard -->
+    <!--
+    <menuitem id="sgc_main_document_management"
+              name="Quản lý văn bản"
+              action="sgc_document_management.sgc_document_in_action"
+              web_icon="sgc_document_management,static/description/icon.png"
+              sequence="50"/>
+    -->
+    
+    <!-- Note: Menu "KPI" đã được tạo trong sgc_kpi module -->
+    
+    <!-- Tạm ẩn menu Phê duyệt cho đến khi module sgc_approval_management ổn định -->
+    <!--
+    <menuitem id="sgc_main_approval"
+              name="Phê duyệt"
+              action="sgc_approval_management.sgc_approval_request_action"
+              web_icon="sgc_approval_management,static/description/icon.png"
+              sequence="70"/>
+    -->
+    
+    <menuitem id="sgc_main_payment"
+              name="Thanh toán"
+              action="sgc_account_payment.sgc_payment_action"
+              web_icon="sgc_account_payment,static/description/icon.png"
+              sequence="80"/>
+    
+    <menuitem id="sgc_main_hr_announcement"
+              name="Thông báo"
+              action="sgc_hr_announcement.sgc_hr_announcement_action"
+              web_icon="sgc_hr_announcement,static/description/icon.png"
+              groups="hr.group_hr_user,hr.group_hr_manager"
+              sequence="90"/>
+    
+    <!-- 2. Bán hàng (Sales) - Link to existing sales menu -->
+    <!-- Đã có menu "Bán hàng" mặc định từ module sale_management của Odoo, không tạo trùng lặp -->
+    <!--
+    <menuitem id="sgc_main_sales"
+              name="Bán hàng"
+              action="sale.action_orders"
+              web_icon="sale,static/description/icon.png"
+              sequence="20"/>
+    -->
+    
+    <!-- 3. CRM -->
+    <menuitem id="sgc_main_crm"
+              name="CRM"
+              action="crm.crm_lead_action_pipeline"
+              web_icon="crm,static/description/icon.png"
+              sequence="30"/>
+    
+    <!-- 4. Kế toán (Accounting) -->
+    <menuitem id="sgc_main_accounting"
+              name="Kế toán"
+              action="account.action_account_form"
+              web_icon="account,static/description/icon.png"
+              sequence="40"/>
+</odoo>
